@@ -9,7 +9,7 @@ const NavMenu = () => {
 
   return (
     <ul className="menu menu-horizontal px-1 gap-2 z-50">
-                <li><a className={`hover:bg-red-500 hover:text-white hover:rounded-lg ${pathName === '/' && 'bg-red-300 text-white'}`}>BERANDA</a></li>
+                <li><a className={`hover:bg-red-500 hover:text-white hover:rounded-lg ${pathName === '/' && 'bg-red-500 text-white'}`}>BERANDA</a></li>
                 <li className="group hover:bg-red-500 hover:rounded-lg">
                     <details className="group-hover:text-inherit" >
                         <summary className="text-black group-hover:text-white">PROFIL</summary>
