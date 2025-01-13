@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 const NavMenu = () => {
 
@@ -9,13 +10,13 @@ const NavMenu = () => {
 
   return (
     <ul className="menu menu-horizontal px-1 gap-2 z-50">
-                <li><a className={`hover:bg-red-500 hover:text-white hover:rounded-lg ${pathName === '/' && 'bg-red-500 text-white'}`}>BERANDA</a></li>
-                <li className="group hover:bg-red-500 hover:rounded-lg">
-                    <details className="group-hover:text-inherit" >
-                        <summary className="text-black group-hover:text-white">PROFIL</summary>
+                <li><Link href={'/'} className={`hover:bg-red-500 hover:text-white hover:rounded-lg ${pathName === '/' && 'bg-red-500 text-white'}`}>BERANDA</Link></li>
+                <li className="group hover:bg-red-500 hover:rounded-lg ">
+                    <details className="group-hover:text-inherit " >
+                        <summary className={`text-black group-hover:text-white ${(pathName === '/sejarah' || pathName === '/visi-misi') && 'bg-red-500 text-white'}`}>PROFIL</summary>
                         <ul className="p-2">
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Sejarah</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Visi & Misi</a></li>
+                            <li><Link href={'/sejarah'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/sejarah' && 'bg-red-500 text-white'}`}>Sejarah</Link></li>
+                            <li><Link href={'/visi-misi'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/visi-misi' && 'bg-red-500 text-white'}`}>Visi & Misi</Link></li>
                             <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Lambang Daerah</a></li>
                             <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Kondisi Geografis</a></li>
                             <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Demografi</a></li>

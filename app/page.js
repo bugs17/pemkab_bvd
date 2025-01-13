@@ -3,7 +3,6 @@ import Hero from "./component/hero";
 import HeadlineNews from "./component/headlineNews";
 import AgendaSections from "./component/agendaSections";
 import GalerySections from "./component/galerySections";
-import Footer from "./component/footer";
 
 
 export default function Home() {
@@ -22,7 +21,7 @@ export default function Home() {
       <GalerySections />
 
       {/* footer */}
-      <Footer />
+      
     </>
   );
 }

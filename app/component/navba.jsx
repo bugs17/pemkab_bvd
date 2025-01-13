@@ -5,7 +5,7 @@ import LogoBoven from "../asset/img/logo-boven.png"
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm shadow-slate-400">
+    <div className="navbar bg-base-100 shadow-sm shadow-slate-400 sticky top-0 z-50">
 
         <div className="navbar-start">
             <div className="dropdown">
