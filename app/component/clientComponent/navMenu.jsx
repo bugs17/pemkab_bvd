@@ -13,18 +13,18 @@ const NavMenu = () => {
                 <li><Link href={'/'} className={`hover:bg-red-500 hover:text-white hover:rounded-lg ${pathName === '/' && 'bg-red-500 text-white'}`}>BERANDA</Link></li>
                 <li className="group hover:bg-red-500 hover:rounded-lg ">
                     <details className="group-hover:text-inherit " >
-                        <summary className={`text-black group-hover:text-white ${(pathName === '/sejarah' || pathName === '/visi-misi') && 'bg-red-500 text-white'}`}>PROFIL</summary>
+                        <summary className={`text-black group-hover:text-white ${(pathName === '/sejarah' || pathName === '/visi-misi' || pathName === '/lambang-daerah' || pathName === '/kondisi-geografis' || pathName === '/demografi' || pathName === '/peta' || pathName === '/politik-hukum-dan-keamanan' || pathName === '/kesejahteraan-sosial' || pathName === '/apbd') && 'bg-red-500 text-white'}`}>PROFIL</summary>
                         <ul className="p-2">
                             <li><Link href={'/sejarah'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/sejarah' && 'bg-red-500 text-white'}`}>Sejarah</Link></li>
                             <li><Link href={'/visi-misi'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/visi-misi' && 'bg-red-500 text-white'}`}>Visi & Misi</Link></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Lambang Daerah</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Kondisi Geografis</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Demografi</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Peta</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Politik Hukum & Keamanan</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">Kesejahteraan Sosial</a></li>
+                            <li><Link href={'/lambang-daerah'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/lambang-daerah' && 'bg-red-500 text-white'}`}>Lambang Daerah</Link></li>
+                            <li><Link href={'/kondisi-geografis'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/kondisi-geografis' && 'bg-red-500 text-white'}`}>Kondisi Geografis</Link></li>
+                            <li><Link href={'/demografi'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/demografi' && 'bg-red-500 text-white'}`}>Demografi</Link></li>
+                            <li><Link href={'/peta'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/peta' && 'bg-red-500 text-white'}`}>Peta</Link></li>
+                            <li><Link href={'/politik-hukum-dan-keamanan'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/politik-hukum-dan-keamanan' && 'bg-red-500 text-white'}`}>Politik Hukum & Keamanan</Link></li>
+                            <li><Link href={'/kesejahteraan-sosial'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/kesejahteraan-sosial' && 'bg-red-500 text-white'}`}>Kesejahteraan Sosial</Link></li>
                             <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">RPJMD Kabupaten Boven Digoel 2021-2025</a></li>
-                            <li><a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">APBD Boven Digoel</a></li>
+                            <li><Link href={'/apbd'} className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${pathName === '/apbd' && 'bg-red-500 text-white'}`}>APBD Boven Digoel</Link></li>
                         </ul>
                     </details>
                 </li>

@@ -3,12 +3,12 @@ import PdfViewerComponent from "../component/clientComponent/pdfViewer";
 import { FaCalendarDays } from "react-icons/fa6";
 
 
-const VisiMisi = () => {
+const KondisiGeografis = () => {
   return (
     <div className="w-full bg-base-200 p-4 flex md:flex-row flex-col">
       <div className=" md:w-[70%] md:p-10">
-        <h1 className="text-center font-bold text-2xl mb-4">VISI & MISI</h1>
-        <PdfViewerComponent urlPdf={"/docs/visimisi.pdf"} />
+        <h1 className="text-center font-bold text-2xl mb-4">KONDISI GEOGRAFIS</h1>
+        <PdfViewerComponent urlPdf={"/docs/kondisi-geografis.pdf"} />
       </div>
 
       <div className="md:w-[30%] md:pt-10">
@@ -88,4 +88,4 @@ const VisiMisi = () => {
   );
 };
 
-export default VisiMisi;
+export default KondisiGeografis;

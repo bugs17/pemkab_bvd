@@ -7,7 +7,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     import.meta.url,
   ).toString();
 
-const PdfViewerComponent = () => {
+const PdfViewerComponent = ({urlPdf}) => {
     const [numPages, setNumPages] = useState();
     const [pageNumber, setPageNumber] = useState(1);
 
@@ -17,7 +17,7 @@ const PdfViewerComponent = () => {
 
   return (
     <div>
-      <Document file="/docs/visimisi.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={urlPdf} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.apply(null, Array(numPages)).map((x,i) => i+1).map((page, index) =>{
             return(
                 <Page key={index} pageNumber={page} width={750} canvasBackground='#f5f3ff' className={'mb-3 shadow-md'} renderTextLayer={false} renderAnnotationLayer={false} />
