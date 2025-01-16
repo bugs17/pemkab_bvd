@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaCalendarDays } from "react-icons/fa6";
+import Link from 'next/link';
 
 
 const HeadlineNews = () => {
@@ -16,9 +17,9 @@ const HeadlineNews = () => {
                 alt="cover" />
             </figure>
             <div className="card-body">
-              <h2 className="card-title cursor-pointer hover:text-red-500">
+              <Link href={'/pages/detail-berita/kpu-boven-mengadakan-pertemuan'} className="card-title cursor-pointer hover:text-red-500">
               KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </h2>
+              </Link>
               <p>Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten Boven Digoel menggelar...</p>
               <div className="card-actions justify-start">
                   <div className="badge badge-neutral">

@@ -354,7 +354,18 @@ const NavMenu = () => {
         <details className="group-hover:text-inherit">
           <summary
             className={`text-black group-hover:text-white ${
-              pathName === "/buku-pedoman-statistik-sektoral" &&
+              (pathName === "/buku-pedoman-statistik-sektoral" ||
+                pathName === "/satu-data" ||
+                pathName === "/sk-wali-data" ||
+                pathName === "/publikasi" ||
+                pathName === "/sop-meta-data" ||
+                pathName === "/pertanian" ||
+                pathName === "/perkebunan" ||
+                pathName === "/perikanan" ||
+                pathName === "/peternakan" ||
+                pathName === "/kehutanan" ||
+                pathName === "/pariwisata-dan-kebudayaan" ||
+                pathName === "/statistik-sektoral-daerah") &&
               "bg-red-500 text-white"
             }`}
           >
@@ -365,7 +376,12 @@ const NavMenu = () => {
               <details className="group-hover:text-inherit">
                 <summary
                   className={`text-black group-hover:text-white ${
-                    pathName === "/buku-pedoman-statistik-sektoral" &&
+                    (pathName === "/buku-pedoman-statistik-sektoral" ||
+                      pathName === "/satu-data" ||
+                      pathName === "/sk-wali-data" ||
+                      pathName === "/publikasi" ||
+                      pathName === "/sop-meta-data" ||
+                      pathName === "/statistik-sektoral-daerah") &&
                     "bg-red-500 text-white"
                   }`}
                 >
@@ -385,90 +401,147 @@ const NavMenu = () => {
                   </li>
                   <li>
                     <details className="group-hover:text-inherit">
-                      <summary className="whitespace-nowrap">Regulasi</summary>
+                      <summary
+                        className={`text-black group-hover:text-white ${
+                          (pathName === "/satu-data" ||
+                            pathName === "/statistik-sektoral-daerah") &&
+                          "bg-red-500 text-white"
+                        }`}
+                      >
+                        Regulasi
+                      </summary>
                       <ul className="p-2">
                         <li>
-                          <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+                          <Link
+                            href={"/satu-data"}
+                            className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                              pathName === "/satu-data" &&
+                              "bg-red-500 text-white"
+                            }`}
+                          >
                             Satu Data
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+                          <Link
+                            href={"/statistik-sektoral-daerah"}
+                            className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                              pathName === "/statistik-sektoral-daerah" &&
+                              "bg-red-500 text-white"
+                            }`}
+                          >
                             Statistik Sektoral Daerah
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </details>
                   </li>
                   <li>
-                    <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+                    <Link
+                      href={"/sk-wali-data"}
+                      className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                        pathName === "/sk-wali-data" && "bg-red-500 text-white"
+                      }`}
+                    >
                       SK Wali Data
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+                    <Link
+                      href={"/publikasi"}
+                      className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                        pathName === "/publikasi" && "bg-red-500 text-white"
+                      }`}
+                    >
                       Publikasi
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+                    <Link
+                      href={"/sop-meta-data"}
+                      className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                        pathName === "/sop-meta-data" && "bg-red-500 text-white"
+                      }`}
+                    >
                       SOP
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </details>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+              <Link
+                href={"/pertanian"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/pertanian" && "bg-red-500 text-white"
+                }`}
+              >
                 Pertanian
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+              <Link
+                href={"/perkebunan"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/perkebunan" && "bg-red-500 text-white"
+                }`}
+              >
                 Perkebunan
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+              <Link
+                href={"/perikanan"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/perikanan" && "bg-red-500 text-white"
+                }`}
+              >
                 Perikanan
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+              <Link
+                href={"/peternakan"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/peternakan" && "bg-red-500 text-white"
+                }`}
+              >
                 Peternakan
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+              <Link
+                href={"/kehutanan"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/kehutanan" && "bg-red-500 text-white"
+                }`}
+              >
                 Kehutanan
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+              <Link
+                href={"/pariwisata-dan-kebudayaan"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/pariwisata-dan-kebudayaan" &&
+                  "bg-red-500 text-white"
+                }`}
+              >
                 Pariwisata & Kebudayaan
-              </a>
+              </Link>
             </li>
           </ul>
         </details>
       </li>
-      <li className="group hover:bg-red-500 hover:rounded-lg">
-        <details className="group-hover:text-inherit">
-          <summary className="text-black group-hover:text-white">
-            INTERAKTIF
-          </summary>
-          <ul className="p-2">
-            <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
-                Buku Tamu
-              </a>
-            </li>
-            <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
-                Kontak Kami
-              </a>
-            </li>
-          </ul>
-        </details>
+      <li>
+        <Link
+          href={"/kontak"}
+          className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+            pathName === "/kontak" && "bg-red-500 text-white"
+          }`}
+        >
+          Kontak
+        </Link>
       </li>
     </ul>
   );
