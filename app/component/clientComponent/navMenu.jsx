@@ -5,10 +5,15 @@ import Link from "next/link";
 
 const NavMenu = () => {
   const pathName = usePathname();
+  const [curentOpen, setCurentOpen] = useState('')
+
+  
+
+
 
   return (
-    <ul className="menu menu-horizontal px-1 gap-2 z-50">
-      <li>
+    <ul className="menu menu-horizontal px-1 gap-2 z-50" >
+      <li onMouseEnter={() => setCurentOpen('')} onClick={() => setCurentOpen('')}>
         <Link
           href={"/"}
           className={`hover:bg-red-500 hover:text-white hover:rounded-lg ${
@@ -19,19 +24,20 @@ const NavMenu = () => {
         </Link>
       </li>
 
-      <li className="group hover:bg-red-500 hover:rounded-lg ">
-        <details className="group-hover:text-inherit ">
+      <li onMouseEnter={() => setCurentOpen('profil')} onClick={() => setCurentOpen('profil')} className="group hover:bg-red-500 hover:rounded-lg ">
+        <details id="profil" className="group-hover:text-inherit " open={curentOpen === 'profil'}>
           <summary
             className={`text-black group-hover:text-white ${
-              (pathName === "/sejarah" ||
-                pathName === "/visi-misi" ||
-                pathName === "/lambang-daerah" ||
-                pathName === "/kondisi-geografis" ||
-                pathName === "/demografi" ||
-                pathName === "/peta" ||
-                pathName === "/politik-hukum-dan-keamanan" ||
-                pathName === "/kesejahteraan-sosial" ||
-                pathName === "/apbd") &&
+              (pathName === "/front/sejarah" ||
+                pathName === "/front/visi-misi" ||
+                pathName === "/front/lambang-daerah" ||
+                pathName === "/front/kondisi-geografis" ||
+                pathName === "/front/demografi" ||
+                pathName === "/front/peta" ||
+                pathName === "/front/politik-hukum-dan-keamanan" ||
+                pathName === "/front/kesejahteraan-sosial" ||
+                pathName === "/front/rpjmd-2021-2025" ||
+                pathName === "/front/apbd") &&
               "bg-red-500 text-white"
             }`}
           >
@@ -40,9 +46,9 @@ const NavMenu = () => {
           <ul className="p-2">
             <li>
               <Link
-                href={"/sejarah"}
+                href={"/front/sejarah"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/sejarah" && "bg-red-500 text-white"
+                  pathName === "/front/sejarah" && "bg-red-500 text-white"
                 }`}
               >
                 Sejarah
@@ -50,9 +56,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/visi-misi"}
+                href={"/front/visi-misi"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/visi-misi" && "bg-red-500 text-white"
+                  pathName === "/front/visi-misi" && "bg-red-500 text-white"
                 }`}
               >
                 Visi & Misi
@@ -60,9 +66,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/lambang-daerah"}
+                href={"/front/lambang-daerah"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/lambang-daerah" && "bg-red-500 text-white"
+                  pathName === "/front/lambang-daerah" && "bg-red-500 text-white"
                 }`}
               >
                 Lambang Daerah
@@ -70,9 +76,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/kondisi-geografis"}
+                href={"/front/kondisi-geografis"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/kondisi-geografis" && "bg-red-500 text-white"
+                  pathName === "/front/kondisi-geografis" && "bg-red-500 text-white"
                 }`}
               >
                 Kondisi Geografis
@@ -80,9 +86,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/demografi"}
+                href={"/front/demografi"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/demografi" && "bg-red-500 text-white"
+                  pathName === "/front/demografi" && "bg-red-500 text-white"
                 }`}
               >
                 Demografi
@@ -90,9 +96,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/peta"}
+                href={"/front/peta"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/peta" && "bg-red-500 text-white"
+                  pathName === "/front/peta" && "bg-red-500 text-white"
                 }`}
               >
                 Peta
@@ -100,9 +106,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/politik-hukum-dan-keamanan"}
+                href={"/front/politik-hukum-dan-keamanan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/politik-hukum-dan-keamanan" &&
+                  pathName === "/front/politik-hukum-dan-keamanan" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -111,9 +117,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/kesejahteraan-sosial"}
+                href={"/front/kesejahteraan-sosial"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/kesejahteraan-sosial" &&
+                  pathName === "/front/kesejahteraan-sosial" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -121,15 +127,22 @@ const NavMenu = () => {
               </Link>
             </li>
             <li>
-              <a className="text-black whitespace-nowrap hover:bg-red-500 hover:text-white">
+            <Link
+                href={"/front/rpjmd-2021-2025"}
+                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                  pathName === "/front/rpjmd-2021-2025" &&
+                  "bg-red-500 text-white"
+                }`}
+              >
                 RPJMD Kabupaten Boven Digoel 2021-2025
-              </a>
+              </Link>
+              
             </li>
             <li>
               <Link
-                href={"/apbd"}
+                href={"/front/apbd"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/apbd" && "bg-red-500 text-white"
+                  pathName === "/front/apbd" && "bg-red-500 text-white"
                 }`}
               >
                 APBD Boven Digoel
@@ -139,20 +152,20 @@ const NavMenu = () => {
         </details>
       </li>
 
-      <li className="group hover:bg-red-500 hover:rounded-lg">
-        <details className="group-hover:text-inherit">
+      <li onMouseEnter={() => setCurentOpen('pejabat')} onClick={() => setCurentOpen('pejabat')} className="group hover:bg-red-500 hover:rounded-lg">
+        <details className="group-hover:text-inherit" open={curentOpen === 'pejabat'}>
           <summary
             className={`text-black group-hover:text-white ${
-              (pathName === "/bupati" ||
-                pathName === "/wakil-bupati" ||
-                pathName === "/sekda" ||
-                pathName === "/asisten-bidang-administrasi-umum" ||
+              (pathName === "/front/bupati" ||
+                pathName === "/front/wakil-bupati" ||
+                pathName === "/front/sekda" ||
+                pathName === "/front/asisten-bidang-administrasi-umum" ||
                 pathName ===
-                  "/asisten-bidang-pemerintahan-dan-kesejahteraan-rakyat" ||
-                pathName === "/asisten-bidang-perekonomian-dan-pembangunan" ||
-                pathName === "/staf-ahli-satu" ||
-                pathName === "/staf-ahli-dua" ||
-                pathName === "/staf-ahli-tiga") &&
+                  "/front/asisten-bidang-pemerintahan-dan-kesejahteraan-rakyat" ||
+                pathName === "/front/asisten-bidang-perekonomian-dan-pembangunan" ||
+                pathName === "/front/staf-ahli-satu" ||
+                pathName === "/front/staf-ahli-dua" ||
+                pathName === "/front/staf-ahli-tiga") &&
               "bg-red-500 text-white"
             }`}
           >
@@ -161,9 +174,9 @@ const NavMenu = () => {
           <ul className="p-2">
             <li>
               <Link
-                href={"/bupati"}
+                href={"/front/bupati"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/bupati" && "bg-red-500 text-white"
+                  pathName === "/front/bupati" && "bg-red-500 text-white"
                 }`}
               >
                 Bupati
@@ -171,9 +184,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/wakil-bupati"}
+                href={"/front/wakil-bupati"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/wakil-bupati" && "bg-red-500 text-white"
+                  pathName === "/front/wakil-bupati" && "bg-red-500 text-white"
                 }`}
               >
                 Wakil Bupati
@@ -181,9 +194,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/sekda"}
+                href={"/front/sekda"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/sekda" && "bg-red-500 text-white"
+                  pathName === "/front/sekda" && "bg-red-500 text-white"
                 }`}
               >
                 Sekertaris Daerah
@@ -191,9 +204,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/asisten-bidang-administrasi-umum"}
+                href={"/front/asisten-bidang-administrasi-umum"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/asisten-bidang-administrasi-umum" &&
+                  pathName === "/front/asisten-bidang-administrasi-umum" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -202,10 +215,10 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/asisten-bidang-pemerintahan-dan-kesejahteraan-rakyat"}
+                href={"/front/asisten-bidang-pemerintahan-dan-kesejahteraan-rakyat"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
                   pathName ===
-                    "/asisten-bidang-pemerintahan-dan-kesejahteraan-rakyat" &&
+                    "/front/asisten-bidang-pemerintahan-dan-kesejahteraan-rakyat" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -214,9 +227,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/asisten-bidang-perekonomian-dan-pembangunan"}
+                href={"/front/asisten-bidang-perekonomian-dan-pembangunan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/asisten-bidang-perekonomian-dan-pembangunan" &&
+                  pathName === "/front/asisten-bidang-perekonomian-dan-pembangunan" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -225,9 +238,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/staf-ahli-satu"}
+                href={"/front/staf-ahli-satu"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/staf-ahli-satu" && "bg-red-500 text-white"
+                  pathName === "/front/staf-ahli-satu" && "bg-red-500 text-white"
                 }`}
               >
                 Staf Ahli 1
@@ -235,9 +248,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/staf-ahli-dua"}
+                href={"/front/staf-ahli-dua"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/staf-ahli-dua" && "bg-red-500 text-white"
+                  pathName === "/front/staf-ahli-dua" && "bg-red-500 text-white"
                 }`}
               >
                 Staf Ahli 2
@@ -245,9 +258,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/staf-ahli-tiga"}
+                href={"/front/staf-ahli-tiga"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/staf-ahli-tiga" && "bg-red-500 text-white"
+                  pathName === "/front/staf-ahli-tiga" && "bg-red-500 text-white"
                 }`}
               >
                 Staf Ahli 3
@@ -257,17 +270,17 @@ const NavMenu = () => {
         </details>
       </li>
 
-      <li className="group hover:bg-red-500 hover:rounded-lg">
-        <details className="group-hover:text-inherit">
+      <li onMouseEnter={() => setCurentOpen('sarana-prasarana')} onClick={() => setCurentOpen('sarana-prasarana')} className="group hover:bg-red-500 hover:rounded-lg">
+        <details className="group-hover:text-inherit" open={curentOpen === 'sarana-prasarana'}>
           <summary
             className={`text-black group-hover:text-white ${
-              (pathName === "/transportasi" ||
-                pathName === "/kesehatan" ||
-                pathName === "/pendidikan" ||
-                pathName === "/pos-telekomunikasi-dan-telematika" ||
-                pathName === "/industri-dan-perdagangan" ||
-                pathName === "/energy" ||
-                pathName === "/tempat-ibadah") &&
+              (pathName === "/front/transportasi" ||
+                pathName === "/front/kesehatan" ||
+                pathName === "/front/pendidikan" ||
+                pathName === "/front/pos-telekomunikasi-dan-telematika" ||
+                pathName === "/front/industri-dan-perdagangan" ||
+                pathName === "/front/energy" ||
+                pathName === "/front/tempat-ibadah") &&
               "bg-red-500 text-white"
             }`}
           >
@@ -276,9 +289,9 @@ const NavMenu = () => {
           <ul className="p-2">
             <li>
               <Link
-                href={"/transportasi"}
+                href={"/front/transportasi"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/transportasi" && "bg-red-500 text-white"
+                  pathName === "/front/transportasi" && "bg-red-500 text-white"
                 }`}
               >
                 Transportasi
@@ -286,9 +299,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/kesehatan"}
+                href={"/front/kesehatan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/kesehatan" && "bg-red-500 text-white"
+                  pathName === "/front/kesehatan" && "bg-red-500 text-white"
                 }`}
               >
                 Kesehatan
@@ -296,9 +309,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/pendidikan"}
+                href={"/front/pendidikan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/pendidikan" && "bg-red-500 text-white"
+                  pathName === "/front/pendidikan" && "bg-red-500 text-white"
                 }`}
               >
                 Pendidikan
@@ -306,9 +319,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/tempat-ibadah"}
+                href={"/front/tempat-ibadah"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/tempat-ibadah" && "bg-red-500 text-white"
+                  pathName === "/front/tempat-ibadah" && "bg-red-500 text-white"
                 }`}
               >
                 Tempat Ibadah
@@ -316,9 +329,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/pos-telekomunikasi-dan-telematika"}
+                href={"/front/pos-telekomunikasi-dan-telematika"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/pos-telekomunikasi-dan-telematika" &&
+                  pathName === "/front/pos-telekomunikasi-dan-telematika" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -327,9 +340,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/industri-dan-perdagangan"}
+                href={"/front/industri-dan-perdagangan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/industri-dan-perdagangan" &&
+                  pathName === "/front/industri-dan-perdagangan" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -338,9 +351,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/energy"}
+                href={"/front/energy"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/energy" && "bg-red-500 text-white"
+                  pathName === "/front/energy" && "bg-red-500 text-white"
                 }`}
               >
                 Energi
@@ -350,22 +363,22 @@ const NavMenu = () => {
         </details>
       </li>
 
-      <li className="group hover:bg-red-500 hover:rounded-lg">
-        <details className="group-hover:text-inherit">
+      <li onMouseEnter={() => setCurentOpen('potensi-daerah')} onClick={() => setCurentOpen('potensi-daerah')} className="group hover:bg-red-500 hover:rounded-lg">
+        <details className="group-hover:text-inherit" open={curentOpen === 'potensi-daerah'}>
           <summary
             className={`text-black group-hover:text-white ${
-              (pathName === "/buku-pedoman-statistik-sektoral" ||
-                pathName === "/satu-data" ||
-                pathName === "/sk-wali-data" ||
-                pathName === "/publikasi" ||
-                pathName === "/sop-meta-data" ||
-                pathName === "/pertanian" ||
-                pathName === "/perkebunan" ||
-                pathName === "/perikanan" ||
-                pathName === "/peternakan" ||
-                pathName === "/kehutanan" ||
-                pathName === "/pariwisata-dan-kebudayaan" ||
-                pathName === "/statistik-sektoral-daerah") &&
+              (pathName === "/front/buku-pedoman-statistik-sektoral" ||
+                pathName === "/front/satu-data" ||
+                pathName === "/front/sk-wali-data" ||
+                pathName === "/front/publikasi" ||
+                pathName === "/front/sop-meta-data" ||
+                pathName === "/front/pertanian" ||
+                pathName === "/front/perkebunan" ||
+                pathName === "/front/perikanan" ||
+                pathName === "/front/peternakan" ||
+                pathName === "/front/kehutanan" ||
+                pathName === "/front/pariwisata-dan-kebudayaan" ||
+                pathName === "/front/statistik-sektoral-daerah") &&
               "bg-red-500 text-white"
             }`}
           >
@@ -376,12 +389,12 @@ const NavMenu = () => {
               <details className="group-hover:text-inherit">
                 <summary
                   className={`text-black group-hover:text-white ${
-                    (pathName === "/buku-pedoman-statistik-sektoral" ||
-                      pathName === "/satu-data" ||
-                      pathName === "/sk-wali-data" ||
-                      pathName === "/publikasi" ||
-                      pathName === "/sop-meta-data" ||
-                      pathName === "/statistik-sektoral-daerah") &&
+                    (pathName === "/front/buku-pedoman-statistik-sektoral" ||
+                      pathName === "/front/satu-data" ||
+                      pathName === "/front/sk-wali-data" ||
+                      pathName === "/front/publikasi" ||
+                      pathName === "/front/sop-meta-data" ||
+                      pathName === "/front/statistik-sektoral-daerah") &&
                     "bg-red-500 text-white"
                   }`}
                 >
@@ -390,9 +403,9 @@ const NavMenu = () => {
                 <ul className="p-2">
                   <li>
                     <Link
-                      href={"/buku-pedoman-statistik-sektoral"}
+                      href={"/front/buku-pedoman-statistik-sektoral"}
                       className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                        pathName === "/buku-pedoman-statistik-sektoral" &&
+                        pathName === "/front/buku-pedoman-statistik-sektoral" &&
                         "bg-red-500 text-white"
                       }`}
                     >
@@ -403,8 +416,8 @@ const NavMenu = () => {
                     <details className="group-hover:text-inherit">
                       <summary
                         className={`text-black group-hover:text-white ${
-                          (pathName === "/satu-data" ||
-                            pathName === "/statistik-sektoral-daerah") &&
+                          (pathName === "/front/satu-data" ||
+                            pathName === "/front/statistik-sektoral-daerah") &&
                           "bg-red-500 text-white"
                         }`}
                       >
@@ -413,9 +426,9 @@ const NavMenu = () => {
                       <ul className="p-2">
                         <li>
                           <Link
-                            href={"/satu-data"}
+                            href={"/front/satu-data"}
                             className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                              pathName === "/satu-data" &&
+                              pathName === "/front/satu-data" &&
                               "bg-red-500 text-white"
                             }`}
                           >
@@ -424,9 +437,9 @@ const NavMenu = () => {
                         </li>
                         <li>
                           <Link
-                            href={"/statistik-sektoral-daerah"}
+                            href={"/front/statistik-sektoral-daerah"}
                             className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                              pathName === "/statistik-sektoral-daerah" &&
+                              pathName === "/front/statistik-sektoral-daerah" &&
                               "bg-red-500 text-white"
                             }`}
                           >
@@ -438,9 +451,9 @@ const NavMenu = () => {
                   </li>
                   <li>
                     <Link
-                      href={"/sk-wali-data"}
+                      href={"/front/sk-wali-data"}
                       className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                        pathName === "/sk-wali-data" && "bg-red-500 text-white"
+                        pathName === "/front/sk-wali-data" && "bg-red-500 text-white"
                       }`}
                     >
                       SK Wali Data
@@ -448,9 +461,9 @@ const NavMenu = () => {
                   </li>
                   <li>
                     <Link
-                      href={"/publikasi"}
+                      href={"/front/publikasi"}
                       className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                        pathName === "/publikasi" && "bg-red-500 text-white"
+                        pathName === "/front/publikasi" && "bg-red-500 text-white"
                       }`}
                     >
                       Publikasi
@@ -458,9 +471,9 @@ const NavMenu = () => {
                   </li>
                   <li>
                     <Link
-                      href={"/sop-meta-data"}
+                      href={"/front/sop-meta-data"}
                       className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                        pathName === "/sop-meta-data" && "bg-red-500 text-white"
+                        pathName === "/front/sop-meta-data" && "bg-red-500 text-white"
                       }`}
                     >
                       SOP
@@ -471,9 +484,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/pertanian"}
+                href={"/front/pertanian"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/pertanian" && "bg-red-500 text-white"
+                  pathName === "/front/pertanian" && "bg-red-500 text-white"
                 }`}
               >
                 Pertanian
@@ -481,9 +494,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/perkebunan"}
+                href={"/front/perkebunan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/perkebunan" && "bg-red-500 text-white"
+                  pathName === "/front/perkebunan" && "bg-red-500 text-white"
                 }`}
               >
                 Perkebunan
@@ -491,9 +504,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/perikanan"}
+                href={"/front/perikanan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/perikanan" && "bg-red-500 text-white"
+                  pathName === "/front/perikanan" && "bg-red-500 text-white"
                 }`}
               >
                 Perikanan
@@ -501,9 +514,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/peternakan"}
+                href={"/front/peternakan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/peternakan" && "bg-red-500 text-white"
+                  pathName === "/front/peternakan" && "bg-red-500 text-white"
                 }`}
               >
                 Peternakan
@@ -511,9 +524,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/kehutanan"}
+                href={"/front/kehutanan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/kehutanan" && "bg-red-500 text-white"
+                  pathName === "/front/kehutanan" && "bg-red-500 text-white"
                 }`}
               >
                 Kehutanan
@@ -521,9 +534,9 @@ const NavMenu = () => {
             </li>
             <li>
               <Link
-                href={"/pariwisata-dan-kebudayaan"}
+                href={"/front/pariwisata-dan-kebudayaan"}
                 className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/pariwisata-dan-kebudayaan" &&
+                  pathName === "/front/pariwisata-dan-kebudayaan" &&
                   "bg-red-500 text-white"
                 }`}
               >
@@ -533,11 +546,23 @@ const NavMenu = () => {
           </ul>
         </details>
       </li>
-      <li>
+
+      <li onMouseEnter={() => setCurentOpen('')} onClick={() => setCurentOpen('')}>
         <Link
-          href={"/kontak"}
+          href={"/pages/berita"}
           className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-            pathName === "/kontak" && "bg-red-500 text-white"
+            pathName === "/pages/berita" && "bg-red-500 text-white"
+          }`}
+        >
+          Berita
+        </Link>
+      </li>
+
+      <li onMouseEnter={() => setCurentOpen('')} onClick={() => setCurentOpen('')}>
+        <Link
+          href={"/front/kontak"}
+          className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+            pathName === "/front/kontak" && "bg-red-500 text-white"
           }`}
         >
           Kontak

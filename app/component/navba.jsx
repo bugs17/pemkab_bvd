@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end gap-2">
-            <div className="form-control">
+            {/* <div className="form-control">
                 <input type="text" placeholder="Search" className="input input-bordered w-24 h-8 md:w-auto" />
             </div>
             <button className="btn btn-ghost btn-circle">
@@ -62,7 +62,7 @@ const Navbar = () => {
                 strokeWidth="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            </button>
+            </button> */}
         </div>
     </div>
   )

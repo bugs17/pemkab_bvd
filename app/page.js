@@ -3,11 +3,14 @@ import Hero from "./component/hero";
 import HeadlineNews from "./component/headlineNews";
 import AgendaSections from "./component/agendaSections";
 import GalerySections from "./component/galerySections";
+import Navbar from "./component/navba";
+import Footer from "./component/footer";
 
 
 export default function Home() {
   return (
     <>
+      <Navbar />
       {/* sections hero */}
       <Hero />
 
@@ -21,7 +24,7 @@ export default function Home() {
       <GalerySections />
 
       {/* footer */}
-      
+      <Footer />
     </>
   );
 }
