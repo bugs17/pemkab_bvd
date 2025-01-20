@@ -214,17 +214,17 @@ const LeftMenuAdmin = () => {
         menu.submenu ? 
         (<li key={index} className="">
           <details>
-            <summary className="hover:bg-green-500">{menu.title}</summary>
+            <summary className="hover:bg-success hover:text-slate-100">{menu.title}</summary>
             <ul>
               {menu.submenu.map((sub, index) => (
                 <li key={index}>
-                  <Link href={sub.path} className="hover:bg-green-500">{sub.title}</Link>
+                  <Link href={sub.path} className="hover:bg-success hover:text-slate-100">{sub.title}</Link>
                 </li>
               ))}
             </ul>
           </details>
         </li>) :
-        (<li key={index}><Link href={menu.path} className="hover:bg-green-500">{menu.title}</Link></li> )
+        (<li key={index}><Link href={menu.path} className="hover:bg-success hover:text-slate-100">{menu.title}</Link></li> )
       ))}
 
     </ul>
