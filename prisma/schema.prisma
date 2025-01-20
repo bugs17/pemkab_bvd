@@ -12,3 +12,24 @@ datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
+
+
+model Berita{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String
+  coverUrl String
+  isi String
+  isDraft Boolean @default(true)
+  kategoriId Int
+  kategori KategoriBerita @relation(fields: [kategoriId], references: [id], onDelete: Cascade)
+}
+
+model KategoriBerita {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String
+  berita Berita[]
+}
