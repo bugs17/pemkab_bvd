@@ -1,3 +1,4 @@
+import { prisma } from "@/app/lib/db";
 import Image from "next/image";
 import React from "react";
 import { FaCalendarDays } from "react-icons/fa6";
@@ -5,63 +6,48 @@ import { MdSimCardDownload } from "react-icons/md";
 
 import { TbCategoryPlus } from "react-icons/tb";
 
-const DetailBerita = ({ params }) => {
+const DetailBerita = async ({ params }) => {
+
+  const slug = params.slug
+
+  const detailBerita = await prisma.berita.findFirst({
+    where:{
+      slug:slug
+    },
+    include:{
+      kategori:{
+        select:{
+          nama:true
+        }
+      }
+    }
+  })
+
+
+
   return (
     
     <div className="flex flex-col gap-6 md:mb-8">
                   <div className="badge badge-outline badge-success badge-xs p-2">
-                    DAERAH
+                    {detailBerita.kategori.nama.toUpperCase()}
                   </div>
                   <h1 className="text-xl font-semibold">
-                    Pertama Kali Lomba, DWP Boven Digoel Raih Juara Dua Paduan Suara
-                    Tingkat Provinsi
+                    {detailBerita.judul.toUpperCase()}
                   </h1>
                   <span className="flex flex-row items-center text-xs text-slate-400">
                     <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
+                    {new Date(detailBerita.createdAt).toLocaleDateString('id-ID', {'weekday':'long', day: '2-digit', month: '2-digit', year: 'numeric'})}
                   </span>
                   <img
                     alt="contoh"
-                    src="https://bovendigoelkab.go.id/uploads/file/berita/br6785b5a5d0899.jpg"
+                    src={detailBerita.coverUrl}
                     width="auto" // Ganti dengan ukuran yang diinginkan dalam pixel
                     height="auto" // Menjaga aspek rasio gambar
                     className="rounded-md"
                   />
-                  <p className="text-justify">
-                    Boven Digoel, InfoPublik - Dharma Wanita Persatuan (DWP) Kabupaten
-                    Boven Digoel meraih juara dua Lomba Paduan Suara Tingkat Provinsi
-                    Papua Selatan yang digelar Dharma Wanita Provinsi Papua Selatan,
-                    Senin (2/12/2024). DWP Boven Digoel menerjunkan 15 personel
-                    terbaiknya.
-                  </p>
-                  <p className="text-justify">
-                    Boven Digoel, InfoPublik - Dharma Wanita Persatuan (DWP) Kabupaten
-                    Boven Digoel meraih juara dua Lomba Paduan Suara Tingkat Provinsi
-                    Papua Selatan yang digelar Dharma Wanita Provinsi Papua Selatan,
-                    Senin (2/12/2024). DWP Boven Digoel menerjunkan 15 personel
-                    terbaiknya.
-                  </p>
-                  <p className="text-justify">
-                    Boven Digoel, InfoPublik - Dharma Wanita Persatuan (DWP) Kabupaten
-                    Boven Digoel meraih juara dua Lomba Paduan Suara Tingkat Provinsi
-                    Papua Selatan yang digelar Dharma Wanita Provinsi Papua Selatan,
-                    Senin (2/12/2024). DWP Boven Digoel menerjunkan 15 personel
-                    terbaiknya.
-                  </p>
-                  <p className="text-justify">
-                    Boven Digoel, InfoPublik - Dharma Wanita Persatuan (DWP) Kabupaten
-                    Boven Digoel meraih juara dua Lomba Paduan Suara Tingkat Provinsi
-                    Papua Selatan yang digelar Dharma Wanita Provinsi Papua Selatan,
-                    Senin (2/12/2024). DWP Boven Digoel menerjunkan 15 personel
-                    terbaiknya.
-                  </p>
-                  <p className="text-justify">
-                    Boven Digoel, InfoPublik - Dharma Wanita Persatuan (DWP) Kabupaten
-                    Boven Digoel meraih juara dua Lomba Paduan Suara Tingkat Provinsi
-                    Papua Selatan yang digelar Dharma Wanita Provinsi Papua Selatan,
-                    Senin (2/12/2024). DWP Boven Digoel menerjunkan 15 personel
-                    terbaiknya.
-                  </p>
+                  <div dangerouslySetInnerHTML={{ __html: detailBerita.isi }} className="text-justify">
+                    
+                  </div>
                 </div>
   );
 };

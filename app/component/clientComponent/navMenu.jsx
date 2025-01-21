@@ -551,7 +551,7 @@ const NavMenu = () => {
         <Link
           href={"/pages/berita"}
           className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-            pathName === "/pages/berita" && "bg-red-500 text-white"
+            (pathName === "/pages/berita" || pathName.includes('detail-berita')) && "bg-red-500 text-white"
           }`}
         >
           Berita

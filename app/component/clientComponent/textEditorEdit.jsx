@@ -15,9 +15,15 @@ import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
+import { useEffect, useState } from "react";
 
-function MenuBar({tglChange}) {
+function MenuBar({tglChange, curentTgl}) {
   const { editor } = useCurrentEditor();
+
+  let formatedDate = "";
+  if (curentTgl) {
+    formatedDate = new Date(curentTgl).toISOString().split('T')[0];
+  }
 
   if (!editor) {
     return null;
@@ -87,10 +93,12 @@ function MenuBar({tglChange}) {
       </div>
 
       <div className="flex items-center flex-row gap-2">
+      
         <span className="label-text">Tanggal</span>
         <label className="form-control w-full max-w-xs">
           <input
             required
+            value={formatedDate}
             onChange={e => tglChange(e.target.value)}
             type="date"
             className="file-input input-sm file-input-bordered w-full max-w-xs"
@@ -101,41 +109,44 @@ function MenuBar({tglChange}) {
   );
 }
 
-const TextEditor = ({ content, onChange, onTglChange }) => {
-  const extension = [
-    Color.configure({ types: [TextStyle.name, ListItem.name] }),
-    TextStyle.configure({ types: [ListItem.name] }),
-    StarterKit,
-    TextAlign.configure({
-      types: ["heading", "paragraph"],
-    }),
-    Highlight,
-  ];
+
+
+const TextEditorEdit = ({ content, onChange, onTglChange, tgl }) => {
+  
+
+  const extension = [StarterKit];
+
+
+  
+
 
   return (
     <div className="overflow-y-auto rounded  p-4">
+    {content ? (
+
       <EditorProvider
-        slotBefore={<MenuBar tglChange={onTglChange} />}
-        injectCSS={false}
-        autofocus={true}
+        slotBefore={<MenuBar curentTgl={tgl} tglChange={onTglChange} />}
         extensions={extension}
         content={content}
+        
         editorProps={{
           attributes: {
             class:
               "bg-slate-200 caret-success cursor-text rounded-md p-8 h-96 overflow-y-scroll border-gray-400 focus:border-[2px]",
           },
+          
         }}
         onUpdate={({editor}) => {
           onChange(editor.getHTML())
         }}
       >
-        <></>
       </EditorProvider>
+    ) : (
+      <p>Loading...</p>
+    )}
     </div>
   );
 
-  // <EditorContent className='bg-slate-200 rounded-md h-80 overflow-y-scroll p-3 border-none' editor={editor} />
 };
 
-export default TextEditor;
+export default TextEditorEdit;

@@ -1,53 +1,83 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaNewspaper } from "react-icons/fa6";
 import { IoArrowBackOutline } from "react-icons/io5";
-import { addBerita } from "@/app/actions/add-berita";
 import { useRouter } from "next/navigation";
-import TextEditorNew from "./textEditorNew";
+import { editBerita } from "@/app/actions/editBerita";
+import TextEditorEdit from "./textEditorEdit";
 
-const FormAddBerita = ({ kategoris }) => {
-    const router = useRouter();
-  const [onContentChange, setOnContentChange] = useState("");
+const FormEditBerita = ({ kategoris, instance }) => {
+  const router = useRouter();
+  const [onContentChange, setOnContentChange] = useState(null);
   const [kategoriId, setKategoriId] = useState(null);
 
   const [judul, setJudul] = useState("");
   const [image, setImage] = useState(null);
+  const [imgUrl, setImgUrl] = useState("");
   const [tgl, setTgl] = useState("");
   const [isDraft, setIsDraft] = useState(true);
+  const [ubahFoto, setUbahFoto] = useState(false);
 
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const imageRef = useRef(null)
-  const kategoriRef = useRef(null)
+  const imageRef = useRef(null);
+  const kategoriRef = useRef(null);
+
+  useEffect(() => {
+    if (instance) {
+      
+      setJudul(instance.judul);
+      setKategoriId(instance.kategoriId);
+      setIsDraft(instance.isDraft);
+      setTgl(instance.createdAt);
+      setOnContentChange(instance.isi);
+      setImgUrl(instance.coverUrl);
+    }
+  }, [instance]);
 
   const handleSubmit = async (e) => {
     setIsSubmit(true);
     e.preventDefault();
-    if (!onContentChange || !kategoriId || !judul || !tgl || !image) {
-      alert("Semua kolom harus diisi!");
-      setIsSubmit(false);
-      return;
-    }
-
-    try {
-        await addBerita(judul, kategoriId, image, onContentChange, isDraft, tgl)
-        setOnContentChange('')
-        setJudul('')
-        setImage(null)
-        imageRef.current.value = ""
-        kategoriRef.current.selectedIndex = 0
-        setTgl('')
-        setIsDraft(true)
-        router.push('/admin')
-    } catch (error) {
-        alert("terjadi error saat menambah berita")
+    if (ubahFoto) {
+      if (!onContentChange || !kategoriId || !judul || !tgl || !image) {
+        alert("Semua kolom harus diisi!");
+        setIsSubmit(false);
+        return;
+      }
+    }else{
+      if (!onContentChange || !kategoriId || !judul || !tgl) {
+        alert("Semua kolom harus diisi!");
+        setIsSubmit(false);
+        return;
+      }
     }
     
-    setIsSubmit(false)
+
+    try {
+      await editBerita(judul,kategoriId,onContentChange, isDraft, tgl, instance.id, ubahFoto, instance.coverUrl,image);
+      setOnContentChange("");
+      setJudul("");
+      setImage(null);
+      imageRef.current.value = "";
+      kategoriRef.current.selectedIndex = 0;
+      setTgl("");
+      setIsDraft(true);
+      alert("suksess");
+    } catch (error) {
+      console.log("terjadi error saat menambah berita", error.message);
+    }
+    router.push('/admin')
+    setIsSubmit(false);
   };
+
+  const handleUbahFoto = () => {
+    if (ubahFoto === false) {
+      setImage(null)
+    }
+    setUbahFoto((prevState) => !prevState)
+  }
 
   return (
     <>
@@ -72,7 +102,7 @@ const FormAddBerita = ({ kategoris }) => {
             ) : (
               <>
                 <FaNewspaper />
-                Publish
+                Simpan Perubahan
               </>
             )}
           </button>
@@ -91,7 +121,7 @@ const FormAddBerita = ({ kategoris }) => {
       </div>
 
       <div className="h-full pb-10 overflow-y-auto">
-        <div className="w-full flex flex-row gap-3 px-2">
+        <div className="w-full flex flex-row gap-3 px-2 items-center">
           <label className="form-control w-[70%]">
             <div className="label">
               <span className="label-text">Judul</span>
@@ -112,7 +142,7 @@ const FormAddBerita = ({ kategoris }) => {
             </div>
             <select
               className="select select-md bg-slate-200 select-bordered"
-              defaultValue="pilih kategori"
+              defaultValue={kategoriId}
               onChange={(e) => setKategoriId(e.target.value)}
               ref={kategoriRef}
             >
@@ -128,23 +158,52 @@ const FormAddBerita = ({ kategoris }) => {
             </select>
           </label>
 
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Cover</span>
+          {ubahFoto ? (
+            <div className="flex fle items-end gap-2">
+              <label className="form-control w-full max-w-xs">
+                <div className="label">
+                  <span className="label-text">Cover</span>
+                </div>
+                <input
+                  required
+                  ref={imageRef}
+                  onChange={(e) => setImage(e.target.files[0])}
+                  type="file"
+                  accept="image/jpeg, image/png, image/jpg, image/webp"
+                  className="file-input file-input-bordered w-full max-w-xs"
+                />
+              </label>
+              <span
+                onClick={handleUbahFoto}
+                className="link link-error"
+              >
+                Batal
+              </span>
             </div>
-            <input
-              required
-              ref={imageRef}
-              onChange={(e) => setImage(e.target.files[0])}
-              type="file"
-              accept="image/jpeg, image/png, image/jpg, image/webp"
-              className="file-input file-input-bordered w-full max-w-xs"
-            />
-          </label>
+          ) : (
+            <div className="w-32 h-24 relative rounded-md bg-black">
+              {imgUrl && (
+                <>
+                  <img
+                    src={imgUrl}
+                    alt="image"
+                    className="w-full h-full object-cover rounded-md"
+                  />
+                  <button
+                    onClick={handleUbahFoto}
+                    className="absolute top-10 left-7 btn btn-success btn-xs text-white"
+                  >
+                    ubah
+                  </button>
+                </>
+              )}
+            </div>
+          )}
         </div>
         <div className="w-full p-2"></div>
-        <TextEditorNew
+        <TextEditorEdit
           onTglChange={setTgl}
+          tgl={tgl}
           onChange={setOnContentChange}
           content={onContentChange}
         />
@@ -153,4 +212,4 @@ const FormAddBerita = ({ kategoris }) => {
   );
 };
 
-export default FormAddBerita;
+export default FormEditBerita;

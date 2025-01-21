@@ -15,6 +15,8 @@ const PdfViewerComponent = ({urlPdf}) => {
         setNumPages(numPages);
       }
 
+    
+
   return (
     <div>
       <Document file={urlPdf} onLoadSuccess={onDocumentLoadSuccess}>

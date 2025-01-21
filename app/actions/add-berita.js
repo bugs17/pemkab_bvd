@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "../lib/db";
 import { writeFile } from "fs/promises";
 import path from "path";
+import { createSlug } from "../lib/slugify";
 
 export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => {
   try {
@@ -14,6 +15,8 @@ export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => 
     const stringDate = new Date(tgl)
     const formatedDate = stringDate.toISOString()
 
+    const slug = createSlug(judul)
+
 
     // Modifikasi nama file: hilangkan spasi dan tambahkan timestamp
     const timestamp = Date.now();
@@ -22,10 +25,10 @@ export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => 
     const fileName = `${path.basename(originalName, extension)}-${timestamp}${extension}`;
 
     // Tentukan lokasi penyimpanan file
-    const filePath = path.join(process.cwd(), "public/uploads/img-berita", fileName);
+    const filePath = path.join(process.cwd(), "/public/uploads/img-berita", fileName);
 
     // Simpan file ke server
-    const namaFileDiDb = `public/uploads/img-berita/${fileName}`
+    const namaFileDiDb = `/uploads/img-berita/${fileName}`
     await writeFile(filePath, Buffer.from(await image.arrayBuffer()));
 
 
@@ -36,7 +39,8 @@ export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => 
         coverUrl:namaFileDiDb,
         isi:isi,
         isDraft:isDraft,
-        createdAt:formatedDate
+        createdAt:formatedDate,
+        slug: slug
         
       },
     });

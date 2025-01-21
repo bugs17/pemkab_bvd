@@ -1,9 +1,26 @@
+import { prisma } from "@/app/lib/db";
+import { truncate } from "@/app/lib/truncKalimat";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdSimCardDownload } from "react-icons/md";
 import { TbCategoryPlus } from "react-icons/tb";
 
 
-const PagesBeritaLayout = ({children}) => {
+const PagesBeritaLayout = async ({children}) => {
+
+  const beritas = await prisma.berita.findMany({
+    orderBy:{
+      createdAt:"desc"
+    },
+    take:4,
+  })
+
+  const kategoris = await prisma.kategoriBerita.findMany({
+    include:{
+      berita:true
+    }
+  })
+
+
   return (
     <div className="flex flex-col md:flex-row gap-2 mb-7">
           <div className="md:w-[70%] w-full p-8">
@@ -16,61 +33,23 @@ const PagesBeritaLayout = ({children}) => {
                 <span className="text-green-700">BERITA LAINNYA</span>
               </div>
               <div className="flex flex-col gap-3">
-                <div className="flex flex-col gap-2 border-b border-dashed border-gray-500 pb-4 ">
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="font-sans font-semibold text-xs hover:text-red-300 cursor-pointer">
-                    Pertama Kali Lomba, DWP Boven Digoel Raih Juara Dua Paduan Suara
-                    Tingkat Provinsi
-                  </span>
-                  {/* <div class="w-full border-b border-dashed border-gray-500 my-4"></div> */}
-                </div>
-                <div className="flex flex-col gap-2 border-b border-dashed border-gray-500 pb-4">
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="font-sans font-semibold text-xs hover:text-red-300 cursor-pointer">
-                    Pertama Kali Lomba, DWP Boven Digoel Raih Juara Dua Paduan Suara
-                    Tingkat Provinsi
-                  </span>
-                  {/* <div class="w-full border-b border-dashed border-gray-500 my-4"></div> */}
-                </div>
-                <div className="flex flex-col gap-2 border-b border-dashed border-gray-500 pb-4">
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="font-sans font-semibold text-xs hover:text-red-300 cursor-pointer">
-                    Pertama Kali Lomba, DWP Boven Digoel Raih Juara Dua Paduan Suara
-                    Tingkat Provinsi
-                  </span>
-                  {/* <div class="w-full border-b border-dashed border-gray-500 my-4"></div> */}
-                </div>
-                <div className="flex flex-col gap-2 border-b border-dashed border-gray-500 pb-4">
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="font-sans font-semibold text-xs hover:text-red-300 cursor-pointer">
-                    Pertama Kali Lomba, DWP Boven Digoel Raih Juara Dua Paduan Suara
-                    Tingkat Provinsi
-                  </span>
-                  {/* <div class="w-full border-b border-dashed border-gray-500 my-4"></div> */}
-                </div>
-                <div className="flex flex-col gap-2 border-b border-dashed border-gray-500 pb-4">
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="font-sans font-semibold text-xs hover:text-red-300 cursor-pointer">
-                    Pertama Kali Lomba, DWP Boven Digoel Raih Juara Dua Paduan Suara
-                    Tingkat Provinsi
-                  </span>
-                  {/* <div class="w-full border-b border-dashed border-gray-500 my-4"></div> */}
-                </div>
+              {beritas.length > 0 ?
+                beritas.map((berita, index) => (
+                  <div key={index} className="flex flex-col gap-2 border-b border-dashed border-gray-500 pb-4 ">
+                    <span className="flex flex-row items-center text-xs text-slate-400">
+                      <FaCalendarDays className="mr-2" />
+                      {new Date(berita.createdAt).toLocaleDateString('id-ID', {'weekday':'long', day: '2-digit', month: '2-digit', year: 'numeric'})}
+                    </span>
+                    <span className="font-sans font-semibold text-xs hover:text-red-300 cursor-pointer">
+                      {truncate(berita.judul, 70)}
+                    </span>
+                  </div>
+                )) 
+                : 
+                (
+                  <span>Belum ada berita</span>
+                )}
+                
               </div>
             </div>
     
@@ -79,28 +58,23 @@ const PagesBeritaLayout = ({children}) => {
                 <span className="text-green-700">KATEGORI BERITA</span>
               </div>
               <div className="flex flex-col gap-3">
-                <div className="flex flex-row justify-between items-center ">
-                  <span className="flex flex-row gap-3 items-center">
-                    <TbCategoryPlus className="text-slate-500" />
-                    <span className="font-semibold hover:text-green-600 cursor-pointer">
-                      Daerah
+                {kategoris.length > 0 && (
+                  kategoris.map((kategori, index) => (
+
+                  <div key={index} className="flex flex-row justify-between items-center ">
+                    <span className="flex flex-row gap-3 items-center">
+                      <TbCategoryPlus className="text-slate-500" />
+                      <span className="font-semibold hover:text-green-600 cursor-pointer">
+                        {kategori.nama}
+                      </span>
                     </span>
-                  </span>
-                  <div className="badge badge-success text-slate-200 hover:badge-ghost hover:text-green-600 cursor-pointer">
-                    324
+                    <div className="badge badge-success text-slate-200 hover:badge-ghost hover:text-green-600 cursor-pointer">
+                      {kategori.berita.length}
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-row justify-between items-center ">
-                  <span className="flex flex-row gap-3 items-center">
-                    <TbCategoryPlus className="text-slate-500" />
-                    <span className="font-semibold hover:text-green-600 cursor-pointer">
-                      Dinas
-                    </span>
-                  </span>
-                  <div className="badge badge-success text-slate-200 hover:badge-ghost hover:text-green-600 cursor-pointer">
-                    120
-                  </div>
-                </div>
+                  ))
+                )}
+
               </div>
             </div>
     

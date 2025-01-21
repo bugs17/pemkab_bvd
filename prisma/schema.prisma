@@ -22,6 +22,7 @@ model Berita{
   coverUrl String
   isi String
   isDraft Boolean @default(true)
+  slug String @unique
   kategoriId Int
   kategori KategoriBerita @relation(fields: [kategoriId], references: [id], onDelete: Cascade)
 }
@@ -32,4 +33,13 @@ model KategoriBerita {
   updatedAt DateTime @updatedAt
   nama String
   berita Berita[]
+}
+
+model Pengumuman{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String
+  urlFile String?
+  slug String? @unique
 }

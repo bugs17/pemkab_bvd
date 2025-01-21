@@ -1,17 +1,20 @@
+"use client"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const LeftMenuAdmin = () => {
+  const pathName = usePathname()
   const menus = [
     {
         title:"Berita",
-        path:"/admin"
-        
+        path:"/admin",
+        match: 'berita'
     },
     {
         title:"Pengumuman",
-        path:"/admin/pengumuman"
-        
+        path:"/admin/pengumuman/pengumuman-list",
+        match: 'pengumuman'
     },
     {
         title:"Kalender Kegiatan",
@@ -214,7 +217,7 @@ const LeftMenuAdmin = () => {
         menu.submenu ? 
         (<li key={index} className="">
           <details>
-            <summary className="hover:bg-success hover:text-slate-100">{menu.title}</summary>
+            <summary className={`hover:bg-success hover:text-slate-100 ${pathName.includes(menu.match) && 'bg-success text-slate-100' }`}>{menu.title}</summary>
             <ul>
               {menu.submenu.map((sub, index) => (
                 <li key={index}>
@@ -224,7 +227,7 @@ const LeftMenuAdmin = () => {
             </ul>
           </details>
         </li>) :
-        (<li key={index}><Link href={menu.path} className="hover:bg-success hover:text-slate-100">{menu.title}</Link></li> )
+        (<li key={index}><Link href={menu.path} className={`hover:bg-success hover:text-slate-100 ${pathName.includes(menu.match) && 'bg-success text-slate-100' }`}>{menu.title}</Link></li> )
       ))}
 
     </ul>
