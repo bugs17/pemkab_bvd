@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import { MdEditDocument } from "react-icons/md";
 import { prisma } from '@/app/lib/db';
 import { truncate } from '@/app/lib/truncKalimat';
+import ButtonDeletePengumuman from '@/app/component/clientComponent/buttonDeletePengumuman';
 
 
 
@@ -76,7 +77,7 @@ const AdminPengumuman = async () => {
                     </Link>
                   </div>
                   <div className="tooltip tooltip-left z-50" data-tip="Hapus pengumuman">
-                    <ActionButtonForListBerita id={''} judul={''} />
+                    <ButtonDeletePengumuman id={pengumuman.id} judul={pengumuman.judul} />
                   </div>
                   </td>
                 </tr>

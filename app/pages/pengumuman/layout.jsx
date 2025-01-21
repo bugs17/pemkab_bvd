@@ -1,9 +1,16 @@
+import { prisma } from "@/app/lib/db";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdSimCardDownload } from "react-icons/md";
-import { TbCategoryPlus } from "react-icons/tb";
 
 
-const PagesPengumumanLayout = ({children}) => {
+const PagesPengumumanLayout = async ({children}) => {
+
+  const pengumumans = await prisma.pengumuman.findMany({
+    orderBy:{
+      createdAt:"desc"
+    }
+  })
+
   return (
     <div className="flex flex-col md:flex-row gap-2 mb-7">
           <div className="md:w-[70%] w-full p-8">
@@ -17,57 +24,25 @@ const PagesPengumumanLayout = ({children}) => {
               <div className="divider divider-success">
                 <span className="text-green-700">PENGUMUMAN LAINNYA</span>
               </div>
-              <div className="flex flex-col gap-3 overflow-y-scroll h-96">
-                <div>
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
-                    JADWAL PESERTA TITIK LOKASI DALAM NEGERI SELEKSI KOMPETENSI PPPK
-                    TAHUN 2024 INSTANSI PEMERINTAH KAB. BOVEN DIGOEL
-                  </span>
-                </div>
-                <div>
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
-                    JADWAL PESERTA TITIK LOKASI DALAM NEGERI SELEKSI KOMPETENSI PPPK
-                    TAHUN 2024 INSTANSI PEMERINTAH KAB. BOVEN DIGOEL
-                  </span>
-                </div>
-                <div>
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
-                    JADWAL PESERTA TITIK LOKASI DALAM NEGERI SELEKSI KOMPETENSI PPPK
-                    TAHUN 2024 INSTANSI PEMERINTAH KAB. BOVEN DIGOEL
-                  </span>
-                </div>
-                <div>
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
-                    JADWAL PESERTA TITIK LOKASI DALAM NEGERI SELEKSI KOMPETENSI PPPK
-                    TAHUN 2024 INSTANSI PEMERINTAH KAB. BOVEN DIGOEL
-                  </span>
-                </div>
-                <div>
-                  <span className="flex flex-row items-center text-xs text-slate-400">
-                    <FaCalendarDays className="mr-2" />
-                    Senin, 14 Oktober 2024
-                  </span>
-                  <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
-                    JADWAL PESERTA TITIK LOKASI DALAM NEGERI SELEKSI KOMPETENSI PPPK
-                    TAHUN 2024 INSTANSI PEMERINTAH KAB. BOVEN DIGOEL
-                  </span>
-                </div>
+              <div className="flex flex-col gap-3 overflow-y-scroll max-h-96">
+              {pengumumans.length > 0 ? (
+                pengumumans.map((pengumuman, index) => (
+
+                  <div key={index}>
+                    <span className="flex flex-row items-center text-xs text-slate-400">
+                      <FaCalendarDays className="mr-2" />
+                      {new Date(pengumuman.createdAt).toLocaleDateString('id-ID', {'weekday':'long', day: '2-digit', month: '2-digit', year: 'numeric'})}
+                    </span>
+                    <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
+                      {pengumuman.judul.toUpperCase()}
+                    </span>
+                  </div>
+                ))
+
+              ) : (
+                <p>Belum ada pengumuman...</p>
+              ) }
+                
               </div>
             </div>
     
