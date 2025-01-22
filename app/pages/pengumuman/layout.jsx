@@ -1,15 +1,37 @@
 import { prisma } from "@/app/lib/db";
+import { truncate } from "@/app/lib/truncKalimat";
+import Link from "next/link";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdSimCardDownload } from "react-icons/md";
 
 
 const PagesPengumumanLayout = async ({children}) => {
 
-  const pengumumans = await prisma.pengumuman.findMany({
-    orderBy:{
-      createdAt:"desc"
-    }
-  })
+  let pengumumans;
+  let unduhans;
+  let agendas;
+  try {
+    pengumumans = await prisma.pengumuman.findMany({
+      orderBy:{
+        createdAt:"desc"
+      }
+    })
+
+    unduhans = await prisma.unduhan.findMany({
+      orderBy:{
+        createdAt:"desc"
+      }
+    })
+    
+    agendas = await prisma.kegiatan.findMany({
+      orderBy:{
+        createdAt:"desc"
+      }
+    })
+    
+  } catch (error) {
+    
+  }
 
   return (
     <div className="flex flex-col md:flex-row gap-2 mb-7">
@@ -33,9 +55,9 @@ const PagesPengumumanLayout = async ({children}) => {
                       <FaCalendarDays className="mr-2" />
                       {new Date(pengumuman.createdAt).toLocaleDateString('id-ID', {'weekday':'long', day: '2-digit', month: '2-digit', year: 'numeric'})}
                     </span>
-                    <span className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
+                    <Link href={`/pages/pengumuman/${pengumuman.slug}`} className="text-xs font-mono text-green-700 cursor-pointer hover:text-green-900">
                       {pengumuman.judul.toUpperCase()}
-                    </span>
+                    </Link>
                   </div>
                 ))
 
@@ -46,29 +68,49 @@ const PagesPengumumanLayout = async ({children}) => {
               </div>
             </div>
     
-            <div className="shadow-md px-4 pb-4 rounded-md">
+            <div className="shadow-md px-4 pb-4 max-h-60 overflow-y-scroll rounded-md">
               <div className="divider divider-success">
                 <span className="text-green-700">UNDUHAN</span>
               </div>
               <div className="flex flex-col gap-3">
-                <div className="py-2 px-4 rounded-md flex flex-row items-center gap-3 hover:shadow-md cursor-pointer hover:bg-violet-200">
-                  <span className="font-sans text-xs">
-                    Rencana Tata Ruang Wilayah Kabupaten Boven Digoel Tahun
-                    2011-2031 No Perda 4 Tahun 2014
-                  </span>
-                  <MdSimCardDownload size={32} className="text-violet-500" />
-                </div>
+              {unduhans.length > 0 ? (
+                unduhans.map((unduhan, index) => (
+                  <Link href={`/pages/unduhan/${unduhan.id}`} className="py-2 justify-between px-4 rounded-md flex flex-row items-center gap-3 hover:shadow-md cursor-pointer hover:bg-violet-200">
+                    <span className="font-sans text-xs">
+                      {truncate(unduhan.judul.toUpperCase(), 40)}
+                    </span>
+                    <MdSimCardDownload size={32} className="text-violet-500" />
+                  </Link>
+
+                ))
+              ):(
+                <p>Belum ada unduhan!</p>
+              )}
               </div>
             </div>
 
-            <div className="shadow-md px-4 pb-4 rounded-md">
-              <div className="divider divider-success">
-                <span className="text-green-700">AGENDA</span>
-              </div>
-              <div className="flex flex-col gap-3">
-                <span className="text-slate-400 text-xs">Belum ada agenda</span>
-              </div>
-            </div>
+
+            <div className="shadow-md px-4 pb-4 rounded-md max-h-48 overflow-y-scroll">
+          <div className="divider divider-success">
+            <span className="text-green-700">AGENDA KEGIATAN</span>
+          </div>
+            {agendas.length > 0 ? (
+              agendas.map((agenda, index) => (
+                <div
+                  key={index}
+                  className="pb-2 border-b-[1px] border-dashed border-slate-700"
+                >
+                  <Link href={'/#agenda'} className="font-semibold text-xs">
+                    {agenda.judul}
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <span className="font-mono text-xs text-slate-600">
+                Belum ada agenda!
+              </span>
+            )}
+        </div>
           </div>
         </div>
   )

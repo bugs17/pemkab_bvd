@@ -1,12 +1,20 @@
 import React from "react";
 import PdfViewerComponent from "@/app/component/clientComponent/pdfViewer";
-import { FaCalendarDays } from "react-icons/fa6";
+import { prisma } from "@/app/lib/db";
 
-const Demografi = () => {
+const Demografi = async () => {
+  let demografi;
+  try {
+    demografi = await prisma.profil.findFirst({
+      where: {
+        judul: "demografi",
+      },
+    });
+  } catch (error) {}
   return (
     <div className=" md:w-[70%] md:p-10">
       <h1 className="text-center font-bold text-2xl mb-4">DEMOGRAFI</h1>
-      <PdfViewerComponent urlPdf={"/docs/demografi.pdf"} />
+      {demografi && <PdfViewerComponent urlPdf={demografi.urlFile} />}
     </div>
   );
 };

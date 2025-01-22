@@ -43,3 +43,54 @@ model Pengumuman{
   urlFile String?
   slug String? @unique
 }
+
+model Kegiatan{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String
+  waktuMulai DateTime
+  waktuSelesai DateTime?
+  deskripsi String?
+}
+
+
+model Unduhan{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String
+  urlFile String?
+}
+
+model Digoeltv{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String
+  url String
+  kategori String
+}
+
+model Sejarah{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isi String
+}
+
+model Profil{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String? @unique
+  urlFile String?
+}
+
+model LambangDaerah{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isi String
+}
+

@@ -18,46 +18,50 @@ const LeftMenuAdmin = () => {
     },
     {
         title:"Kalender Kegiatan",
-        path:"/admin/kalender"
-        
-    },
-    {
-        title:"Agenda",
-        path:"/admin/agenda"
-        
+        path:"/admin/kalender/kegiatan-list",
+        match: 'kalender'
     },
     {
         title:"Unduhan",
-        path:"/admin/unduhan"
+        path:"/admin/unduhan/unduhan-list",
+        match: 'unduhan'
         
     },
     {
-        title:"Digoel TV",
-        path:"/admin/digoel-tv"
-        
-    },
+      title:"Digoel TV",
+      match:'digoel-tv',
+      submenu:[
+          {
+              title:"Siaran Langsung (LIVE)",
+              path:"/admin/digoel-tv/live-list",
+              match:'live'
+          },
+          {
+              title:"Siaran Tunda",
+              path:"/admin/digoel-tv/siaran-tunda-list",
+              match:'siaran-tunda'
+          }
+      ]
+  },
     {
       title: "Profil",
+      match:'profil',
       submenu: [
         {
-          title: "Sejarah",
-          path: "/admin/sejarah",
-        },
-        {
           title: "Visi-misi",
-          path: "/admin/visi-mis",
-        },
-        {
-          title: "Lambang Daerah",
-          path: "/admin/lambang-daerah",
+          path: "/admin/profil/visi-misi",
+          match:'visi-misi'
+
         },
         {
           title: "Kondisi Geografis",
-          path: "/admin/kondisi-geografis",
+          path: "/admin/profil/kondisi-geografis",
+          match:'kondisi-geografis'
         },
         {
           title: "Demografi",
-          path: "/admin/demografi",
+          path: "/admin/profil/demografi",
+          match:'demografi'
         },
         {
           title: "Peta",
@@ -207,6 +211,19 @@ const LeftMenuAdmin = () => {
                 path:"/admin/pariwisata-kebudayaan"
             },
         ]
+    },
+    {
+        title:"Galery",
+        submenu:[
+            {
+                title:"Foto",
+                path:"/admin/galery/foto"
+            },
+            {
+                title:"Video",
+                path:"/admin/galery/foto"
+            }
+        ]
     }
   ];
 
@@ -220,8 +237,8 @@ const LeftMenuAdmin = () => {
             <summary className={`hover:bg-success hover:text-slate-100 ${pathName.includes(menu.match) && 'bg-success text-slate-100' }`}>{menu.title}</summary>
             <ul>
               {menu.submenu.map((sub, index) => (
-                <li key={index}>
-                  <Link href={sub.path} className="hover:bg-success hover:text-slate-100">{sub.title}</Link>
+                <li key={index} className="py-1">
+                  <Link href={sub.path} className={`hover:bg-success hover:text-slate-100 ${pathName.includes(sub.match) && 'bg-success text-slate-100'}`}>{sub.title}</Link>
                 </li>
               ))}
             </ul>

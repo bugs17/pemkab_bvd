@@ -101,10 +101,3 @@ const AdminPengumuman = async () => {
 }
 
 export default AdminPengumuman
-
-// <tr>
-//                 <th>-</th>
-//                 <td className="text-left">Belum ada pengumuman</td>
-//                 <td className="text-center">Belum ada pengumuman</td>
-//                 <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">----</td>
-//               </tr>

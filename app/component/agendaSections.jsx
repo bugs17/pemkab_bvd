@@ -8,7 +8,7 @@ import SiaranLangsungDTV from './clientComponent/siaranLangsungDTV';
 
 const AgendaSections = () => {
   return (
-    <div className="px-4 py-8 flex md:flex-row flex-col-reverse">
+    <div id='agenda' className="px-4 py-8 flex md:flex-row flex-col-reverse">
         <div className="md:w-[60%]">
           {/* pengumuman & kalender kegiatan */}
           <div className=" flex md:flex-row flex-col h-full w-full gap-4">

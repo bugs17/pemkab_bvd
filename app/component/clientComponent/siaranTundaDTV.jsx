@@ -1,6 +1,14 @@
+import { prisma } from "@/app/lib/db";
 import React from "react";
 
-const SiaranTundaDTV = () => {
+const SiaranTundaDTV = async () => {
+  const digoeltvs = await prisma.digoeltv.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  const tundaCategory = digoeltvs.filter((item) => item.kategori === "tunda");
   return (
     <>
       <div className="divider divider-success">
@@ -9,60 +17,48 @@ const SiaranTundaDTV = () => {
 
       {/* carousal siaran ulang */}
       <div className="carousel w-full">
-        <div id="slide1" className="carousel-item relative w-full">
-          <iframe
-            className="rounded-md"
-            width="520"
-            height="315"
-            src="https://www.youtube.com/embed/uuZE_IRwLNI?si=2ecXBNlVOU7sh4lm"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a
-              href="#slide4"
-              className="btn btn-circle bg-violet-300 text-slate-100 hover:bg-violet-500"
-            >
-              ❮
-            </a>
-            <a
-              href="#slide2"
-              className="btn btn-circle bg-violet-300 text-slate-100 hover:bg-violet-500"
-            >
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <iframe
-            className="rounded-md"
-            width="520"
-            height="315"
-            src="https://www.youtube.com/embed/R072rB3b9dA?si=-JOROIYXKHK067VI"
-            title="YouTube video player"
-            frameorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a
-              href="#slide1"
-              className="btn btn-circle bg-violet-300 text-slate-100 hover:bg-violet-500"
-            >
-              ❮
-            </a>
-            <a
-              href="#slide2"
-              className="btn btn-circle bg-violet-300 text-slate-100 hover:bg-violet-500"
-            >
-              ❯
-            </a>
-          </div>
-        </div>
+        {tundaCategory.length > 0 &&
+          tundaCategory.map((tunda, index) => {
+            const isLast = index === tundaCategory.length - 1;
+            return (
+              <div
+                key={index}
+                id={`slide${index}`}
+                className="carousel-item relative w-full"
+              >
+                <iframe
+                  className="rounded-md"
+                  width="520"
+                  height="315"
+                  src={tunda.url}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+                <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 transform flex">
+                  {index > 0 && (
+                    <a
+                      href={`#slide${index - 1}`}
+                      className="btn btn-circle bg-violet-300 text-slate-100 hover:bg-violet-500 absolute left-5"
+                    >
+                      ❮
+                    </a>
+                  )}
+
+                  {!isLast && (
+                    <a
+                      href={`#slide${index + 1}`}
+                      className="btn btn-circle bg-violet-300 text-slate-100 hover:bg-violet-500 absolute right-5"
+                    >
+                      ❯
+                    </a>
+                  )}
+                </div>
+              </div>
+            );
+          })}
       </div>
     </>
   );
