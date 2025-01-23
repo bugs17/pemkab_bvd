@@ -65,23 +65,28 @@ const LeftMenuAdmin = () => {
         },
         {
           title: "Peta",
-          path: "/admin/peta",
+          path: "/admin/profil/peta",
+          match:'peta'
         },
         {
           title: "Politik Hukum & Keamanan",
-          path: "/admin/politik-hukum-keamanan",
+          path: "/admin/profil/politik-hukum-keamanan",
+          match:'politik-hukum-keamanan'
         },
         {
           title: "Kesejahteraan Sosial",
-          path: "/admin/kesejahteraan-sosial",
+          path: "/admin/profil/kesejahteraan-sosial",
+          match:'kesejahteraan-sosial'
         },
         {
           title: "RPJMD 2021-2025",
-          path: "/admin/rpjmd-boven-digoel",
+          path: "/admin/profil/rpjmd-boven-digoel",
+          match:"rpjmd-boven-digoel"
         },
         {
           title: "APBD Boven Digoel",
-          path: "/admin/apbd-boven-digoel",
+          path: "/admin/profil/apbd",
+          match:"apbd"
         },
       ],
     },
