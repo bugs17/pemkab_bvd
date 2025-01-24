@@ -94,3 +94,44 @@ model LambangDaerah{
   isi String
 }
 
+model Pejabat{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String
+  jabatan String
+  dbSearch String @unique
+  urlFoto String?
+  urlFrontEnd String?
+
+  }
+
+model SaranaPrasarana{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String @unique
+  urlFile String?
+  urlFrontEnd String?
+
+}
+
+
+model potensiDaerah{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String @unique
+  urlFile String?
+  urlFrontEnd String?
+}
+
+
+model Galery{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  judul String
+  urlFile String?
+  isFoto Boolean
+}

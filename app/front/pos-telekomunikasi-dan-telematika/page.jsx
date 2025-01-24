@@ -1,13 +1,27 @@
 import PdfViewerComponent from "@/app/component/clientComponent/pdfViewer";
+import { prisma } from "@/app/lib/db";
 import React from "react";
 
-const PosTelekomunikasiDanTelematika = () => {
+const PosTelekomunikasiDanTelematika = async () => {
+  let data;
+  try {
+    data = await prisma.saranaPrasarana.findFirst({
+      where: {
+        judul: "pos telekomunikasi & telematika",
+      },
+    });
+  } catch (error) {}
+
   return (
     <div className=" md:w-[70%] md:p-10">
-      <h1 className="text-center font-bold text-2xl mb-4">
-        POS TELEKOMUNIKASI & TELEMATIKA
-      </h1>
-      <PdfViewerComponent urlPdf={"/docs/telekomunikasi.pdf"} />
+      {data && (
+        <>
+          <h1 className="text-center font-bold text-2xl mb-4">
+            {data.judul.toUpperCase()}
+          </h1>
+          <PdfViewerComponent urlPdf={data.urlFile} />
+        </>
+      )}
     </div>
   );
 };

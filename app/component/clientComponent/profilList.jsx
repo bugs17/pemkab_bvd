@@ -64,7 +64,7 @@ const ProfilList =  ({ judul, urlFrontEnd, urlFile, id }) => {
               <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                 <div
                   className="tooltip z-50"
-                  data-tip={`Lihat unduhan ${judul}`}
+                  data-tip={`Lihat ${judul}`}
                 >
                   <Link
                     target="_blank"

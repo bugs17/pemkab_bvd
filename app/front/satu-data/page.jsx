@@ -1,11 +1,28 @@
 import PdfViewerComponent from "@/app/component/clientComponent/pdfViewer";
+import { prisma } from "@/app/lib/db";
 import React from "react";
 
-const SatuData = () => {
+
+const SatuData = async () => {
+  let data;
+  try {
+    data = await prisma.potensiDaerah.findFirst({
+      where: {
+        judul: "satu data",
+      },
+    });
+  } catch (error) {}
+
   return (
     <div className=" md:w-[70%] md:p-10">
-      <h1 className="text-center font-bold text-2xl mb-4">SATU DATA</h1>
-      <PdfViewerComponent urlPdf={"/docs/satudata.pdf"} />
+      {data && (
+        <>
+          <h1 className="text-center font-bold text-2xl mb-4">
+            {data.judul.toUpperCase()}
+          </h1>
+          <PdfViewerComponent urlPdf={data.urlFile} />
+        </>
+      )}
     </div>
   );
 };

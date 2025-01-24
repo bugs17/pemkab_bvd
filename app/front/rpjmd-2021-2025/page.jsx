@@ -28,7 +28,6 @@ const RpjmdBoven = async () => {
           ></iframe>
         </div>
       )}
-      {/* <PdfViewerComponent urlPdf={"/docs/rpjmd2025.pdf"} /> */}
     </div>
   );
 };
