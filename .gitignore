@@ -14,7 +14,7 @@
 /coverage
 
 .env.local
-
+*.db
 # next.js
 /.next/
 /out/
