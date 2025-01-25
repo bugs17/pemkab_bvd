@@ -19,6 +19,7 @@ const Hero = () => {
             backgroundImage: `url(/img/kiheng4.webp)`,
           }}
         >
+        {/* overlay */}
           <div className="hero-overlay bg-opacity-40"></div>
           <div className="hero-content text-neutral-content text-center">
             <div className="max-w-md flex justify-center flex-col items-center">

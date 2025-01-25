@@ -22,7 +22,7 @@ const SiaranLangsungDTV = async () => {
         {liveCategory.length > 0 && (
           liveCategory.map((live, index) => (
 
-          <Link href={live.url} target="_blank" className="w-full bg-violet-300 rounded-md shadow-sm py-2 px-3 flex flex-row items-center gap-2 cursor-pointer text-slate-700 hover:text-white">
+          <Link key={index} href={live.url} target="_blank" className="w-full bg-violet-300 rounded-md shadow-sm py-2 px-3 flex flex-row items-center gap-2 cursor-pointer text-slate-700 hover:text-white">
             <MdLiveTv size={32} />
             <span className="text-xs font-mono ">
               {`LIVE : ${live.judul}`}

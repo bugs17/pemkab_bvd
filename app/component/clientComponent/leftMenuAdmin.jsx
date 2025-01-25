@@ -119,6 +119,11 @@ const LeftMenuAdmin = () => {
         },
       ],
     },
+    {
+      title: "Kotak Masuk",
+      path: "/admin/kotak-masuk",
+      match: "kotak-masuk",
+    }
   ];
 
   return (
