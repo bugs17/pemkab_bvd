@@ -6,7 +6,7 @@ const nextConfig = {
     },
   },
   // ini di uncomment jika render di lakukan dua kali dalam mode dev
-  reactStrictMode: false,
+  // reactStrictMode: false,
   
 };
 
