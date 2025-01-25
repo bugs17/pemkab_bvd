@@ -123,7 +123,7 @@ const TextEditorNew = ({ content, onChange, onTglChange, tgl }) => {
         slotBefore={<MenuBar curentTgl={tgl} tglChange={onTglChange} />}
         extensions={extension}
         content={content}
-        
+        immediatelyRender={false}
         editorProps={{
           attributes: {
             class:

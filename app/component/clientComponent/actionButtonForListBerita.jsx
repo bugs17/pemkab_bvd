@@ -1,28 +1,31 @@
 "use client";
 import { hapusBerita } from "@/app/actions/hapusBerita";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useRef, useState } from "react";
 
 import { MdDelete } from "react-icons/md";
 
-const ActionButtonForListBerita = ({ id, judul }) => {
-    const [isSubmit, setIsSubmit] = useState(false)
+const ActionButtonForListBerita = ({ id, judul, onDelete }) => {
+    const [isSubmitButton, setisSubmitButton] = useState(false)
+    const refModal = useRef(null)
 
     const handleHapus = async () => {
-        setIsSubmit(true)
+      setisSubmitButton(true)
         const response = await hapusBerita(id)
         if (response) {
             alert("Data berhasil di Hapus! 🧨")
-            setIsSubmit(false)
-            document.getElementById(`modal_delete_berita_${id}`).close()
+            setisSubmitButton(false)
+            refModal.current.close()
+            onDelete(id)
         }
-        setIsSubmit(false)
+        setisSubmitButton(false)
     }
 
   return (
     <>
       <MdDelete size={20} onClick={() => document.getElementById(`modal_delete_berita_${id}`).showModal()} className="text-red-700 cursor-pointer" />
 
-      <dialog id={`modal_delete_berita_${id}`} className="modal">
+      <dialog ref={refModal} id={`modal_delete_berita_${id}`} className="modal">
         <div className="modal-box justify-center">
           <h3 className="font-bold text-lg text-center ">Warning!</h3>
 
@@ -33,7 +36,7 @@ const ActionButtonForListBerita = ({ id, judul }) => {
           </p>
 
           <div className="modal-action justify-center flex flex-row gap-3">
-            {isSubmit ? (
+            {isSubmitButton ? (
               <span className="loading loading-spinner text-accent"></span>
             ) : (
               <>

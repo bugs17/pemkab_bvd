@@ -8,7 +8,7 @@ import { TbCategoryPlus } from "react-icons/tb";
 
 const DetailBerita = async ({ params }) => {
 
-  const slug = params.slug
+  const {slug} = await params
 
   const detailBerita = await prisma.berita.findFirst({
     where:{
@@ -36,7 +36,7 @@ const DetailBerita = async ({ params }) => {
                   </h1>
                   <span className="flex flex-row items-center text-xs text-slate-400">
                     <FaCalendarDays className="mr-2" />
-                    {new Date(detailBerita.createdAt).toLocaleDateString('id-ID', {'weekday':'long', day: '2-digit', month: '2-digit', year: 'numeric'})}
+                    {new Date(detailBerita.createdAt).toLocaleDateString('id-ID', {'weekday':'long', day: '2-digit', month: 'long', year: 'numeric'})}
                   </span>
                   <img
                     alt="contoh"

@@ -1,16 +1,27 @@
 import React from "react";
 import Link from "next/link";
 import { FaCalendarDays } from "react-icons/fa6";
+import { prisma } from "@/app/lib/db";
+import { truncate } from "@/app/lib/truncKalimat";
 
-const Beritas = () => {
+const Beritas = async () => {
+  let beritas;
+  try {
+    beritas = await prisma.berita.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 16,
+    });
+  } catch (error) {}
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col h-screen overflow-hidden`}>
       <div className="flex flex-row pt-6 items-center justify-end">
         <div className="form-control">
           <input
             type="text"
             placeholder="Search"
-            className="input input-bordered w-24 h-8 md:w-auto"
+            className="input input-bordered w-24 h-8 md:w-auto w-full"
           />
         </div>
         <button className="btn btn-ghost btn-circle">
@@ -30,152 +41,68 @@ const Beritas = () => {
           </svg>
         </button>
       </div>
-      <div className="px-4 mb-20 flex flex-col ">
+      <div className="px-4 pb-20 flex flex-col h-full overflow-y-scroll">
         <div className="divider divider-success">
           <span className="text-green-700">BERITA</span>
         </div>
         <div className="flex flex-wrap gap-3 justify-center items-center md:flex-row">
-          <div className="card lg:w-1/5 md:w-1/5 bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://bovendigoelkab.go.id/uploads/file/berita/br670dfd06c7b37.jpg"
-                alt="cover"
-              />
-            </figure>
-            <div className="card-body">
-              <Link
-                href={"/pages/detail-berita/kpu-boven-mengadakan-pertemuan"}
-                className="card-title cursor-pointer hover:text-red-500"
-              >
-                KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </Link>
-              <p>
-                Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten
-                Boven Digoel menggelar...
-              </p>
-              <div className="card-actions justify-start">
-                <div className="badge badge-neutral">
-                  <FaCalendarDays className="mr-2" />
-                  Senin, 14 Oktober 2024
-                </div>
+          {beritas.length > 0 && (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {beritas.map((berita) => (
+                  <div
+                    key={berita.id}
+                    className="card lg:w-full md:w-full bg-base-100 shadow-xl"
+                  >
+                    <figure className="h-48 w-full overflow-hidden">
+                      <img
+                        className="object-cover w-full h-full"
+                        src={berita.coverUrl}
+                        alt="cover"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <Link
+                        href={`/pages/detail-berita/${berita.slug}`}
+                        className="card-title cursor-pointer hover:text-red-500 "
+                      >
+                        {truncate(berita.judul, 50)}
+                      </Link>
+                      <div
+                        className="text-xs text-justify"
+                        dangerouslySetInnerHTML={{
+                          __html: truncate(berita.isi, 100),
+                        }}
+                      />
+                      <div className="card-actions justify-start">
+                        <div className="badge badge-neutral">
+                          <FaCalendarDays className="mr-2" />
+                          {new Date(berita.createdAt).toLocaleDateString(
+                            "id-ID",
+                            {
+                              weekday: "long",
+                              day: "2-digit",
+                              month: "2-digit",
+                              year: "numeric",
+                            }
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          </div>
-          <div className="card lg:w-1/5 md:w-1/5 bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://bovendigoelkab.go.id/uploads/file/berita/br670dfd06c7b37.jpg"
-                alt="cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title cursor-pointer hover:text-red-500">
-                KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </h2>
-              <p>
-                Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten
-                Boven Digoel menggelar...
-              </p>
-              <div className="card-actions justify-start">
-                <div className="badge badge-neutral">
-                  <FaCalendarDays className="mr-2" />
-                  Senin, 14 Oktober 2024
-                </div>
+              <div className="flex justify-center mt-4">
+                <button
+                  className="btn btn-xs btn-success mb-3"
+                  disabled={false}
+                  // onClick={() => console.log("Load More")}
+                >
+                  Muat Data Berikutnya
+                </button>
               </div>
-            </div>
-          </div>
-          <div className="card lg:w-1/5 md:w-1/5 bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://bovendigoelkab.go.id/uploads/file/berita/br670dfd06c7b37.jpg"
-                alt="cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title cursor-pointer hover:text-red-500">
-                KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </h2>
-              <p>
-                Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten
-                Boven Digoel menggelar...
-              </p>
-              <div className="card-actions justify-start">
-                <div className="badge badge-neutral">
-                  <FaCalendarDays className="mr-2" />
-                  Senin, 14 Oktober 2024
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="card lg:w-1/5 md:w-1/5 bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://bovendigoelkab.go.id/uploads/file/berita/br670dfd06c7b37.jpg"
-                alt="cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title cursor-pointer hover:text-red-500">
-                KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </h2>
-              <p>
-                Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten
-                Boven Digoel menggelar...
-              </p>
-              <div className="card-actions justify-start">
-                <div className="badge badge-neutral">
-                  <FaCalendarDays className="mr-2" />
-                  Senin, 14 Oktober 2024
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="card lg:w-1/5 md:w-1/5 bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://bovendigoelkab.go.id/uploads/file/berita/br670dfd06c7b37.jpg"
-                alt="cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title cursor-pointer hover:text-red-500">
-                KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </h2>
-              <p>
-                Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten
-                Boven Digoel menggelar...
-              </p>
-              <div className="card-actions justify-start">
-                <div className="badge badge-neutral">
-                  <FaCalendarDays className="mr-2" />
-                  Senin, 14 Oktober 2024
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="card lg:w-1/5 md:w-1/5 bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://bovendigoelkab.go.id/uploads/file/berita/br670dfd06c7b37.jpg"
-                alt="cover"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title cursor-pointer hover:text-red-500">
-                KPU Boven Digoel Gelar Debat Publik Pertama, Masyarakat...
-              </h2>
-              <p>
-                Boven Digoel, InfoPublik - Komisi Pemilihan Umum (KPU) Kabupaten
-                Boven Digoel menggelar...
-              </p>
-              <div className="card-actions justify-start">
-                <div className="badge badge-neutral">
-                  <FaCalendarDays className="mr-2" />
-                  Senin, 14 Oktober 2024
-                </div>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>
