@@ -18,8 +18,7 @@ export async function getBeritaAdmin(cursor, limit = 14) {
   });
 
   const nextCursor = items.length > limit ? items.pop().id : null; // Ambil item tambahan dan tentukan cursor baru
-  console.log(items.length)
-  console.log(nextCursor)
+  
   return {
     items,
     nextCursor,
