@@ -11,8 +11,8 @@ generator client {
 datasource db {
   provider = "sqlite"
 
-  // url      = env("DATABASE_URL") // pake ini saat di server
-  url      = "file:./dev.db" // pake ini saat dev
+  url      = env("DATABASE_URL") // pake ini saat di server
+  // url      = "file:./dev.db" // pake ini saat dev
 }
 
 
