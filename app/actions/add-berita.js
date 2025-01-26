@@ -25,7 +25,7 @@ export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => 
     const fileName = `${path.basename(originalName, extension)}-${timestamp}${extension}`;
 
     // Tentukan lokasi penyimpanan file
-    const filePath = path.join(process.cwd(), "/public/uploads/img-berita", fileName);
+    const filePath = path.join(process.cwd(), "/uploads/img-berita", fileName);
 
     // Simpan file ke server
     const namaFileDiDb = `/uploads/img-berita/${fileName}`
@@ -45,6 +45,8 @@ export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => 
       },
     });
     revalidatePath("/admin");
+    revalidatePath("/");
+    revalidatePath("/pages/berita");
   } catch (error) {
     console.error("gagal add berita", error.message);
   }

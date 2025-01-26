@@ -144,7 +144,7 @@ const FormEditPengumuman = ({judulProps, fileProps, id}) => {
             {/* preview disini */}
             {file ? (
               <iframe
-                  src={file}
+                  src={`/api${file}`}
                   className="w-[300px] h-[400px] border self-center border-gray-300"
                   title="PDF Preview"
                 ></iframe>

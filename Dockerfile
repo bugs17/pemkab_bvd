@@ -16,6 +16,7 @@ RUN npm install
 # RUN npx prisma generate
 
 # Build aplikasi Next.js
+RUN rm -rf .next
 RUN npm run build
 
 # Set environment variables

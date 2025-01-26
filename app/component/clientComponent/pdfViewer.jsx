@@ -19,7 +19,7 @@ const PdfViewerComponent = ({urlPdf}) => {
 
   return (
     <div>
-      <Document file={urlPdf} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={`/api${urlPdf}`} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.apply(null, Array(numPages)).map((x,i) => i+1).map((page, index) =>{
             return(
                 <Page key={index} pageNumber={page} width={750} canvasBackground='#f5f3ff' className={'mb-3 shadow-md'} renderTextLayer={false} renderAnnotationLayer={false} />

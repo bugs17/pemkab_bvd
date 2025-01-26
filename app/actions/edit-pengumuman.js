@@ -20,7 +20,7 @@ export const editPengumuman = async (judul, file, urlLama, id) => {
     // Tentukan lokasi penyimpanan file
     const filePath = path.join(
       process.cwd(),
-      "/public/uploads/file-pengumuman",
+      "/uploads/file-pengumuman",
       fileName
     );
 
@@ -30,7 +30,7 @@ export const editPengumuman = async (judul, file, urlLama, id) => {
 
 
     // hapus file yg lama
-    // const pathToDelete = path.join(process.cwd(), "public", urlLama);
+    // const pathToDelete = path.join(process.cwd(), urlLama);
     // await unlink(pathToDelete)
   }
 

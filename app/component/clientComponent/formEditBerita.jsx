@@ -185,7 +185,7 @@ const FormEditBerita = ({ kategoris, instance }) => {
               {imgUrl && (
                 <>
                   <img
-                    src={imgUrl}
+                    src={`/api${imgUrl}`}
                     alt="image"
                     className="w-full h-full object-cover rounded-md"
                   />

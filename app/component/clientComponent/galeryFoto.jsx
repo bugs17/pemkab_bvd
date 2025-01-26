@@ -16,7 +16,7 @@ const GaleryFoto = async () => {
         datas.map((data, index) => (
         <div key={index} className="carousel-item">
           <img
-            src={data.urlFile}
+            src={`/api${data.urlFile}`}
             className="rounded-box"
           />
         </div>

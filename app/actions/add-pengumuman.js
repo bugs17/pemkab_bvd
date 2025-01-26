@@ -20,7 +20,7 @@ export const addPengumuman = async (judul, file) => {
     // Tentukan lokasi penyimpanan file
     const filePath = path.join(
       process.cwd(),
-      "/public/uploads/file-pengumuman",
+      "/uploads/file-pengumuman",
       fileName
     );
 

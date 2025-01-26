@@ -28,7 +28,7 @@ export const updateProfils = async (id, file, urlFrontEnd) => {
     // Tentukan lokasi penyimpanan file
     const filePath = path.join(
       process.cwd(),
-      "/public/uploads/profils",
+      "/uploads/profils",
       fileName
     );
 

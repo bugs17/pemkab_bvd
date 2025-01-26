@@ -22,7 +22,7 @@ const RpjmdBoven = async () => {
       {rpjmd && (
         <div className=" flex justify-center h-full w-full">
           <iframe
-            src={rpjmd.urlFile}
+            src={`/api${rpjmd.urlFile}`}
             className="w-[80%] h-[90%] border self-center border-gray-300"
             title="PDF Preview"
           ></iframe>

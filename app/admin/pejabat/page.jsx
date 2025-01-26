@@ -14,7 +14,6 @@ const AdminBupati = async () => {
     }
 
 
-    console.log(pejabats)
   return (
     <div className="h-full">
     {pejabats.length > 0 && (

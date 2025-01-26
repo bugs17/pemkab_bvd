@@ -5,18 +5,25 @@ import { prisma } from '../lib/db';
 import { truncate } from '../lib/truncKalimat';
 
 
+
+
 const HeadlineNews = async () => {
-  let beritas;
+
+  let beritas = []
   try {
     beritas = await prisma.berita.findMany({
+      where:{
+        isDraft:false
+      },
       orderBy:{
         createdAt:"desc"
       },
       take:6
     })
   } catch (error) {
-    
+    console.log(error.message)
   }
+  
   return (
     <div className="px-4 py-8 bg-white flex flex-col">
         <div className="divider divider-success">
@@ -30,11 +37,11 @@ const HeadlineNews = async () => {
             <figure className="h-48 w-full overflow-hidden">
               <img
                 className="object-cover w-full h-full"
-                src={berita.coverUrl}
+                src={`/api${berita.coverUrl}`}
                 alt={berita.judul} />
             </figure>
             <div className="card-body">
-              <Link href={ `/pages/detail-berita/${berita.slug}`} className="card-title cursor-pointer hover:text-red-500">
+              <Link href={`/pages/detail-berita/${berita.slug}`} className="card-title cursor-pointer hover:text-red-500">
               {truncate(berita.judul, 50)}
               </Link>
               <div dangerouslySetInnerHTML={{__html: truncate(berita.isi, 100)}} />

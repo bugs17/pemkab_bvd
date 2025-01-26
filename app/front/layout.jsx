@@ -23,6 +23,9 @@ const FrontLayout = async ({ children }) => {
           },
         },
       },
+      where:{
+        isDraft:false
+      }
     });
 
     pengumumans = await prisma.pengumuman.findMany({
@@ -50,7 +53,7 @@ const FrontLayout = async ({ children }) => {
                   className="card md:w-full bg-base-100 shadow-xl"
                 >
                   <figure>
-                    <img src={berita.coverUrl} alt={berita.judul} />
+                    <img src={`/api${berita.coverUrl}`} alt={berita.judul} />
                   </figure>
                   <div className="card-body">
                     <Link

@@ -20,7 +20,7 @@ export const hapusUnduhan = async (id) => {
     }
 
     if (unduhan) {
-        const pathToDelete = path.join(process.cwd(), "public", unduhan.urlFile);
+        const pathToDelete = path.join(process.cwd(), unduhan.urlFile);
 
         try {
             await unlink(pathToDelete)

@@ -13,6 +13,9 @@ const PagesBeritaLayout = async ({children}) => {
       createdAt:"desc"
     },
     take:4,
+    where:{
+      isDraft:false
+    }
   })
 
   const kategoris = await prisma.kategoriBerita.findMany({

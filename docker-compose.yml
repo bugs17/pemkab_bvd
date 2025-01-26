@@ -11,5 +11,6 @@ services:
     volumes:
       - ./realDb:/app/realDb
       - ./public:/app/public
+      - ./uploads:/uploads
     command: "npm run start"
     restart: always

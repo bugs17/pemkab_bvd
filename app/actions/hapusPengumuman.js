@@ -20,7 +20,7 @@ export const hapusPengumuman = async (id) => {
     }
 
     if (pengumuman) {
-        const pathToDelete = path.join(process.cwd(), "public", pengumuman.urlFile);
+        const pathToDelete = path.join(process.cwd(), pengumuman.urlFile);
 
         try {
             await unlink(pathToDelete)

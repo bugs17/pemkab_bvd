@@ -13,7 +13,7 @@ const PejabatProfil = ({ nama, jabatan, urlFoto }) => {
           <img
             className="group-hover:rounded-br-[100px] rounded-br-[0px] transition-[border-radius]"
             alt={jabatan}
-            src={urlFoto}
+            src={`/api${urlFoto}`}
           />
           <p className="m-[5px] text-[#262626] text-base font-bold">
             {nama}

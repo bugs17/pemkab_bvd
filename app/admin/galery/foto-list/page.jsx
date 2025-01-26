@@ -54,7 +54,7 @@ const FotoList = async () => {
                           <div className="avatar">
                             <Link href={'/#galery'} target="_blank" className="mask mask-squircle h-12 w-12">
                               <img
-                                src={data.urlFile}
+                                src={`/api${data.urlFile}`}
                                 alt={data.judul}
                               />
                             </Link>

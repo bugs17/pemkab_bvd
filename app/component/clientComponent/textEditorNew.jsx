@@ -1,8 +1,7 @@
 "use client";
 
 import {
-  useEditor,
-  EditorContent,
+  
   EditorProvider,
   useCurrentEditor,
 } from "@tiptap/react";
@@ -10,12 +9,6 @@ import StarterKit from "@tiptap/starter-kit";
 import { FaBold } from "react-icons/fa";
 import { FaItalic } from "react-icons/fa";
 import { AiOutlineStrikethrough } from "react-icons/ai";
-import { Color } from "@tiptap/extension-color";
-import ListItem from "@tiptap/extension-list-item";
-import TextStyle from "@tiptap/extension-text-style";
-import Highlight from "@tiptap/extension-highlight";
-import TextAlign from "@tiptap/extension-text-align";
-import { useEffect, useState } from "react";
 
 function MenuBar({tglChange, curentTgl}) {
   const { editor } = useCurrentEditor();

@@ -16,10 +16,10 @@ export const addUnduhan = async (judul, file) => {
     const fileName = `${path.basename(originalName, extension)}-${timestamp}${extension}`;
 
     // Tentukan lokasi penyimpanan file
-    const filePath = path.join(process.cwd(), "/public/uploads/file-unduhan", fileName);
+    const filePath = path.join(process.cwd(), "/uploads/file-unduhan", fileName);
 
     // Simpan file ke server
-    const namaFileDiDb = `/uploads/file-unduhan/${fileName}`
+    const namaFileDiDb = `/file-unduhan/${fileName}`
     await writeFile(filePath, Buffer.from(await file.arrayBuffer()));
 
 

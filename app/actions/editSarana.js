@@ -34,7 +34,7 @@ export const updateSarana = async (id, file) => {
       // Tentukan lokasi penyimpanan file
       const filePath = path.join(
         process.cwd(),
-        "/public/uploads/sarana",
+        "/uploads/sarana",
         fileName
       );
       
@@ -49,7 +49,7 @@ export const updateSarana = async (id, file) => {
     try {
       
       if (file) {
-        const pathToDelete = path.join(process.cwd(), "public", dataLama.urlFile);
+        const pathToDelete = path.join(process.cwd(), dataLama.urlFile);
         await unlink(pathToDelete);
       }
     } catch (error) {

@@ -27,7 +27,7 @@ export const editBerita = async (judul, kategoriId, isi, isDraft, tgl, id, newCo
         const fileName = `${path.basename(originalName, extension)}-${timestamp}${extension}`;
     
         // Tentukan lokasi penyimpanan file
-        const filePath = path.join(process.cwd(), "/public/uploads/img-berita", fileName);
+        const filePath = path.join(process.cwd(), "uploads/img-berita", fileName);
     
         // Simpan file ke server
         namaFileDiDb = `/uploads/img-berita/${fileName}`

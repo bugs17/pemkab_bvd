@@ -1,7 +1,6 @@
 import React from "react";
 import { HiPencilSquare } from "react-icons/hi2";
 import Link from "next/link";
-import { prisma } from "../lib/db";
 
 import ListBeritaAdmin from "../component/clientComponent/listBeritaAdmin";
 

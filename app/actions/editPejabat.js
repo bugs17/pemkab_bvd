@@ -41,7 +41,7 @@ export const updatePejabat = async (id, file, nama, jabatan) => {
       // Tentukan lokasi penyimpanan file
       const filePath = path.join(
         process.cwd(),
-        "/public/uploads/pejabat",
+        "/uploads/pejabat",
         fileName
       );
       
@@ -56,7 +56,7 @@ export const updatePejabat = async (id, file, nama, jabatan) => {
     try {
       
       if (file) {
-        const pathToDelete = path.join(process.cwd(), "public", dataLama.urlFoto);
+        const pathToDelete = path.join(process.cwd(), dataLama.urlFoto);
         await unlink(pathToDelete);
       }
     } catch (error) {

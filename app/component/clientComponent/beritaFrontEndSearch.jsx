@@ -78,7 +78,7 @@ const BeritaFrontEndSearch = () => {
                     <figure className="h-48 w-full overflow-hidden">
                     <img
                         className="object-cover w-full h-full"
-                        src={berita.coverUrl}
+                        src={`/api${berita.coverUrl}`}
                         alt="cover"
                     />
                     </figure>

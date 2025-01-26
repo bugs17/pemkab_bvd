@@ -21,7 +21,7 @@ export const hapusBerita = async (id) => {
   }
 
   if (berita) {
-    const pathToDelete = path.join(process.cwd(), "public", berita.coverUrl);
+    const pathToDelete = path.join(process.cwd(), berita.coverUrl);
 
     try {
       await unlink(pathToDelete);

@@ -26,7 +26,7 @@ export const addGalery = async (file, judul, url) => {
       // Tentukan lokasi penyimpanan file
       const filePath = path.join(
         process.cwd(),
-        "/public/uploads/galery",
+        "/uploads/galery",
         fileName
       );
       
