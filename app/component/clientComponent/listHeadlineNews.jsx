@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { truncate } from '../lib/truncKalimat';
 import { FaCalendarDays } from "react-icons/fa6";
 import { getHeadlineNews } from '@/app/actions/getHeadlineNews';
+import { truncate } from '@/app/lib/truncKalimat';
 
 
 const ListHeadlineNews = () => {
