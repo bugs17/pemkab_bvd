@@ -4,6 +4,9 @@ import { prisma } from "../lib/db";
 
 export async function getBeritaFrontEnd(cursor, limit = 10) {
   const items = await prisma.berita.findMany({
+    where:{
+      isDraft:false
+    },
     take: limit + 1, // Ambil satu tambahan untuk mengecek apakah ada data berikutnya
     skip: cursor ? 1 : 0, // Lewati satu jika cursor ada
     cursor: cursor ? { id: cursor } : undefined,

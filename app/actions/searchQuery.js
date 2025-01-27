@@ -18,6 +18,7 @@ export const searchQuery = async (words) => {
             },
           },
         ],
+        isDraft:false
       },
     });
   } catch (error) {
