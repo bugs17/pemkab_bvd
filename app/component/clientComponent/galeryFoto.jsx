@@ -9,6 +9,7 @@ const GaleryFoto = async () => {
             isFoto:true
         }
     });
+    console.log(datas)
   } catch (error) {}
   return (
     <div className="carousel carousel-center bg-slate-100 rounded-box max-w-full space-x-4 p-4 shadow-md">

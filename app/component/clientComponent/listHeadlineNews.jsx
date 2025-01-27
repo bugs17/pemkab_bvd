@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { FaCalendarDays } from "react-icons/fa6";
 import { getHeadlineNews } from '@/app/actions/getHeadlineNews';
 import { truncate } from '@/app/lib/truncKalimat';
+import Link from 'next/link';
 
 
 const ListHeadlineNews = () => {
