@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-
+/uploads/
 .env.local
 *.db
 # next.js
