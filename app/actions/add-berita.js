@@ -47,6 +47,8 @@ export const addBerita = async (judul, kategoriId, image, isi, isDraft, tgl) => 
     revalidatePath("/admin");
     revalidatePath("/");
     revalidatePath("/pages/berita");
+    revalidatePath("/front");
+
   } catch (error) {
     console.error("gagal add berita", error.message);
   }
