@@ -50,6 +50,7 @@ export const addGalery = async (file, judul, url) => {
     })
     revalidatePath('/admin/galery/foto-list')
     revalidatePath('/admin/galery/video-list')
+    revalidatePath('/')
   } catch (error) {
     console.log(error.message)
     
