@@ -13,6 +13,9 @@ export const hapusKegiatan = async (id) => {
             }
         })
         revalidatePath('/admin/kalender/kegiatan-list')
+        revalidatePath('/')
+        revalidatePath('/pages')
+        revalidatePath('/front')
     } catch (error) {
         console.log(`gagal menghapus instance kegiatan denga.`)
     }

@@ -20,16 +20,25 @@ export const hapusUnduhan = async (id) => {
     }
 
     if (unduhan) {
-        const pathToDelete = path.join(process.cwd(), unduhan.urlFile);
+        try {
+            const pathToDelete = path.join(process.cwd(), unduhan.urlFile);
+            await unlink(pathToDelete)
+        } catch (error) {
+            
+        }
+    }
+
+    if (unduhan) {
 
         try {
-            await unlink(pathToDelete)
             await prisma.unduhan.delete({
                 where:{
                     id:parseInt(unduhan.id)
                 }
             })
             revalidatePath('/admin/unduhan/unduhan-list')
+            revalidatePath('/')
+            revalidatePath('/pages')
         } catch (error) {
             console.log(`gagal menghapus instance unduhan denga. judul ${unduhan.judul}`, error.message)
         }

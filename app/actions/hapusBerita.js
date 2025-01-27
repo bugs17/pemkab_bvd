@@ -21,16 +21,26 @@ export const hapusBerita = async (id) => {
   }
 
   if (berita) {
-    const pathToDelete = path.join(process.cwd(), berita.coverUrl);
+    try {
+      const pathToDelete = path.join(process.cwd(), berita.coverUrl);
+      await unlink(pathToDelete);
+    } catch (error) {
+      
+    }
+  }
+
+  if (berita) {
 
     try {
-      await unlink(pathToDelete);
       await prisma.berita.delete({
         where: {
           id: parseInt(berita.id),
         },
       });
       revalidatePath("/admin");
+      revalidatePath("/");
+      revalidatePath("/front");
+      revalidatePath("/pages");
       return true;
     } catch (error) {
       console.log(
