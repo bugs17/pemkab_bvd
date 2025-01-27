@@ -39,8 +39,10 @@ export const hapusUnduhan = async (id) => {
             revalidatePath('/admin/unduhan/unduhan-list')
             revalidatePath('/')
             revalidatePath('/pages')
+            return true
         } catch (error) {
             console.log(`gagal menghapus instance unduhan denga. judul ${unduhan.judul}`, error.message)
+            return false
         }
     }
 }

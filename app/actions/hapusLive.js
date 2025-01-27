@@ -12,7 +12,10 @@ export const hapusLive = async (id) => {
             }
         })
         revalidatePath('/admin/digoel-tv/live-list')
+        revalidatePath('/')
+        return true
     } catch (error) {
         console.log(`gagal menghapus instance live denga`, error.message)
+        return false
     }
 }

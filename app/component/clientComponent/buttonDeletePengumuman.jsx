@@ -13,16 +13,16 @@ const ButtonDeletePengumuman = ({ id, judul }) => {
         if (response) {
             alert("Data berhasil di Hapus! 🧨")
             setIsSubmit(false)
-            document.getElementById(`modal_delete_berita_${id}`).close()
+            document.getElementById(`modal_delete_pengumuman_${id}`).close()
         }
         setIsSubmit(false)
     }
 
   return (
     <>
-      <MdDelete size={20} onClick={() => document.getElementById(`modal_delete_berita_${id}`).showModal()} className="text-red-700 cursor-pointer" />
+      <MdDelete size={20} onClick={() => document.getElementById(`modal_delete_pengumuman_${id}`).showModal()} className="text-red-700 cursor-pointer" />
 
-      <dialog id={`modal_delete_berita_${id}`} className="modal">
+      <dialog id={`modal_delete_pengumuman_${id}`} className="modal">
         <div className="modal-box justify-center">
           <h3 className="font-bold text-lg text-center ">Warning!</h3>
 

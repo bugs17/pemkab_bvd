@@ -16,7 +16,9 @@ export const hapusKegiatan = async (id) => {
         revalidatePath('/')
         revalidatePath('/pages')
         revalidatePath('/front')
+        return true
     } catch (error) {
         console.log(`gagal menghapus instance kegiatan denga.`)
+        return false
     }
 }

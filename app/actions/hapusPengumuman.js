@@ -25,7 +25,7 @@ export const hapusPengumuman = async (id) => {
       const pathToDelete = path.join(process.cwd(), pengumuman.urlFile);
       await unlink(pathToDelete);
     } catch (error) {
-        
+
     }
   }
 
@@ -39,11 +39,13 @@ export const hapusPengumuman = async (id) => {
       revalidatePath("/admin/pengumuman/pengumuman-list");
       revalidatePath("/");
       revalidatePath("/pages");
+      return true
     } catch (error) {
       console.log(
         `gagal menghapus file gambar / menghapus instance pengumuman denga. judul ${pengumuman.judul}`,
         error.message
       );
+      return false
     }
   }
 };

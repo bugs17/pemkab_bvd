@@ -14,7 +14,9 @@ export const hapusGalery = async (id) => {
         revalidatePath('/admin/galery/foto-list')
         revalidatePath('/admin/galery/video-list')
         revalidatePath('/')
+        return true
     } catch (error) {
         console.log(`gagal menghapus instance live denga`, error.message)
+        return false
     }
 }
