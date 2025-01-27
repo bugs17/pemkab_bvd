@@ -18,7 +18,7 @@ export const editBerita = async (judul, kategoriId, isi, isDraft, tgl, id, newCo
     let namaFileDiDb = coverUrl
     if (newCover) {
         // hapus cover lama terlebih dahulu
-        const pathToDelete = path.join(process.cwd(), "public", coverUrl);
+        const pathToDelete = path.join(process.cwd(), coverUrl);
         await unlink(pathToDelete)
         // Modifikasi nama file: hilangkan spasi dan tambahkan timestamp
         const timestamp = Date.now();

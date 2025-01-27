@@ -38,7 +38,7 @@ export const updateProfils = async (id, file, urlFrontEnd) => {
   }
 
   try {
-    const pathToDelete = path.join(process.cwd(), "public", instance.urlFile);
+    const pathToDelete = path.join(process.cwd(), instance.urlFile);
     await unlink(pathToDelete);
   } catch (error) {}
 
