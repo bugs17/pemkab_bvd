@@ -6,6 +6,8 @@ import { prisma } from "../lib/db";
 import { truncate } from "../lib/truncKalimat";
 import Link from "next/link";
 
+export const revalidate = 0;
+
 const FrontLayout = async ({ children }) => {
   let beritas;
   let pengumumans;
