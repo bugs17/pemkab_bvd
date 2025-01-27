@@ -2,6 +2,7 @@
 import path from "path";
 import { prisma } from "../lib/db";
 import { revalidatePath } from "next/cache";
+import { writeFile } from "fs/promises";
 
 export const addGalery = async (file, judul, url) => {
   
