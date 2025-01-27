@@ -21,15 +21,20 @@ export const hapusPengumuman = async (id) => {
 
     if (pengumuman) {
         const pathToDelete = path.join(process.cwd(), pengumuman.urlFile);
+        await unlink(pathToDelete)
+    }
+
+    if (pengumuman) {
 
         try {
-            await unlink(pathToDelete)
             await prisma.pengumuman.delete({
                 where:{
                     id:parseInt(pengumuman.id)
                 }
             })
             revalidatePath('/admin/pengumuman/pengumuman-list')
+            revalidatePath('/')
+            revalidatePath('/pages')
         } catch (error) {
             console.log(`gagal menghapus file gambar / menghapus instance pengumuman denga. judul ${pengumuman.judul}`, error.message)
         }
