@@ -1,8 +1,8 @@
 import { prisma } from "@/app/lib/db";
 import React from "react";
 
-export const revalidate = 0;
 
+export const revalidate = 0;
 
 const GaleryFoto = async () => {
   let datas;
@@ -12,7 +12,6 @@ const GaleryFoto = async () => {
             isFoto:true
         }
     });
-    console.log(datas)
   } catch (error) {}
   return (
     <div className="carousel carousel-center bg-slate-100 rounded-box max-w-full space-x-4 p-4 shadow-md">
@@ -26,9 +25,6 @@ const GaleryFoto = async () => {
         </div>
         ))
       )}
-      
-      
-      
     </div>
   );
 };

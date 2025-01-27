@@ -2,6 +2,9 @@ import React from 'react'
 import GaleryFoto from './clientComponent/galeryFoto'
 import GaleryVideo from './clientComponent/galeryVideo'
 
+export const revalidate = 0;
+
+
 const GalerySections = () => {
   return (
     <div id='galery' className="px-4 py-8 flex md:flex-row flex-col-reverse gap-8 bg-white">
