@@ -2,6 +2,8 @@ import { prisma } from "@/app/lib/db";
 import React from "react";
 import { FaDownload } from "react-icons/fa6";
 
+export const revalidate = 0;
+
 const page = async ({ params }) => {
   const {id} = await params
 

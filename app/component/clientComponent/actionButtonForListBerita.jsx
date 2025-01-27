@@ -1,6 +1,5 @@
 "use client";
 import { hapusBerita } from "@/app/actions/hapusBerita";
-import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 
 import { MdDelete } from "react-icons/md";

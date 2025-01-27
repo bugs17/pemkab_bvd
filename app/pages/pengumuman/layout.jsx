@@ -4,6 +4,8 @@ import Link from "next/link";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdSimCardDownload } from "react-icons/md";
 
+export const revalidate = 0;
+
 
 const PagesPengumumanLayout = async ({children}) => {
 

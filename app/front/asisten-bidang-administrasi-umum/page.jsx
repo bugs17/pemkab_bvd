@@ -2,6 +2,9 @@ import React from "react";
 import { prisma } from "@/app/lib/db";
 import PejabatProfil from "@/app/component/clientComponent/pejabatProfil";
 
+export const revalidate = 0;
+
+
 const AsistenBidangAdiministrasiUmum = async () => {
   let asistenUmum;
   try {

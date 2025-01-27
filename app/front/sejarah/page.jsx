@@ -1,6 +1,8 @@
 import { prisma } from "@/app/lib/db";
 import React from "react";
 
+export const revalidate = 0;
+
 const Sejarah = async () => {
   let sejarah;
   try {

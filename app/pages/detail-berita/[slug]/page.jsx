@@ -2,6 +2,7 @@ import { prisma } from "@/app/lib/db";
 import React from "react";
 import { FaCalendarDays } from "react-icons/fa6";
 
+export const revalidate = 0;
 
 const DetailBerita = async ({ params }) => {
   const { slug } = await params;

@@ -3,7 +3,8 @@ import { truncate } from "@/app/lib/truncKalimat";
 import Link from "next/link";
 import { FaCalendarDays } from "react-icons/fa6";
 import { MdSimCardDownload } from "react-icons/md";
-import { TbCategoryPlus } from "react-icons/tb";
+
+export const revalidate = 0;
 
 const PagesUnduhanLayout = async ({ children }) => {
   let unduhans;

@@ -2,6 +2,8 @@ import React from "react";
 import PdfViewerComponent from "@/app/component/clientComponent/pdfViewer";
 import { prisma } from "@/app/lib/db";
 
+export const revalidate = 0;
+
 const KondisiGeografis = async () => {
   let geografis;
   try {

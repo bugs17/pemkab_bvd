@@ -4,6 +4,9 @@ import Link from "next/link";
 import React from "react";
 import { MdSimCardDownload } from "react-icons/md";
 
+export const revalidate = 0;
+
+
 const Unduhan = async () => {
   let unduhans;
   try {

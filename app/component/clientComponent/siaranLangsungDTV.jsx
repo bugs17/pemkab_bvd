@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { MdLiveTv } from "react-icons/md";
 
+export const revalidate = 0;
 
 const SiaranLangsungDTV = async () => {
   const digoeltvs = await prisma.digoeltv.findMany({

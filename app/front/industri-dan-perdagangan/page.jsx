@@ -2,6 +2,8 @@ import PdfViewerComponent from "@/app/component/clientComponent/pdfViewer";
 import { prisma } from "@/app/lib/db";
 import React from "react";
 
+export const revalidate = 0;
+
 const IndustriDanPerdagangan = async () => {
   let data;
   try {

@@ -3,6 +3,9 @@ import { truncate } from "@/app/lib/truncKalimat";
 import Link from "next/link";
 import React from "react";
 
+export const revalidate = 0;
+
+
 const Pengumuman = async () => {
   let pengumumans;
   try {

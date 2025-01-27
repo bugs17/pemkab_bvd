@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { FaCalendarDays } from "react-icons/fa6";
 import Logo from "../../asset/img/logoBvd.png";
 import { prisma } from "@/app/lib/db";
+
+export const revalidate = 0;
 
 const LambangDaerah = async () => {
   let lambang;
