@@ -10,11 +10,16 @@ const ListHeadlineNews = () => {
     const [beritas, setBeritas] = useState([])
 
     useEffect(() => {
-        const fetchBeritas = async () => {
-            const datas = await getHeadlineNews()
-            setBeritas(datas)
+        try {
+            const fetchBeritas = async () => {
+                const datas = await getHeadlineNews()
+                setBeritas(datas)
+            }
+            fetchBeritas()
+
+        } catch (error) {
+            console.log("error di pemanggilan berita", error.message)
         }
-        fetchBeritas()
     }, [])
 
 
