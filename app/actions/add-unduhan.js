@@ -19,7 +19,7 @@ export const addUnduhan = async (judul, file) => {
     const filePath = path.join(process.cwd(), "/uploads/file-unduhan", fileName);
 
     // Simpan file ke server
-    const namaFileDiDb = `/file-unduhan/${fileName}`
+    const namaFileDiDb = `/uploads/file-unduhan/${fileName}`
     await writeFile(filePath, Buffer.from(await file.arrayBuffer()));
 
 

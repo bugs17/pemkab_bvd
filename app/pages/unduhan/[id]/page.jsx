@@ -38,7 +38,7 @@ const page = async ({ params }) => {
   
           {unduhan && (
   
-          <a href={unduhan.urlFile} download={unduhan.judul} className="btn">
+          <a href={`/api${unduhan.urlFile}`} download={unduhan.judul} className="btn">
             <FaDownload />
             Download
           </a>
