@@ -4,6 +4,7 @@ import { truncate } from '@/app/lib/truncKalimat';
 import LihatPesan from '@/app/component/clientComponent/lihatPesan';
 
 
+export const revalidate = 0;
 
 
 const KotakMasuk = async () => {
