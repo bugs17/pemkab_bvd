@@ -5,6 +5,7 @@ import AgendaSections from "./component/agendaSections";
 import GalerySections from "./component/galerySections";
 import Navbar from "./component/navba";
 import Footer from "./component/footer";
+import Hero2 from "./component/hero2";
 
 
 export default function Home() {
@@ -12,7 +13,8 @@ export default function Home() {
     <>
       <Navbar />
       {/* sections hero */}
-      <Hero />
+      {/* <Hero /> */}
+      <Hero2 />
 
       {/* section headline news */}
       <HeadlineNews />

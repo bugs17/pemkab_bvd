@@ -11,13 +11,13 @@ const Hero = () => {
   return (
     <div>
 
-      <div className="hidden sm:block">
+      <div className="hidden sm:block ">
         <div
-          className="hero min-h-screen"
-          style={{
-            // backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-            backgroundImage: `url(/img/kiheng4.webp)`,
-          }}
+          className="hero min-h-screen "
+          // style={{
+          //   // backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+          //   backgroundImage: `url(/img/kiheng4.webp)`,
+          // }}
         >
         {/* overlay */}
           <div className="hero-overlay bg-opacity-40"></div>
@@ -36,10 +36,13 @@ const Hero = () => {
             </div>
           </div>
         </div>
+        <video playsInline autoPlay muted loop className="absolute inset-0 -z-20 object-cover w-full h-full">
+          <source src="/video/hero.mp4" type="video/mp4" />
+        </video>
 
       </div>
 
-      <div className="block sm:hidden bg-white p-4">
+      {/* <div className="block sm:hidden bg-white p-4">
         <div className="flex flex-row items-center overflow-x-scroll">
           <div className="flex flex-row gap-5">
             <Link href={'https://www.ppid.bovendigoelkab.go.id/'} target="_blank" className="btn btn-lg text-white flex flex-row rounded-3xl border-cyan-500 bg-cyan-500 hover:bg-cyan-600">
@@ -60,7 +63,7 @@ const Hero = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
