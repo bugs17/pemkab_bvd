@@ -5,11 +5,21 @@ import { FaEye } from "react-icons/fa";
 import { prisma } from '@/app/lib/db';
 import { truncate } from '@/app/lib/truncKalimat';
 import ButtonDeleteLive from '@/app/component/clientComponent/buttonDeleteLive';
+import { currentUser } from '@clerk/nextjs/server';
 
 
 
 
 const LiveList = async () => {
+
+  const user = await currentUser()
+  const role = user.publicMetadata?.role
+  
+  if (role === "admin-berita") {
+    return redirect("/admin");
+  }
+
+
 
   const digoeltvs = await prisma.digoeltv.findMany({
     orderBy:{

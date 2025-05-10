@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <div>
 
-      <div className="hidden sm:block ">
+      <div className="hidden sm:block " >
         <div
           className="hero min-h-screen "
           // style={{

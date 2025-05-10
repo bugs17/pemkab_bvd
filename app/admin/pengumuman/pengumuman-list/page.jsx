@@ -1,4 +1,3 @@
-import ActionButtonForListBerita from '@/app/component/clientComponent/actionButtonForListBerita';
 import Link from 'next/link'
 import React from 'react'
 import { HiPencilSquare } from "react-icons/hi2";
@@ -7,11 +6,18 @@ import { MdEditDocument } from "react-icons/md";
 import { prisma } from '@/app/lib/db';
 import { truncate } from '@/app/lib/truncKalimat';
 import ButtonDeletePengumuman from '@/app/component/clientComponent/buttonDeletePengumuman';
-
+import { currentUser } from '@clerk/nextjs/server'
 
 
 
 const AdminPengumuman = async () => {
+
+  const user = await currentUser()
+  const role = user.publicMetadata?.role
+
+  if (role !== "admin-induk") {
+    return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+  }
 
   const pengumumans = await prisma.pengumuman.findMany({
     orderBy:{

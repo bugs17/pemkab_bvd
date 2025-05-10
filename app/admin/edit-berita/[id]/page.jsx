@@ -1,8 +1,19 @@
+import React from 'react'
 import FormEditBerita from '@/app/component/clientComponent/formEditBerita'
 import { prisma } from '@/app/lib/db'
-import React from 'react'
+import { redirect } from 'next/navigation'
+import { currentUser } from '@clerk/nextjs/server'
+
 
 const EditBerita = async ({params}) => {
+  
+  const user = await currentUser()
+  const role = user.publicMetadata?.role
+  
+  if (role === "admin-dgtv") {
+    return redirect("/admin/digoel-tv/live-list");
+  }
+
   const { id } = params;
 
   if (!id) {

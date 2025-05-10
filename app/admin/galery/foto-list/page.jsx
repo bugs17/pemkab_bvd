@@ -3,8 +3,18 @@ import React from "react";
 import ButtonDeleteGalery from "@/app/component/clientComponent/buttonDeleteGalery";
 import ButtonAddFoto from "@/app/component/clientComponent/buttonAddFoto";
 import Link from "next/link";
+import { currentUser } from '@clerk/nextjs/server'
+
 
 const FotoList = async () => {
+
+  const user = await currentUser()
+  const role = user.publicMetadata?.role
+  
+  if (role !== "admin-induk") {
+    return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+  }
+
   let datas;
   try {
     datas = await prisma.galery.findMany({

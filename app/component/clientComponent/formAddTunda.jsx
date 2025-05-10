@@ -37,7 +37,7 @@ const FormAddTunda = () => {
         <div className="flex flex-row items-center justify-start gap-1">
           <IoArrowBackOutline size={20} className="text-green-950" />
           <Link
-            href={"/admin/digoel-tv/live-list"}
+            href={"/admin/digoel-tv/siaran-tunda-list"}
             className="font-semibold text-sm cursor-pointer hover:text-green-950"
           >
             Kembali

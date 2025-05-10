@@ -3,16 +3,24 @@ import { prisma } from '@/app/lib/db';
 import Link from 'next/link';
 import React from 'react'
 import { FaEye } from "react-icons/fa";
+import { currentUser } from '@clerk/nextjs/server'
 
 
 const PotensiDaerah = async () => {
+
+  const user = await currentUser()
+  const role = user.publicMetadata?.role
+
+  if (role !== "admin-induk") {
+    return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+  }
   
-    let datas;
-    try {
-        datas = await prisma.potensiDaerah.findMany()
-        
-    } catch (error) {
-    }
+  let datas;
+  try {
+      datas = await prisma.potensiDaerah.findMany()
+      
+  } catch (error) {
+  }
 
 
   return (

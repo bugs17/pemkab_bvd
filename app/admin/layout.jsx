@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import LogoBoven from "../asset/img/logo-boven.png";
-import LeftMenuAdmin from "../component/clientComponent/leftMenuAdmin";
 import { ClerkProvider, SignIn, UserButton, useUser } from "@clerk/nextjs";
 import AuthWrapper from "../context/AuthWraper";
+import LeftSideBar from "../component/clientComponent/leftSideBar";
 
 const AdminLayout = async ({ children }) => {
 
@@ -15,9 +15,7 @@ const AdminLayout = async ({ children }) => {
           <div className="w-full h-[70px] border-b-[1px] border-slate-400 p-4">
             <Image alt="logo-boven" src={LogoBoven} height={150} width={150} />
           </div>
-          <div className="flex-grow h-screen pb-20 overflow-y-auto">
-            <LeftMenuAdmin />
-          </div>
+          <LeftSideBar />
         </div>
 
         <div className="flex-1 bg-base-300 flex-col flex">

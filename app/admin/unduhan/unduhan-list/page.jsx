@@ -5,11 +5,16 @@ import { FaEye } from "react-icons/fa";
 import { prisma } from '@/app/lib/db';
 import { truncate } from '@/app/lib/truncKalimat';
 import ButtonDeleteUnduhan from '@/app/component/clientComponent/buttonDeleteUnduhan';
-
-
-
+import { currentUser } from '@clerk/nextjs/server'
 
 const AdminUnduhanList = async () => {
+
+  const user = await currentUser()
+  const role = user.publicMetadata?.role
+
+  if (role !== "admin-induk") {
+    return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+  }
 
   const unduhans = await prisma.unduhan.findMany({
     orderBy:{

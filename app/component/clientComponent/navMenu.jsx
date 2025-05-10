@@ -1,11 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useAtom } from "jotai";
+
 import Link from "next/link";
+import { isNavMenuOpen } from "@/app/lib/globalState";
 
 const NavMenu = () => {
   const pathName = usePathname();
-  const [curentOpen, setCurentOpen] = useState('')
+  const [curentOpen, setCurentOpen] = useAtom(isNavMenuOpen)
 
   
 

@@ -1,9 +1,12 @@
 "use client"
+import { useAtom } from "jotai";
 import React, { useEffect, useRef, useState } from "react";
+import { isNavMenuOpen } from "../lib/globalState";
 
 const Hero2 = () => {
     const videoRef = useRef(null);
     const [videoHeight, setVideoHeight] = useState(0);
+    const [curentOpen, setCurentOpen] = useAtom(isNavMenuOpen)
 
     useEffect(() => {
         const updateHeight = () => {
@@ -17,7 +20,7 @@ const Hero2 = () => {
     }, []);
     
   return (
-    <div className="hidden sm:block relative w-full" style={{ height: videoHeight }}>
+    <div className="hidden sm:block relative w-full" style={{ height: videoHeight }} onMouseEnter={() => setCurentOpen('')}>
         <div
           className="hero min-h-screen "
           
@@ -26,10 +29,10 @@ const Hero2 = () => {
           <div className="hero-overlay bg-opacity-20" style={{ height: videoHeight }}></div>
           <div className="hero-content text-neutral-content text-center">
             <div className="max-w-md flex justify-center flex-col items-center">
-              <h1 className="mb-5 text-5xl text-green-500 font-bold whitespace-nowrap ">
+              <h1 className="mb-5  text-5xl text-green-500 font-bold whitespace-nowrap ">
                 NUB BAGEN NGGUP BAGENEP,
               </h1>
-              <h1 className="mb-5 text-5xl font-bold whitespace-nowrap text-green-500">
+              <h1 className="mb-5 text-5xl  py-3 font-bold whitespace-nowrap text-green-500">
                 NGGUP BAGENEP NUP BAGEN
               </h1>
               <p className="mb-5 text-white">

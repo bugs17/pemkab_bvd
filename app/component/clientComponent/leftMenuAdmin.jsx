@@ -3,8 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
+
 const LeftMenuAdmin = () => {
   const pathName = usePathname();
+
+
   const menus = [
     {
       title: "Berita",
