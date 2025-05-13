@@ -1,4 +1,5 @@
 "use client";
+import { Newspaper } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -13,6 +14,7 @@ const LeftMenuAdminBerita = () => {
       title: "Berita",
       path: "/admin",
       match: "berita",
+      icon: <Newspaper color="black" size={18} />
     },
     
   ];
@@ -40,7 +42,10 @@ const LeftMenuAdminBerita = () => {
                         "bg-success text-slate-100"
                       }`}
                     >
-                      {sub.title}
+                      <div className="flex items-center gap-2">
+                        {menu.icon} 
+                        <span>{menu.title}</span>
+                      </div>
                     </Link>
                   </li>
                 ))}
@@ -55,7 +60,10 @@ const LeftMenuAdminBerita = () => {
                 pathName.includes(menu.match) && "bg-success text-slate-100"
               }`}
             >
-              {menu.title}
+              <div className="flex items-center gap-2">
+                {menu.icon} 
+                <span>{menu.title}</span>
+              </div>
             </Link>
           </li>
         )

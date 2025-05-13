@@ -30,7 +30,7 @@ const FotoList = async () => {
       <>
         <div className="mb-4 w-full flex flex-row items-center justify-between">
           <div className="flex flex-row items-center justify-between w-full gap-1">
-            <div className="font-semibold ">Galety Foto</div>
+            <div className="font-semibold ">Gallery Foto</div>
             <ButtonAddFoto />
           </div>
         </div>

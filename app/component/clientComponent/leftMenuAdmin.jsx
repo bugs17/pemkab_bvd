@@ -1,4 +1,5 @@
 "use client";
+import { BookMinus, Building, CalendarDays, ChartNoAxesCombined, FileDown, ImagePlus, Mails, Newspaper, Settings, SquareLibrary, Tv, UserCog, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -13,40 +14,48 @@ const LeftMenuAdmin = () => {
       title: "Berita",
       path: "/admin",
       match: "berita",
+      icon: <Newspaper color="black" size={18} />
     },
     {
       title: "Pengumuman",
       path: "/admin/pengumuman/pengumuman-list",
       match: "pengumuman",
+      icon: <SquareLibrary color="black" size={18} />
     },
     {
       title: "Kalender Kegiatan",
       path: "/admin/kalender/kegiatan-list",
       match: "kalender",
+      icon: <CalendarDays color="black" size={18} />
     },
     {
       title: "Unduhan",
       path: "/admin/unduhan/unduhan-list",
       match: "unduhan",
+      icon: <FileDown color="black" size={18} />
     },
     {
       title: "Pejabat",
       path: "/admin/pejabat",
       match: "pejabat",
+      icon: <Users color="black" size={18} />
     },
     {
       title: "Sarana & Prasarana",
       path: "/admin/sarana-dan-prasarana",
       match: "sarana-dan-prasarana",
+      icon: <Building color="black" size={18} />
     },
     {
       title: "Potensi Daerah",
       path: "/admin/potensi-daerah",
       match: "potensi-daerah",
+      icon: <ChartNoAxesCombined color="black" size={18} />
     },
     {
       title: "Digoel TV",
       match: "digoel-tv",
+      icon: <Tv color="black" size={18} />,
       submenu: [
         {
           title: "Siaran Langsung (LIVE)",
@@ -63,6 +72,7 @@ const LeftMenuAdmin = () => {
     {
       title: "Profil",
       match: "profil",
+      icon: <BookMinus color="black" size={18} />,
       submenu: [
         {
           title: "Visi-misi",
@@ -109,6 +119,7 @@ const LeftMenuAdmin = () => {
     {
       title: "Galery",
       match:"galery",
+      icon: <ImagePlus color="black" size={18} />,
       submenu: [
         {
           title: "Foto",
@@ -126,7 +137,37 @@ const LeftMenuAdmin = () => {
       title: "Kotak Masuk",
       path: "/admin/kotak-masuk",
       match: "kotak-masuk",
-    }
+      icon: <Mails color="black" size={18} />
+    },
+    {
+      title: "User",
+      match: "settings-user",
+      icon: <UserCog color="black" size={18} />,
+      submenu: [
+        {
+          title: "Website",
+          path: "/admin/settings-user/website",
+          match: "website",
+        },
+        {
+          title: "OPD",
+          path: "#",
+          match: "user-opd",
+        }
+      ],
+    },
+    {
+      title: "Pengaturan",
+      match: "pengaturan",
+      icon: <Settings color="black" size={18} />,
+      submenu: [
+        {
+          title: "Hero",
+          path: "#",
+          match: "hero",
+        }
+      ],
+    },
   ];
 
   return (
@@ -140,7 +181,10 @@ const LeftMenuAdmin = () => {
                   pathName.includes(menu.match) && "bg-success text-slate-100"
                 }`}
               >
-                {menu.title}
+                <div className="flex items-center gap-2">
+                  {menu.icon} 
+                  <span>{menu.title}</span>
+                </div>
               </summary>
               <ul>
                 {menu.submenu.map((sub, index) => (
@@ -167,7 +211,10 @@ const LeftMenuAdmin = () => {
                 pathName.includes(menu.match) && "bg-success text-slate-100"
               }`}
             >
-              {menu.title}
+              <div className="flex items-center gap-2">
+                  {menu.icon} 
+                  <span>{menu.title}</span>
+              </div>
             </Link>
           </li>
         )
