@@ -1,10 +1,12 @@
 'use server'
+import { revalidatePath } from 'next/cache';
 import { clerkClient } from '../lib/clerk-backend';
 
 
 
 export const CreateUserClerk = async ( role, firstName, lastName, username, password) => {
-    if (!email || !role) {
+    if (!firstName || !role || !lastName || !username || !password) {
+        console.log("data tidak lengkap")
         return false
       }
       console.log("role", role)
@@ -19,6 +21,8 @@ export const CreateUserClerk = async ( role, firstName, lastName, username, pass
             role: role,
           }
         });
+
+        revalidatePath('/admin/settings-user/website')
 
           return {
             success: true,

@@ -1,26 +1,32 @@
 "use client";
-import { addGalery } from "@/app/actions/add-galery";
 import { CreateUserClerk } from "@/app/actions/create-user-clerk";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 
 const ButtonAddUserWebsite = () => {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [password, setPassword] = useState("");
     const [isSubmit, setIsSubmit] = useState(false);
+    const [validPass, setValidPass] = useState(null);
     const [role, setRole] = useState("");
     const refRole = useRef(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (email === "" || role === "") {
-            alert("Email dan role tidak boleh kosong");
+        if (username === "" || role === "" || password === "" || firstName === "" || lastName === "") {
+            alert("TOlong diisi semua data 🤪");
             return;
         }
         setIsSubmit(true);
-        const res = await CreateUserClerk(email, role)
+        const res = await CreateUserClerk(role, firstName, lastName, username, password)
         if (res.success) {
-            alert("Undangan berhasil dikirim");
-            setEmail("");
+            alert("User telah berhasil dibuat");
+            setUsername("");
+            setFirstName("");
+            setLastName("");
+            setPassword("");
             setRole("");
             refRole.current.value = "pilih kategori";
             setIsSubmit(false);
@@ -30,6 +36,25 @@ const ButtonAddUserWebsite = () => {
             setIsSubmit(false);
         }
     }
+
+    function isPasswordValid(password) {
+        const minLength = password.length >= 8;
+        const hasNumber = /\d/.test(password); // \d = angka 0-9
+        
+        return minLength && hasNumber;
+        }
+
+    useEffect(() => {
+        const result = isPasswordValid(password);
+        console.log("result", result);
+        if (result) {
+            setValidPass(true);
+        }else{
+            setValidPass(false);
+        }
+    }, [password])
+
+    
   
 
   return (
@@ -45,13 +70,31 @@ const ButtonAddUserWebsite = () => {
       <dialog id={`modal_invite_user`} className="modal">
         <div className="modal-box justify-center items-center flex flex-col gap-3">
           <p className="flex flex-col text-center ">
-            Kirimkan undangan melalui email
+            Buat user baru untuk admin website
             <br />
           </p>
 
           <label className="input input-success input-md w-full max-w-xs input-bordered flex items-center gap-2">
-            Email :
-            <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="grow"  />
+            Username :
+            <input value={username} onChange={e => setUsername(e.target.value)} type="text" className="grow"  />
+          </label>
+          
+          <label className="input input-success input-md w-full max-w-xs input-bordered flex items-center gap-2">
+            Nama Depan :
+            <input value={firstName} onChange={e => setFirstName(e.target.value)} type="text" className="grow"  />
+          </label>
+          
+          <label className="input input-success input-md w-full max-w-xs input-bordered flex items-center gap-2">
+            Nama Belakang :
+            <input value={lastName} onChange={e => setLastName(e.target.value)} type="text" className="grow"  />
+          </label>
+          {
+            password !== "" && validPass === false &&
+            <span className="text-red-500">Password tidak valid</span>
+          }
+          <label className={` input input-success input-md w-full max-w-xs input-bordered flex items-center gap-2`}>
+            Password :
+            <input value={password} onChange={e => setPassword(e.target.value)} type="text" className="grow"  />
           </label>
 
           <label className="form-control  w-full max-w-xs">
@@ -96,7 +139,10 @@ const ButtonAddUserWebsite = () => {
                   <button
                     onClick={() => {
                         refRole.current.value = "pilih kategori";
-                        setEmail("");
+                        setUsername("");
+                        setFirstName("");
+                        setLastName("");
+                        setPassword("");
                         setRole("");
                         setIsSubmit(false);
                     }}
