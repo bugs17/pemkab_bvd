@@ -1,15 +1,25 @@
-import ButtonDeleteGalery from '@/app/component/clientComponent/buttonDeleteGalery'
 import { Settings2 } from 'lucide-react'
 import React from 'react'
+import { currentUser } from "@clerk/nextjs/server";
+import ButtonAddUserWebsite from '@/app/component/clientComponent/button-user-website';
 
-const Website = () => {
+
+const Website = async () => {
+
+    const user = await currentUser()
+    const role = user.publicMetadata?.role
+    
+    if (role !== "admin-induk") {
+    return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+    }
+
   return (
     <div className="h-full">
       <>
         <div className="mb-4 w-full flex flex-row items-center justify-between">
           <div className="flex flex-row items-center justify-between w-full gap-1">
             <div className="font-semibold ">User admin website</div>
-            {/* <ButtonAddFoto /> */}
+            <ButtonAddUserWebsite />
           </div>
         </div>
         <div className="h-full overflow-y-auto">
