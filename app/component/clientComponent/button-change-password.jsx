@@ -43,7 +43,7 @@ const ButtonChangePassword = ({userId, username}) => {
 
   return (
     <>
-        <li onClick={() => document.getElementById(`modal_changepass_user${userId}`).showModal()} className='hover:bg-error rounded-md hover:text-white '>
+        <li onClick={() => document.getElementById(`modal_changepass_user${userId}`).showModal()} className='hover:bg-success rounded-md hover:text-white '>
             <span>Ubah password</span>
         </li>
 

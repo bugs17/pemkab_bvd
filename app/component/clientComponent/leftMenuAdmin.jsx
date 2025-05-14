@@ -1,12 +1,39 @@
 "use client";
-import { BookMinus, Building, CalendarDays, ChartNoAxesCombined, FileDown, ImagePlus, Mails, Newspaper, Settings, SquareLibrary, Tv, UserCog, Users } from "lucide-react";
+import axios from "axios";
+import { BookMinus, Building, CalendarDays, ChartNoAxesCombined, FileDown, ImagePlus, Landmark, Mails, Newspaper, Settings, SquareLibrary, Tv, UserCog, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
 const LeftMenuAdmin = () => {
   const pathName = usePathname();
+  const [instansis, setInstansis] = useState([])
+
+  useEffect(() => {
+    const url  = process.env.NEXT_PUBLIC_BACKEND_URL + "/api/admin-opd/get-all-instansi"
+    const getAllInstansi = async () => {
+        try {
+            const res = await axios.get(url, {
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            })
+            if (res.status === 200) {
+                setInstansis(res.data.instansis)
+            }
+        } catch (error) {
+            
+        }
+    }
+
+    getAllInstansi()
+}, [])
+
+
+function toSlug(text) {
+  return text.toLowerCase().replace(/\s+/g, '-');
+}
 
 
   const menus = [
@@ -151,13 +178,13 @@ const LeftMenuAdmin = () => {
         },
         {
           title: "OPD",
-          path: "#",
-          match: "user-opd",
+          path: "/admin/settings-user/opd",
+          match: "opd",
         }
       ],
     },
     {
-      title: "Pengaturan",
+      title: "Pengaturan web",
       match: "pengaturan",
       icon: <Settings color="black" size={18} />,
       submenu: [
@@ -166,6 +193,21 @@ const LeftMenuAdmin = () => {
           path: "#",
           match: "hero",
         }
+      ],
+    },
+    {
+      title: "Pengaturan OPD",
+      match: "pengaturan",
+      icon: <Landmark color="black" size={18} />,
+      submenu: [
+        
+        ...(instansis.length > 0 ? 
+          instansis.map((item) => ({
+            title: item.namaInstansi,
+            path: toSlug(item.namaInstansi),
+            match: "hero",
+          }))
+        : [])
       ],
     },
   ];

@@ -5,6 +5,7 @@ import ButtonAddUserWebsite from '@/app/component/clientComponent/button-user-we
 import { clerkClient } from '@/app/lib/clerk-backend';
 import ButtonDeleteUserClerk from '@/app/component/clientComponent/button-hapus-user-clerk';
 import ButtonChangePassword from '@/app/component/clientComponent/button-change-password';
+import ButtonChangeRole from '@/app/component/clientComponent/button-change-role';
 
 
 const Website = async () => {
@@ -13,7 +14,7 @@ const Website = async () => {
     const role = user.publicMetadata?.role
     
     if (role !== "admin-induk") {
-    return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+        return <div className="h-full w-full text-center justify-center items-center">Maaf anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
     }
 
 
@@ -112,8 +113,9 @@ const Website = async () => {
                                     <Settings2 color='green' size={18} />
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                    <ButtonDeleteUserClerk userId={user.id} username={user.username} />
                                     <ButtonChangePassword userId={user.id} username={user.username} />
+                                    <ButtonChangeRole userId={user.id} username={user.username} role={user.publicMetadata.role} />
+                                    <ButtonDeleteUserClerk userId={user.id} username={user.username} />
                                 </ul>
                             </div>
                         </td>

@@ -3,7 +3,7 @@ import { CreateUserClerk } from "@/app/actions/create-user-clerk";
 import React, { useEffect, useRef, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 
-const ButtonAddUserWebsite = () => {
+const ButtonAddUserOpd = () => {
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -28,7 +28,7 @@ const ButtonAddUserWebsite = () => {
             setLastName("");
             setPassword("");
             setRole("");
-            refRole.current.value = "pilih role";
+            refRole.current.value = "pilih instansi";
             setIsSubmit(false);
             document.getElementById(`modal_invite_user`).close()
         } else {
@@ -60,17 +60,17 @@ const ButtonAddUserWebsite = () => {
   return (
     <>
       <button
-        onClick={() => document.getElementById(`modal_invite_user`).showModal()}
+        onClick={() => document.getElementById(`modal_invite_user_opd`).showModal()}
         className="btn btn-success text-slate-100"
       >
         <CiCirclePlus size={25} />
-        Tambah user website
+        Tambah user OPD
       </button>
 
-      <dialog id={`modal_invite_user`} className="modal">
+      <dialog id={`modal_invite_user_opd`} className="modal">
         <div className="modal-box justify-center items-center flex flex-col gap-3">
           <p className="flex flex-col text-center ">
-            Buat user baru untuk admin website
+            Buat user baru untuk admin OPD/Instansi
             <br />
           </p>
 
@@ -79,15 +79,6 @@ const ButtonAddUserWebsite = () => {
             <input value={username} onChange={e => setUsername(e.target.value)} type="text" className="grow"  />
           </label>
           
-          <label className="input input-success input-md w-full max-w-xs input-bordered flex items-center gap-2">
-            Nama Depan :
-            <input value={firstName} onChange={e => setFirstName(e.target.value)} type="text" className="grow"  />
-          </label>
-          
-          <label className="input input-success input-md w-full max-w-xs input-bordered flex items-center gap-2">
-            Nama Belakang :
-            <input value={lastName} onChange={e => setLastName(e.target.value)} type="text" className="grow"  />
-          </label>
           {
             password !== "" && validPass === false &&
             <span className="text-red-500">Password tidak valid</span>
@@ -99,16 +90,16 @@ const ButtonAddUserWebsite = () => {
 
           <label className="form-control  w-full max-w-xs">
             <div className="label">
-              <span className="label-text">Role admin</span>
+              <span className="label-text">Instansi</span>
             </div>
             <select
               className="select select-md bg-slate-200 select-bordered border-success"
-              defaultValue="pilih role"
+              defaultValue="pilih instansi"
               onChange={(e) => setRole(e.target.value)}
               ref={refRole}
             >
-                <option value="pilih role" disabled>
-                Pilih role
+                <option value="pilih instansi" disabled>
+                Pilih instansi
                 </option>
 
                 <option key="admin-induk" value="admin-induk">
@@ -138,7 +129,7 @@ const ButtonAddUserWebsite = () => {
                 <form method="dialog">
                   <button
                     onClick={() => {
-                        refRole.current.value = "pilih role";
+                        refRole.current.value = "pilih instansi";
                         setUsername("");
                         setFirstName("");
                         setLastName("");
@@ -160,4 +151,4 @@ const ButtonAddUserWebsite = () => {
   );
 };
 
-export default ButtonAddUserWebsite;
+export default ButtonAddUserOpd;

@@ -10,7 +10,7 @@ const ButtonDeleteUserClerk = ({username, userId}) => {
         if (result){
             deleteUserClerk(userId)
         }
-    }} className='hover:bg-error rounded-md hover:text-white '>
+    }} className='hover:bg-success rounded-md hover:text-white '>
         <span>Hapus</span>
     </li>
   )

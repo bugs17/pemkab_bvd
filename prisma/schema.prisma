@@ -22,6 +22,52 @@ model Hero{
   urlFile String?
 }
 
+model KategoriInstansi{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String?
+  instansi Instansi[]
+}
+
+model Instansi{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  namaInstansi String?
+
+
+  // data dinas
+  profil String?
+  renstra String?
+  renja String?
+  lakip String?
+  lppd String?
+  dpa String?
+
+  email String?
+  phone String?
+  instagram String?
+  facebook String?
+  twitter String?
+
+
+  kategoriInstansiID Int?
+  kategoriInstansi KategoriInstansi? @relation(fields: [kategoriInstansiID], references: [id], onDelete: Cascade)
+
+  userOpd UserOpd[]
+}
+
+model UserOpd{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username String
+  password String
+  instansiID Int?
+  instansi Instansi? @relation(fields: [instansiID], references: [id], onDelete: Cascade)
+}
+
 
 model Berita{
   id Int @id @default(autoincrement())
