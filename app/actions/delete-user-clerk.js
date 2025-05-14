@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 import { clerkClient } from "../lib/clerk-backend";
 
 export const deleteUserClerk = async (userId) => {
+
+    
     try {
         await clerkClient.users.deleteUser(userId)
         revalidatePath("/admin/settings-user/website")

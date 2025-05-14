@@ -4,6 +4,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import ButtonAddUserWebsite from '@/app/component/clientComponent/button-user-website';
 import { clerkClient } from '@/app/lib/clerk-backend';
 import ButtonDeleteUserClerk from '@/app/component/clientComponent/button-hapus-user-clerk';
+import ButtonChangePassword from '@/app/component/clientComponent/button-change-password';
 
 
 const Website = async () => {
@@ -106,7 +107,15 @@ const Website = async () => {
 
 
                         <td className="flex  justify-end items-start">
-                            <ButtonDeleteUserClerk username={user.username} userId={user.id} />
+                            <div className="dropdown dropdown-left ">
+                                <div tabIndex={0} role="button" className='flex items-center justify-center'>
+                                    <Settings2 color='green' size={18} />
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <ButtonDeleteUserClerk userId={user.id} username={user.username} />
+                                    <ButtonChangePassword userId={user.id} username={user.username} />
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 ))
