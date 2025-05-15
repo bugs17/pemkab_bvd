@@ -44,9 +44,30 @@ const LoginOpd = () => {
             alert("Mohon lengkapi semua kolom terlebih dahul sebelum masuk 🥱")
             return
         }
-        console.log("username :", username)
-        console.log("password :", password)
-        console.log("instansi ID :", selectedInstansi)
+        
+        try {
+          const url = process.env.NEXT_PUBLIC_BACKEND_URL + "/api/admin-opd/login"
+          const data = {
+            username,
+            password,
+            instansiID:selectedInstansi
+          }
+          const response = await axios.post(url, data, {
+            headers:{
+              'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+          })
+          if (response.status === 200) {
+            localStorage.setItem('username', response.data.username);
+            localStorage.setItem('password', response.data.password);
+            localStorage.setItem('instansiId', response.data.instansiID);
+            router.push('/admin-side/home')
+          }
+        } catch (error) {
+          setErrorMsg(error.response.data.message)
+          setLoading(false)
+        }
 
     }
 

@@ -1,8 +1,10 @@
-import ButtonChangePassword from '@/app/component/clientComponent/button-change-password'
+import ButtonChangePasswordOpd from '@/app/component/clientComponent/button-change-password-opd';
+import ButtonDeleteUserOpd from '@/app/component/clientComponent/button-delete-user-opd';
 import ButtonAddUserOpd from '@/app/component/clientComponent/button-user-opd'
 import { prisma } from '@/app/lib/db'
 import { truncate } from '@/app/lib/truncKalimat'
 import { currentUser } from "@clerk/nextjs/server";
+import { Settings2 } from 'lucide-react';
 
 import React from 'react'
 
@@ -15,7 +17,8 @@ const Opd = async () => {
         return <div className="h-full w-full text-center justify-center items-center">Maaf anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
     }
 
-    const userList = []
+    let userList = []
+    let instansis = []
 
     try {
         userList = await prisma.userOpd.findMany({
@@ -27,6 +30,13 @@ const Opd = async () => {
     } catch (error) {
         console.log("error saat get all user opd", error)
     }
+    
+    try {
+        instansis = await prisma.instansi.findMany()
+        
+    } catch (error) {
+        console.log("error saat get all user instansi", error)
+    }
 
 
   return (
@@ -35,7 +45,7 @@ const Opd = async () => {
         <div className="mb-4 w-full flex flex-row items-center justify-between">
           <div className="flex flex-row items-center justify-between w-full gap-1">
             <div className="font-semibold ">User admin OPD/Instansi</div>
-            <ButtonAddUserOpd />
+            <ButtonAddUserOpd instansis={instansis} />
           </div>
         </div>
         <div className="h-full overflow-y-auto">
@@ -87,8 +97,8 @@ const Opd = async () => {
                                     <Settings2 color='green' size={18} />
                                 </div>
                                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                    <ButtonChangePassword  />
-                                    
+                                    <ButtonChangePasswordOpd userId={user.id} username={user.username}  />
+                                    <ButtonDeleteUserOpd userId={user.id} username={user.username} />
                                 </ul>
                             </div>
                         </td>

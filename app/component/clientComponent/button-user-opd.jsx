@@ -1,39 +1,32 @@
 "use client";
 import { CreateUserClerk } from "@/app/actions/create-user-clerk";
+import { createUserOpd } from "@/app/actions/create-user-opd";
 import React, { useEffect, useRef, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 
-const ButtonAddUserOpd = () => {
+const ButtonAddUserOpd = ({instansis}) => {
     const [username, setUsername] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [isSubmit, setIsSubmit] = useState(false);
     const [validPass, setValidPass] = useState(null);
-    const [role, setRole] = useState("");
-    const refRole = useRef(null);
+    const [instansiSelected, setInstansiSelected] = useState("");
+    const refInstansi = useRef(null);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (username === "" || role === "" || password === "" || firstName === "" || lastName === "") {
-            alert("TOlong diisi semua data 🤪");
-            return;
+        e.preventDefault()
+        setIsSubmit(true)
+        if (!username || !password || !instansiSelected) {
+          alert("Tolong isi semua kolom sebelum tambah 🥱")
         }
-        setIsSubmit(true);
-        const res = await CreateUserClerk(role, firstName, lastName, username, password)
-        if (res.success) {
-            alert("User telah berhasil dibuat");
-            setUsername("");
-            setFirstName("");
-            setLastName("");
-            setPassword("");
-            setRole("");
-            refRole.current.value = "pilih instansi";
-            setIsSubmit(false);
-            document.getElementById(`modal_invite_user`).close()
-        } else {
-            alert("Gagal mengundang user, silahkan coba lagi");
-            setIsSubmit(false);
+
+        const res = await createUserOpd(username, password, instansiSelected)
+        if (res) {
+          alert("User OPD berhasil di buat 👍🏻")
+          setUsername("")
+          setPassword("")
+          refInstansi.current.value = "pilih instansi"
+          document.getElementById(`modal_invite_user_opd`).close()
+          setIsSubmit(false)
         }
     }
 
@@ -95,22 +88,20 @@ const ButtonAddUserOpd = () => {
             <select
               className="select select-md bg-slate-200 select-bordered border-success"
               defaultValue="pilih instansi"
-              onChange={(e) => setRole(e.target.value)}
-              ref={refRole}
+              onChange={(e) => setInstansiSelected(e.target.value)}
+              ref={refInstansi}
             >
                 <option value="pilih instansi" disabled>
                 Pilih instansi
                 </option>
 
-                <option key="admin-induk" value="admin-induk">
-                    Admin Induk
-                </option>
-                <option key="admin-berita" value="admin-berita">
-                    Admin Berita
-                </option>
-                <option key="admin-dgtv" value="admin-dgtv">
-                    Admin Digoel TV
-                </option>
+                {instansis.length > 0 && 
+                  instansis.map((item) => (
+                  <option key={item.id} value={item.id}>
+                      {item.namaInstansi}
+                  </option>
+                  ))
+                }
             </select>
           </label>
 
@@ -129,12 +120,10 @@ const ButtonAddUserOpd = () => {
                 <form method="dialog">
                   <button
                     onClick={() => {
-                        refRole.current.value = "pilih instansi";
+                        refInstansi.current.value = "pilih instansi";
                         setUsername("");
-                        setFirstName("");
-                        setLastName("");
                         setPassword("");
-                        setRole("");
+                        setInstansiSelected("");
                         setIsSubmit(false);
                     }}
                     className="btn"
