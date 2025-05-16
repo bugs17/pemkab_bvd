@@ -30,6 +30,66 @@ model KategoriInstansi{
   instansi Instansi[]
 }
 
+model Renstra{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  urlFile String?
+  periode String?
+
+  instansiID Int
+  instansi Instansi @relation(fields: [instansiID], references: [id], onDelete: Cascade)
+
+}
+
+model Renja{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  urlFile String?
+  tahunAnggaran String?
+
+  instansiID Int
+  instansi Instansi @relation(fields: [instansiID], references: [id], onDelete: Cascade)
+
+}
+
+model Lakip{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  urlFile String?
+  tahunAnggaran String?
+
+  instansiID Int
+  instansi Instansi @relation(fields: [instansiID], references: [id], onDelete: Cascade)
+
+}
+
+model Lppd{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  urlFile String?
+  tahunAnggaran String?
+
+  instansiID Int
+  instansi Instansi @relation(fields: [instansiID], references: [id], onDelete: Cascade)
+
+}
+
+model Dpa{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  urlFile String?
+  tahunAnggaran String?
+
+  instansiID Int
+  instansi Instansi @relation(fields: [instansiID], references: [id], onDelete: Cascade)
+
+}
+
 model Instansi{
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -38,12 +98,12 @@ model Instansi{
 
 
   // data dinas
-  profil String?
-  renstra String?
-  renja String?
-  lakip String?
-  lppd String?
-  dpa String?
+  profilUrl String?
+  renstra Renstra[]
+  renja Renja[]
+  lakip Lakip[]
+  lppd Lppd[]
+  dpa Dpa[]
 
   email String?
   phone String?

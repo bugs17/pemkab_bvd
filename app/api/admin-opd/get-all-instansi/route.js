@@ -15,6 +15,8 @@ export const GET = async (req) => {
     } catch (error) {
         console.log("error", error.message)
         return NextResponse.json({'message':'Internal server error'}, {status:500})
+
+        
     }
 
     
