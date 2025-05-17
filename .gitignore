@@ -13,6 +13,7 @@
 # testing
 /coverage
 /uploads/
+/file-opd/
 .env.local
 *.db
 # next.js
