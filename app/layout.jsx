@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Montserrat, Lora } from "next/font/google";
 import "./globals.css";
 import Provider from "./context/Provider";
 
@@ -10,6 +10,20 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["800"], // bold
+  variabel: '--font-montserrat'
+});
+
+const lora = Lora({
+  weight: "700",
+  style: "italic",
+  subsets: ["latin"],
+  variable: "--font-lora",
 });
 
 export const metadata = {
@@ -24,7 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html data-theme="autumn" lang="id">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${lora.variable} antialiased`}
       >
         <Provider>{children}</Provider>
       </body>
