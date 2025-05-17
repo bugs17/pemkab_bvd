@@ -2,7 +2,7 @@ import { prisma } from "@/app/lib/db"
 import { NextResponse } from "next/server"
 
 
-export const GET = async (req, {params}) => {
+export async function GET(req, {params}){
 
     const instansiID = params.instansiID;
 

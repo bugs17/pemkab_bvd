@@ -4,6 +4,8 @@ import { NextResponse } from "next/server"
 
 export const GET = async (req) => {
 
+    
+
     try {
         const instansis = await prisma.instansi.findMany()
         if (instansis.length > 0) {

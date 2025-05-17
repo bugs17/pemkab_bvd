@@ -4,6 +4,8 @@ import { NextResponse } from "next/server"
 
 export const POST = async (req) => {
     const body = await req.json()
+    const headers = req.headers
+    const appKey = headers.get('x-app-key')
     
     const {username, password, instansiID} = body
     const idInstansi = parseInt(instansiID)
@@ -11,30 +13,32 @@ export const POST = async (req) => {
     try {
         const user = await prisma.userOpd.findFirst({
             where:{
-                username:username
+                username:username,
+            },
+            include:{
+                instansi:{
+                    include:{
+                        kategoriInstansi:true
+                    }
+                },
             }
         })
 
-        if (!user || password !== user.username || idInstansi !== user.instansiID) {
+        if (!user || password !== user.password || idInstansi !== user.instansiID || appKey !== process.env.NEXT_PUBLIC_AUTH_HEADER_KEY) {
             console.log('user tidak ditemukan')
             return NextResponse.json({'message':'username atau password salah'}, {status:401})
         }
 
         const userData = {
-            username: user.username,
-            password:user.password,
-            instansiID:user.instansiID
+            'username': user.username,
+            'password':user.password,
+            'instansiID':user.instansiID,
+            'namaInstansi':user.instansi.namaInstansi,
+            'kategoriInstansi':user.instansi.kategoriInstansi.nama
         }
 
-        const response = NextResponse.json(userData, {status:200})
-        response.cookies.set('status', 'authenticated', {
-            httpOnly: true,
-            secure: false,
-            path: '/admin-opd',
-            maxAge: 60 * 60 * 24,
-        })
-
-        return response
+        return NextResponse.json(userData, {status:200})
+        
     } catch (error) {
         console.log(error)
         return NextResponse.json({'message':'username atau password salah'}, {status:401})
