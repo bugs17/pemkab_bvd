@@ -6,11 +6,13 @@ import GalerySections from "./component/galerySections";
 import Navbar from "./component/navba";
 import Footer from "./component/footer";
 import Hero2 from "./component/hero2";
+import DialogUcapan from "./component/dialog-ucapan";
 
 
 export default function Home() {
   return (
     <>
+      <DialogUcapan />
       <Navbar />
       {/* sections hero */}
       {/* <Hero /> */}

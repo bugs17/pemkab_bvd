@@ -12,7 +12,7 @@ export async function GET(req, {params}) {
             }
         })
 
-        return NextResponse.json({'message':'Internal server error', 'listDpa':listDpa}, {'status':200})
+        return NextResponse.json({'message':'success', 'listDpa':listDpa}, {'status':200})
     } catch (error) {
         return NextResponse.json({'message':'Internal server error'}, {'status':500})
     }
