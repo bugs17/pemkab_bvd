@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Montserrat, Lora } from "next/font/google";
 import "./globals.css";
 import Provider from "./context/Provider";
+import LoadingScreen from "./component/clientComponent/loadingScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["800"], // bold
-  variabel: '--font-montserrat'
+  weight: ['300', '400', "500","800"], // bold
+  variable: '--font-montserrat'
 });
 
 const lora = Lora({
@@ -40,7 +41,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${lora.variable} antialiased`}
       >
-        <Provider>{children}</Provider>
+        <Provider>
+          <LoadingScreen />
+          {children}
+        </Provider>
       </body>
     </html>
   );

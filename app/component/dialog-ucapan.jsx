@@ -29,7 +29,7 @@ export default function DialogUcapan() {
             closeDialog();
           }
         }}
-        className={`fixed inset-0 z-[999] grid h-screen w-screen place-items-center
+        className={`fixed inset-0 z-[970] grid h-screen w-screen place-items-center
           bg-[rgba(0,0,0,0.5)] backdrop-blur-sm transition-opacity duration-300
           ${visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}

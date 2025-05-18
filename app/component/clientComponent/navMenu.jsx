@@ -175,7 +175,7 @@ const NavMenu = () => {
 
 
   return (
-    <ul className="menu menu-horizontal px-1 gap-2 z-50" >
+    <ul className="menu menu-horizontal font-monsans font-medium z-50" >
       <li onMouseEnter={() => setCurentOpen('')} onClick={() => setCurentOpen('')}>
         <Link
           href={"/"}
@@ -220,7 +220,7 @@ const NavMenu = () => {
             <li>
               <Link
                 href={"/front/visi-misi"}
-                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
+                className={`text-black whitespace-nowrap  hover:bg-red-500 hover:text-white ${
                   pathName === "/front/visi-misi" && "bg-red-500 text-white"
                 }`}
               >

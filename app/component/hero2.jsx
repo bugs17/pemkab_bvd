@@ -34,7 +34,7 @@ const Hero2 = () => {
           <div className="hero-content text-left  h-full w-full flex flex-col items-center gap-5">
             <div className="flex justify-center flex-col items-center">
               <h1 className="font-loritalic text-white text-4xl">Welcome to</h1>
-              <h1 className="text-6xl  font-monsans text-white whitespace-pre-line leading-tight text-center">
+              <h1 className="text-6xl  font-monsans font-extrabold text-white whitespace-pre-line leading-tight text-center">
                 {`BOVENDIGOELKAB.GO.ID`}
               </h1>
               {/* <h1 className="text-6xl font-extrabold text-white whitespace-pre-line leading-tight text-center">

@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import NavMenu from "./clientComponent/navMenu";
 import Image from "next/image";
@@ -5,14 +6,16 @@ import LogoBoven from "../asset/img/logo-boven.png";
 import DropDownMobile from "./clientComponent/deopDOwnMobile";
 import { Facebook, FacebookIcon, Instagram, Linkedin, Mail, MapPin, Twitter } from "lucide-react";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { isNavMenuOpen } from "../lib/globalState";
 
 
 const Navbar = () => {
-  
+  const [closeMenu, setCloseMenu] = useAtom(isNavMenuOpen)
 
   return (
     <>
-    <div className="bg-red-500 w-full flex flex-row sticky h-10">
+    <div onMouseEnter={() => setCloseMenu("")} className="bg-red-500 w-full flex flex-row sticky h-10">
       <div className="h-full w-[25%] flex items-center justify-end pr-6">
         <Link href={'mailto:info@bovendigoelkab.go.id'} target="_blank" className="flex items-center flex-row gap-2">
           <Mail size={18} className="text-white" />
@@ -43,7 +46,7 @@ const Navbar = () => {
       </div>
     </div>
     <div className="navbar bg-white shadow-sm shadow-slate-400 sticky top-0 z-50">
-      <div className="navbar-start">
+      <div className="navbar-start ">
         
         <DropDownMobile />
 
@@ -55,7 +58,7 @@ const Navbar = () => {
         {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
       </div>
 
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex ">
         <NavMenu />
       </div>
 
