@@ -5,12 +5,12 @@ import { currentUser } from "@clerk/nextjs/server";
 
 const AdminVisiMisi = async () => {
 
-    const user = await currentUser()
-    const role = user.publicMetadata?.role
+    // const user = await currentUser()
+    // const role = user.publicMetadata?.role
 
-    if (role !== "admin-induk") {
-      return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
-    }
+    // if (role !== "admin-induk") {
+    //   return <div className="h-full w-full text-center justify-center items-center">Maaf {user.firstName} anda tidak mempunyai hak akses ke halaman ini! 🥱</div>
+    // }
 
     let visimisi;
     try {

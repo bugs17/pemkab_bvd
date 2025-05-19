@@ -7,7 +7,11 @@ export const GET = async (req) => {
     
 
     try {
-        const instansis = await prisma.instansi.findMany()
+        const instansis = await prisma.instansi.findMany({
+            include:{
+                kategoriInstansi:true
+            }
+        })
         if (instansis.length > 0) {
             return NextResponse.json(
                 {'message':'success', 'instansis':instansis},

@@ -42,3 +42,26 @@
   p{
     margin-bottom: 10px;
   }
+
+
+/* Scrollbar styling (Firefox and modern browsers) */
+* {
+  scrollbar-color: rgb(39, 39, 42) rgba(0, 0, 0, 0);
+  scrollbar-width: thin;
+}
+
+/* WebKit scrollbar (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(39, 39, 42);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}

@@ -6,3 +6,8 @@ export const createSlug = (title) => {
       .replace(/--+/g, '-') // Mengganti beberapa tanda - yang berurutan menjadi satu
       .trim('-'); // Menghapus tanda - yang ada di awal atau akhir string
   };
+
+
+ export function slugToText(slug) {
+    return slug.replace(/-/g, ' ');
+  }

@@ -27,7 +27,7 @@ export async function POST(req, {params}){
         // Path final
         const folderPath = path.join(process.cwd(), "file-opd", "profil")
         const filePath = path.join(folderPath, fileName)
-        const namaFileDiDb = `/file-opd/profil/${fileName}`
+        const namaFileDiDb = `/uploads/instansi/profil/${fileName}`
 
         // Pastikan folder ada
         await mkdir(folderPath, { recursive: true })

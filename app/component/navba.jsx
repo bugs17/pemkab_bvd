@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useEffect } from "react";
 import NavMenu from "./clientComponent/navMenu";
 import Image from "next/image";
 import LogoBoven from "../asset/img/logo-boven.png";
@@ -12,6 +12,8 @@ import { isNavMenuOpen } from "../lib/globalState";
 
 const Navbar = () => {
   const [closeMenu, setCloseMenu] = useAtom(isNavMenuOpen)
+
+  
 
   return (
     <>
