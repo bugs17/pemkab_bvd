@@ -4,25 +4,43 @@ import React, { useEffect, useRef, useState } from "react";
 import { isNavMenuOpen } from "../lib/globalState";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { getHero } from "../actions/get-hero";
 
 const Hero2 = () => {
     const videoRef = useRef(null);
     const [videoHeight, setVideoHeight] = useState(0);
+    const [heroFileName, setHeroFileName] = useState(null);
     const [curentOpen, setCurentOpen] = useAtom(isNavMenuOpen)
 
     useEffect(() => {
         const updateHeight = () => {
-        if (videoRef.current) {
-            setVideoHeight(videoRef.current.offsetHeight);
-        }
+          if (videoRef.current) {
+              setVideoHeight(videoRef.current.offsetHeight);
+          }
         };
+
+
         updateHeight();
+        console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploads/hero/${heroFileName}`)
         window.addEventListener("resize", updateHeight);
         return () => window.removeEventListener("resize", updateHeight);
     }, []);
+
+    useEffect(() => {
+      const getHeroFromAction = async () => {
+        const namaFile = await getHero()
+        setHeroFileName(namaFile)
+      }
+
+      getHeroFromAction()
+    }, [])
+
+  if (heroFileName === null) {
+    return <span className="loading loading-spinner text-success loading-xl"></span>
+  }
     
   return (
-    <div className="hidden sm:block relative w-full" style={{ height: videoHeight }} onMouseEnter={() => setCurentOpen('')}>
+    <div className="hidden sm:block relative w-full"  onMouseEnter={() => setCurentOpen('')}>
         <div
           className="hero min-h-screen "
           
@@ -60,9 +78,10 @@ const Hero2 = () => {
                 
           </div>
         </div>
-        <video ref={videoRef} playsInline autoPlay muted loop className="absolute inset-0 -z-20 object-cover w-full h-auto">
-          <source src="/video/hero.mp4" type="video/mp4" />
-        </video>
+        
+          <video ref={videoRef} playsInline autoPlay muted loop className="absolute inset-0 -z-20 object-cover w-full h-auto">
+            <source src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploads/hero/${heroFileName}`} type="video/mp4" />
+          </video>
 
       </div>
   );

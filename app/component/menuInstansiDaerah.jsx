@@ -23,6 +23,7 @@ const MenuInstansiDaerah = async ({instansi}) => {
     console.log("error mengambil instansi beserta relasi nya")
   }
 
+  
   return (
     <ul className="menu font-monsans font-medium lg:menu-horizontal bg-white w-full items-center flex justify-center flex-row ">
             <ListMenuInstansi data={data} instansi={instansi} />

@@ -217,11 +217,11 @@ const NavMenu = () => {
                 {teknis.map((item, index) => (
                   <li key={index}>
                     <Link
-                      href={'#'}
-                      className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white `}
-                    >
-                      {item.namaInstansi}
-                    </Link>
+                        href={`/pages/instansi/${createSlug(item.namaInstansi)}`}
+                        className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white `}
+                      >
+                        {item.namaInstansi}
+                      </Link>
                   </li>
                 ))}
                   
@@ -243,7 +243,7 @@ const NavMenu = () => {
                 {sekretariats.map((item, index) => (
                   <li key={index}>
                     <Link
-                      href={"#"}
+                      href={`/pages/instansi/${createSlug(item.namaInstansi)}`}
                       className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white `}
                     >
                       {item.namaInstansi}

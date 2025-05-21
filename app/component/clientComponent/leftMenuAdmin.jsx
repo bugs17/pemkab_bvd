@@ -185,19 +185,29 @@ function toSlug(text) {
     },
     {
       title: "Pengaturan web",
-      match: "pengaturan",
+      match: "setting-web",
       icon: <Settings color="black" size={18} />,
       submenu: [
         {
           title: "Hero",
-          path: "#",
+          path: "/admin/setting-web/hero",
           match: "hero",
-        }
+        },
+        {
+          title: "Ucapan",
+          path: "/admin/setting-web/ucapan",
+          match: "ucapan",
+        },
+        {
+          title: "Kontak/Sosial media",
+          path: "",
+          match: "sosial-media",
+        },
       ],
     },
     {
       title: "Pengaturan OPD",
-      match: "pengaturan",
+      match: "hh",
       icon: <Landmark color="black" size={18} />,
       submenu: [
         
@@ -205,7 +215,7 @@ function toSlug(text) {
           instansis.map((item) => ({
             title: item.namaInstansi,
             path: toSlug(item.namaInstansi),
-            match: "hero",
+            match: "hh",
           }))
         : [])
       ],

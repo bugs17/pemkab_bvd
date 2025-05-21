@@ -13,6 +13,8 @@ export default function Custom404() {
           alt="404 Illustration"
           layout="fill"
           objectFit="contain"
+          // style={{objectFit:'contain'}}
+          
         />
       </div>
       </div>

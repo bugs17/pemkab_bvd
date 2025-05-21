@@ -17,11 +17,13 @@ const ListMenuInstansi = ({data, instansi}) => {
 
         <li>
             <details >
-            <summary>LPPD</summary>
+            <summary className={`${pathName.includes(`/${createSlug(instansi)}/lppd`)  && 'bg-red-500 text-white'}`}>LPPD</summary>
             <ul>
             {data.lppd.length > 0 && (
                 data.lppd.map((item, index) => (
-                <li><a>{item.tahunAnggaran}</a></li>
+                <li  key={index}>
+                    <Link href={`/pages/instansi/${createSlug(instansi)}/lppd/${item.tahunAnggaran}`}>{item.tahunAnggaran}</Link>
+                </li>
                 ))
             )}
             </ul>
@@ -31,11 +33,13 @@ const ListMenuInstansi = ({data, instansi}) => {
         {data?.kategoriInstansi?.nama !== 'lembaga teknis' && (
             <li>
             <details >
-                <summary>DPA</summary>
+                <summary className={`${pathName.includes(`/${createSlug(instansi)}/dpa`)  && 'bg-red-500 text-white'}`}>DPA</summary>
                 <ul>
                 {data.dpa.length > 0 && (
                     data.dpa.map((item, index) => (
-                    <li key={index}><a>{item.tahunAnggaran}</a></li>
+                    <li key={index}>
+                        <Link href={`/pages/instansi/${createSlug(instansi)}/dpa/${item.tahunAnggaran}`}>{item.tahunAnggaran}</Link>
+                    </li>
                     ))
                 )}
                 </ul>
@@ -45,11 +49,13 @@ const ListMenuInstansi = ({data, instansi}) => {
 
         <li>
             <details >
-            <summary>RENSTRA</summary>
+            <summary className={`${pathName.includes(`/${createSlug(instansi)}/renstra`)  && 'bg-red-500 text-white'}`}>RENSTRA</summary>
             <ul>
                 {data.renstra.length > 0 && (
                 data.renstra.map((item, index) => (
-                    <li key={index} className='whitespace-nowrap'><a className='whitespace-nowrap w-full'>{item.periode}</a></li>
+                    <li key={index} className='whitespace-nowrap'>
+                        <Link href={`/pages/instansi/${createSlug(instansi)}/renstra/${item.periode}`} className='whitespace-nowrap w-full'>{item.periode}</Link>
+                    </li>
                 ))
                 )}
             </ul>
@@ -58,11 +64,13 @@ const ListMenuInstansi = ({data, instansi}) => {
 
         <li>
             <details >
-            <summary>LAKIP</summary>
+            <summary className={`${pathName.includes(`/${createSlug(instansi)}/lakip`)  && 'bg-red-500 text-white'}`}>LAKIP</summary>
             <ul>
                 {data.lakip.length > 0 && (
                 data.lakip.map((item, index) => (
-                    <li key={index} className='whitespace-nowrap'><a className='whitespace-nowrap w-full'>{item.tahunAnggaran}</a></li>
+                    <li key={index} className='whitespace-nowrap'>
+                    <Link href={`/pages/instansi/${createSlug(instansi)}/lakip/${item.tahunAnggaran}`} className='whitespace-nowrap w-full'>{item.tahunAnggaran}</Link>
+                    </li>
                 ))
                 )}
             </ul>
