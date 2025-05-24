@@ -200,8 +200,8 @@ function toSlug(text) {
         },
         {
           title: "Kontak/Sosial media",
-          path: "",
-          match: "sosial-media",
+          path: "/admin/setting-web/kontak",
+          match: "kontak",
         },
       ],
     },
