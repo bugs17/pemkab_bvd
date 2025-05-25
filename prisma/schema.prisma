@@ -28,6 +28,14 @@ model Kontak{
   linkedIn String? @default("#")
 }
 
+model Ucapan{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  urlFile String?
+  show Boolean @default(false)
+}
+
 model Hero{
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())

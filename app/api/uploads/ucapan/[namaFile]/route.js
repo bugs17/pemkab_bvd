@@ -5,7 +5,7 @@ export async function GET(req, { params }) {
   const { namaFile } = params; // Mengambil filePath dari URL
   try {
     // Gabungkan path dengan folder "uploads"
-    const file = await fs.readFile(path.join(process.cwd(), 'uploads/hero', namaFile));
+    const file = await fs.readFile(path.join(process.cwd(), 'uploads/ucapan', namaFile));
 
     // Dapatkan ekstensi file untuk Content-Type
     const ext = path.extname(namaFile).substring(1);

@@ -1,17 +1,25 @@
 "use client";
 
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const LoadingScreen = () => {
+  
+  const pathname = usePathname()
+  if (pathname !== "/") return null;
+
+
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    
     const timer = setTimeout(() => {
       setVisible(false);
     }, 3000); // 3 detik
 
     return () => clearTimeout(timer);
   }, []);
+
 
 
   if (!visible) return null;

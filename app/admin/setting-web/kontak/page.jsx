@@ -1,6 +1,5 @@
 import React from 'react'
 import { currentUser } from "@clerk/nextjs/server";
-import { Pencil } from 'lucide-react';
 import Link from 'next/link';
 import { prisma } from '@/app/lib/db';
 import ButtonAddSosialMedia from '@/app/component/clientComponent/button-add-alamat-sosial-media';
@@ -193,7 +192,7 @@ const Kontak = async () => {
                     </tr>
                   </tbody>
                 </table>
-              </div>
+        </div>
       </>
     </div>
   )
