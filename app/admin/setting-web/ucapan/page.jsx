@@ -70,7 +70,7 @@ const Ucapan = async () => {
                             
                             
                             <td className="text-right ">
-                                <ButtonDeleteUcapan />
+                                <ButtonDeleteUcapan id={item.id} />
                             </td>
                         </tr>
                       ))

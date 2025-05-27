@@ -33,7 +33,7 @@ model Ucapan{
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   urlFile String?
-  show Boolean @default(false)
+  show Boolean @default(true)
 }
 
 model Hero{

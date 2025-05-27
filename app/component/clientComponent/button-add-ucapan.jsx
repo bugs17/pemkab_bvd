@@ -21,15 +21,15 @@ const ButtonAddUcapan = () => {
         try {
           const res = await addUcapan(file)
           if (res) {
-            alert("Hero berhasil di ubah")
-            document.getElementById(`modal_upload_hero`).close()
+            alert("Ucapan telah di upload 👍🏻")
+            document.getElementById(`modal_upload_ucapan`).close()
             setFile(null)
             refFile.current.value = ""
             setIsSubmit(false)
             return
           }
         } catch (error) {
-          alert("Gagal update hero. coba lagi!")
+          alert("Gagal upload ucapan. coba lagi!")
           refFile.current.value = ""
           setFile(null)
           setIsSubmit(false)
@@ -61,7 +61,7 @@ const ButtonAddUcapan = () => {
           </p>
 
           <fieldset className="fieldset">
-            <input ref={refFile} onChange={(e) => setFile(e.target.files[0])} accept="video/*" type="file" className="file-input" />
+            <input ref={refFile} onChange={(e) => setFile(e.target.files[0])} accept="image/*" type="file" className="file-input" />
           </fieldset>
 
 
@@ -74,7 +74,7 @@ const ButtonAddUcapan = () => {
                   onClick={handleSubmit}
                   className="btn text-slate-100 bg-success  hover:text-slate-100 hover:bg-green-950"
                 >
-                  Tambah
+                  Simpan
                 </button>
                 <form method="dialog">
                   <button
