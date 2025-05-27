@@ -205,20 +205,26 @@ function toSlug(text) {
         },
       ],
     },
-    {
-      title: "Pengaturan OPD",
-      match: "hh",
-      icon: <Landmark color="black" size={18} />,
-      submenu: [
+    // {
+    //   title: "Pengaturan OPD",
+    //   match: "hh",
+    //   icon: <Landmark color="black" size={18} />,
+    //   submenu: [
         
-        ...(instansis.length > 0 ? 
-          instansis.map((item) => ({
-            title: item.namaInstansi,
-            path: toSlug(item.namaInstansi),
-            match: "hh",
-          }))
-        : [])
-      ],
+    //     ...(instansis.length > 0 ? 
+    //       instansis.map((item) => ({
+    //         title: item.namaInstansi,
+    //         path: toSlug(item.namaInstansi),
+    //         match: "hh",
+    //       }))
+    //     : [])
+    //   ],
+    // },
+    {
+      title: "Pengaturan INSTANSI",
+      path: "/admin/setting-instansi",
+      match: "/admin/setting-instansi",
+      icon: <Landmark color="black" size={18} />
     },
   ];
 
