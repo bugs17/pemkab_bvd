@@ -1,20 +1,24 @@
 import ButtonAddFileOpd from '@/app/component/clientComponent/button-add-file-opd'
-import ButtonAddUcapan from '@/app/component/clientComponent/button-add-ucapan'
+import ButtonAddInstansi from '@/app/component/clientComponent/button-add-instansi'
+import ButtonDeleteInstansi from '@/app/component/clientComponent/button-delete-instansi'
 import { prisma } from '@/app/lib/db'
-import { CheckCheck, Pencil, X } from 'lucide-react'
 import React from 'react'
 
 const SettingInstansi = async () => {
 
     let instansis= []
+    let kategoris = []
+
 
 
     try {
-        instansis = await prisma.instansi.findMany({
-            include:{
-                renstra:true
-            }
-        })
+        kategoris = await prisma.kategoriInstansi.findMany()
+    } catch (error) {
+        console.log("Error mengambill data kategori")
+    }
+
+    try {
+        instansis = await prisma.instansi.findMany()
     } catch (error) {
         console.log("Error mengambill data instansi")
     }
@@ -26,7 +30,7 @@ const SettingInstansi = async () => {
           <div className="flex flex-row items-center justify-between w-full gap-1">
             <div className="font-semibold ">Instansi</div>
           </div>
-          <ButtonAddUcapan />
+          <ButtonAddInstansi kategoris={kategoris} />
         </div>
         {/* tabel kontak disini */}
         <div className="h-full overflow-y-auto">
@@ -46,58 +50,46 @@ const SettingInstansi = async () => {
                   <tbody className="">
                   {instansis.length > 0 ? (
                     instansis.map((item, index) => (
-
-                        <tr key={index} >    
+                        <tr key={item.id} >    
                             <td className="text-left">
                                 {item.namaInstansi}
                             </td>
                             <td className="text-center">
                                 <div  className='flex w-full flex-row justify-center items-center gap-3'>
-                                    {item.profilUrl !== null ? 
-                                    <div className="tooltip" data-tip="Data profil sudah ada">
-                                        <CheckCheck size={12} className='text-success' /> 
-                                    </div>
-                                    : 
-                                    <div className="tooltip" data-tip="Belum ada data">
-                                        <X size={12} className='text-error' />
-                                    </div>
-                                    }
-                                    <ButtonAddFileOpd docs={'profil'} />
+                                    <ButtonAddFileOpd docs={'profil'} idInstansi={item.id} />
                                 </div>
                             </td>
 
                             <td className="text-center">
                                 <div  className='flex w-full flex-row justify-center items-center gap-3'>
-                                    {item.renstra.length > 0 ? 
-                                    <div className="tooltip" data-tip="Data renstra sudah ada">
-                                        <CheckCheck size={12} className='text-success' /> 
-                                    </div>
-                                    : 
-                                    <div className="tooltip" data-tip="Belum ada data">
-                                        <X size={12} className='text-error' />
-                                    </div>
-                                    }
-                                    <ButtonAddFileOpd docs={'renstra'} />
+                                    <ButtonAddFileOpd docs={'renstra'} idInstansi={item.id} />
                                 </div>
                             </td>
                             <td className="text-center">
-                                --
+                                <div  className='flex w-full flex-row justify-center items-center gap-3'>
+                                    <ButtonAddFileOpd docs={'renja'} idInstansi={item.id} />
+                                </div>
                             </td>
                             <td className="text-center">
-                                --
+                                <div  className='flex w-full flex-row justify-center items-center gap-3'>
+                                    <ButtonAddFileOpd docs={'lakip'} idInstansi={item.id} />
+                                </div>
                             </td>
                             <td className="text-center">
-                                --
+                                <div  className='flex w-full flex-row justify-center items-center gap-3'>
+                                    <ButtonAddFileOpd docs={'lppd'} idInstansi={item.id} />
+                                </div>
                             </td>
-                            
-                            
                             <td className="text-center ">
-                                --
+                                <div  className='flex w-full flex-row justify-center items-center gap-3'>
+                                    <ButtonAddFileOpd docs={'dpa'} idInstansi={item.id} />
+                                </div>
                             </td>
                             <td className="text-right ">
-                                --
+                                <ButtonDeleteInstansi instansi={item.namaInstansi} id={item.id} />
                             </td>
                         </tr>
+
                     ))
                   ) : (
                         <tr>    

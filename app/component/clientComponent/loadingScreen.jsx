@@ -6,13 +6,14 @@ import React, { useEffect, useState } from 'react';
 const LoadingScreen = () => {
   
   const pathname = usePathname()
-  if (pathname !== "/") return null;
+  
 
 
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    
+    if (pathname !== "/") return; // keluar lebih awal kalau bukan homepage
+
     const timer = setTimeout(() => {
       setVisible(false);
     }, 3000); // 3 detik
@@ -21,6 +22,7 @@ const LoadingScreen = () => {
   }, []);
 
 
+  if (pathname !== "/") return null;
 
   if (!visible) return null;
 
