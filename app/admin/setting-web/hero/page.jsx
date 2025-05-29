@@ -42,6 +42,7 @@ const SettingHero = async () => {
                 autoPlay
                 loop
                 >
+                
                 <source
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploads/hero/${hero.urlFile}`}
                     type="video/mp4"

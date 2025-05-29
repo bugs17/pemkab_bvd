@@ -16,7 +16,7 @@ const LoadingScreen = () => {
 
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 3000); // 3 detik
+    }, 8000); // 3 detik
 
     return () => clearTimeout(timer);
   }, []);
