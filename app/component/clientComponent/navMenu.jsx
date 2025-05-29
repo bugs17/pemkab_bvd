@@ -706,16 +706,7 @@ const NavMenu = () => {
                 SATU DATA
               </Link>
             </li>
-            <li>
-              <Link
-                href={'#'} target='_blank'
-                className={`text-black whitespace-nowrap hover:bg-red-500 hover:text-white ${
-                  pathName === "/front/pertanian" && "bg-red-500 text-white"
-                }`}
-              >
-                Email
-              </Link>
-            </li>
+            
           </ul>
         </details>
       </li>

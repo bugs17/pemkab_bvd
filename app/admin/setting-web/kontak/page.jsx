@@ -60,7 +60,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                             <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                                <ButtonAddSosialMedia field={"facebook"} defaultValue={kontak.facebook} />
+                                <ButtonAddSosialMedia field={"facebook"} defaultValue={kontak.facebook} id={kontak.id} />
                             </div>
                         </td>
                     </tr>
@@ -81,7 +81,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                         <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                            <ButtonAddSosialMedia field={"instagram"} defaultValue={kontak.instagram} />
+                            <ButtonAddSosialMedia field={"instagram"} defaultValue={kontak.instagram} id={kontak.id} />
                         </div>
                         </td>
                     </tr>
@@ -102,7 +102,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                             <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                                <ButtonAddSosialMedia field={"twitter"} defaultValue={kontak.twitter} />
+                                <ButtonAddSosialMedia field={"twitter"} defaultValue={kontak.twitter} id={kontak.id} />
                             </div>
                         </td>
                     </tr>
@@ -123,7 +123,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                             <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                                <ButtonAddSosialMedia field={"linkedIn"} defaultValue={kontak.linkedIn} />
+                                <ButtonAddSosialMedia field={"linkedIn"} defaultValue={kontak.linkedIn} id={kontak.id} />
                             </div>
                         </td>
                     </tr>
@@ -144,7 +144,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                             <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                                <ButtonAddSosialMedia field={"email"} defaultValue={kontak.email} />
+                                <ButtonAddSosialMedia field={"email"} defaultValue={kontak.email} id={kontak.id} />
                             </div>
                         </td>
                     </tr>
@@ -165,7 +165,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                             <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                                <ButtonAddSosialMedia field={"phone"} defaultValue={kontak.phone} />
+                                <ButtonAddSosialMedia field={"phone"} defaultValue={kontak.phone} id={kontak.id} />
                             </div>
                         </td>
                     </tr>
@@ -186,7 +186,7 @@ const Kontak = async () => {
                         
                         <td className="text-right flex flex-row justify-end gap-2 p-2 items-center">
                             <div className="tooltip tooltip-left z-50" data-tip="Edit url">
-                                <ButtonAddSosialMedia field={"alamat"} defaultValue={kontak.alamat} />
+                                <ButtonAddSosialMedia field={"alamat"} defaultValue={kontak.alamat} id={kontak.id} />
                             </div>
                         </td>
                     </tr>

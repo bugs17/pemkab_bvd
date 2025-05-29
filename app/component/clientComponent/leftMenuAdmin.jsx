@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { BookMinus, Building, CalendarDays, ChartNoAxesCombined, FileDown, ImagePlus, Landmark, Mails, Newspaper, Settings, SquareLibrary, Tv, UserCog, Users } from "lucide-react";
+import { BookMinus, Building, CalendarDays, ChartNoAxesCombined, FileDown, ImagePlus, Landmark, Mails, Newspaper, Settings, SquareLibrary, Tv, UserCog, Users, Mail } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -225,6 +225,12 @@ function toSlug(text) {
       path: "/admin/setting-instansi",
       match: "/admin/setting-instansi",
       icon: <Landmark color="black" size={18} />
+    },
+    {
+      title: "Email",
+      path: process.env.NEXT_PUBLIC_SERVER_MAIL_URL,
+      match: "#",
+      icon: <Mail color="black" size={18} />
     },
   ];
 
