@@ -16,7 +16,7 @@ const LoadingScreen = () => {
 
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 8000); // 3 detik
+    }, 3000); // 3 detik
 
     return () => clearTimeout(timer);
   }, []);
@@ -27,7 +27,7 @@ const LoadingScreen = () => {
   if (!visible) return null;
 
   return (
-    <div className="h-screen w-screen top-0 left-0 right-0 bottom-0 fixed  overflow-hidden py-20 z-[980] bg-slate-100 bg-[linear-gradient(to_right,#fca5a50a_1px,transparent_4px),linear-gradient(to_bottom,#fca5a50a_1px,transparent_4px)] bg-[size:14px_24px]">
+    <div className="h-screen w-screen top-0 left-0 right-0 bottom-0 hidden lg:block fixed  overflow-hidden py-20 z-[980] bg-slate-100 bg-[linear-gradient(to_right,#fca5a50a_1px,transparent_4px),linear-gradient(to_bottom,#fca5a50a_1px,transparent_4px)] bg-[size:14px_24px]">
       <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-red-200 opacity-20 blur-[100px]"></div>
       <div className="absolute w-full inset-0 flex items-center justify-center">
         {/* Gambar profil */}

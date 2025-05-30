@@ -25,7 +25,7 @@ const MenuInstansiDaerah = async ({instansi}) => {
 
   
   return (
-    <ul className="menu font-monsans font-medium lg:menu-horizontal bg-white w-full items-center flex justify-center flex-row ">
+    <ul className="menu font-monsans lg:font-medium text-xs lg:text-sm menu-horizontal bg-white w-full sm:h-auto items-center flex justify-center flex-row ">
             <ListMenuInstansi data={data} instansi={instansi} />
     </ul>
   )

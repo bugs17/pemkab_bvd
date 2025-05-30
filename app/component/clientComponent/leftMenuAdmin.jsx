@@ -232,6 +232,12 @@ function toSlug(text) {
       match: "#",
       icon: <Mail color="black" size={18} />
     },
+    {
+      title: "Modul Instansi",
+      path: process.env.NEXT_PUBLIC_SERVER_OPD,
+      match: "#",
+      icon: <Building color="black" size={18} />
+    },
   ];
 
   return (
@@ -271,6 +277,7 @@ function toSlug(text) {
           <li key={index}>
             <Link
               href={menu.path}
+              target={menu.title === 'Modul Instansi' || menu.title === 'Email' ? '_blank' : ''}
               className={`hover:bg-success hover:text-slate-100 ${
                 pathName.includes(menu.match) && "bg-success text-slate-100"
               }`}

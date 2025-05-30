@@ -1,8 +1,29 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { getListInstansis } from "@/app/actions/getListInstansis";
+import { createSlug } from "@/app/lib/slugify";
+
 
 const DropDownMobile = () => {
+  const [daerahs, setDaerahs] = useState([])
+  const [teknis, setTeknis] = useState([])
+  const [sekretariats, setSekretariats] = useState([])
+
+
+  useEffect(() => {
+      
+      const getAllInstansis = async () => {
+        const {status, filteredDaerahs, filteredTeknis, filteredSekretariats} = await getListInstansis()
+        if (status) {
+          setDaerahs(filteredDaerahs)
+          setTeknis(filteredTeknis)
+          setSekretariats(filteredSekretariats)
+        }
+      }
+      getAllInstansis()
+    }, [])
+
   const menus = [
     {
       title: "Beranda",
@@ -52,6 +73,38 @@ const DropDownMobile = () => {
           title: "APBD Boven Digoel",
           path: "/front/apbd",
         },
+      ],
+    },
+    {
+      title: "Instansi",
+      match: "/pages/instansi",
+      submenu: [
+        {
+          title: "Dinas Daerah",
+          match: "#",
+          submenu: daerahs.map((item, index) => ({
+            title: item.namaInstansi,
+            path: `/pages/instansi/${createSlug(item.namaInstansi)}`
+          }))
+        },
+        {
+          title: "Lembaga Teknis",
+          match: "#",
+          submenu: teknis.map((item, index) => ({
+            title: item.namaInstansi,
+            path: `/pages/instansi/${createSlug(item.namaInstansi)}`
+          }))
+        },
+        {
+          title: "Sekretariat",
+          match: "#",
+          submenu: sekretariats.map((item, index) => ({
+            title: item.namaInstansi,
+            path: `/pages/instansi/${createSlug(item.namaInstansi)}`
+          }))
+        },
+        
+        
       ],
     },
     {
@@ -184,6 +237,27 @@ const DropDownMobile = () => {
       ],
     },
     {
+      title: "E-GOV APP",
+      submenu: [
+        {
+          title: "PPID",
+          path: "https://ppid.bovendigoelkab.go.id",
+        },
+        {
+          title: "ETPP",
+          path: "https://etpp.bovendigoelkab.go.id",
+        },
+        {
+          title: "LPSE",
+          path: "https://lpse.bovendigoelkab.go.id",
+        },
+        {
+          title: "SATU DATA",
+          path: "https://satudata.bovendigoelkab.go.id",
+        },
+      ],
+    },
+    {
       title: "Berita",
       path: "/pages/berita",
     },
@@ -225,6 +299,25 @@ const DropDownMobile = () => {
                   </summary>
                   <ul>
                     {menu.submenu.map((sub, subIndex) => (
+                      sub.submenu ? (
+                        <li key={subIndex} >
+                        <details open={false} >
+                            <summary className="hover:bg-success hover:text-slate-100">
+                              {sub.title}
+                            </summary>
+                            <ul>
+                              {sub.submenu.map((threedItem, threedIndex) => (
+                                <li key={threedIndex}>
+                                  <Link href={threedItem.path} className="hover:bg-success hover:text-slate-100">
+                                    {threedItem.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                        </details>
+                        </li>
+                      ) : (
+
                       <li key={subIndex} className="py-1">
                         {sub.path ? (
                           <Link
@@ -239,6 +332,10 @@ const DropDownMobile = () => {
                           </span>
                         )}
                       </li>
+                      )
+                      
+                      
+
                     ))}
                   </ul>
                 </details>

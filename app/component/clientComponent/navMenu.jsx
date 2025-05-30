@@ -32,6 +32,7 @@ const NavMenu = () => {
 
   return (
     <ul className="menu menu-horizontal font-monsans font-medium z-50" >
+      {/* beranda */}
       <li onMouseEnter={() => setCurentOpen('')} onClick={() => setCurentOpen('')}>
         <Link
           href={"/"}
@@ -43,6 +44,7 @@ const NavMenu = () => {
         </Link>
       </li>
 
+      {/* profil */}
       <li onMouseEnter={() => setCurentOpen('profil')} onClick={() => setCurentOpen('profil')} className="group hover:bg-red-500 hover:rounded-lg ">
         <details id="profil" className="group-hover:text-inherit " open={curentOpen === 'profil'}>
           <summary
@@ -171,6 +173,7 @@ const NavMenu = () => {
         </details>
       </li>
 
+      {/* instansi */}
       <li onMouseEnter={() => setCurentOpen('instansi')} onClick={() => setCurentOpen('instansi')} className="group hover:bg-red-500 hover:rounded-lg">
         <details className="group-hover:text-inherit" open={curentOpen === 'instansi'}>
           <summary

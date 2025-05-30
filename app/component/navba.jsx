@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <>
     {kontak !== null && (
-      <div onMouseEnter={() => setCloseMenu("")} className="bg-red-500 w-full flex flex-row sticky h-10">
+      <div onMouseEnter={() => setCloseMenu("")} className="bg-red-500 w-full hidden lg:flex flex-row sticky h-10">
         <div className="h-full w-[25%] flex items-center justify-end pr-6">
           <Link href={`mailto:${kontak.email}`} target="_blank" className="flex items-center flex-row gap-2">
             <Mail size={18} className="text-white" />

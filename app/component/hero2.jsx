@@ -36,7 +36,7 @@ const Hero2 = () => {
     }, [])
 
   if (heroFileName === null) {
-    return <span className="loading loading-spinner text-success loading-xl"></span>
+    return <span className="lg:loading lg:loading-spinner text-success loading-xl"></span>
   }
     
   return (

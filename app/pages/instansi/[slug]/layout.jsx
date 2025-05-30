@@ -13,8 +13,8 @@ const InstansiLayout = async ({children, params}) => {
 
   return (
     <div className='w-full'>
-        <div className='h-32 w-full justify-center items-center flex shadow-sm bg-white bg-[linear-gradient(to_right,#F871710a_3px,transparent_3px),linear-gradient(to_bottom,#F871710a_3px,transparent_3px)] bg-[size:14px_24px]'>
-          <span className='font-loritalic text-3xl'>{slugToText(slug).toUpperCase()}</span>
+        <div className='h-32 w-full text-center justify-center items-center flex shadow-sm bg-white bg-[linear-gradient(to_right,#F871710a_3px,transparent_3px),linear-gradient(to_bottom,#F871710a_3px,transparent_3px)] bg-[size:14px_24px]'>
+          <span className='font-loritalic text-center lg:text-3xl '>{slugToText(slug).toUpperCase()}</span>
         </div>
         <MenuInstansiDaerah instansi={slug} />
         <div>{children}</div>

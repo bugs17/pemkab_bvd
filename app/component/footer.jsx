@@ -4,35 +4,58 @@ import LogoBvd from '../asset/img/logoBvd.png'
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { MdEmail } from "react-icons/md";
 import { FaInstagramSquare } from "react-icons/fa";
+import { prisma } from '../lib/db';
+import { FacebookIcon, Instagram, Linkedin, Mail, MapPin, Twitter } from 'lucide-react';
+import Link from 'next/link';
 
-const Footer = () => {
+const Footer = async () => {
+
+  let kontak = {}
+
+  try {
+    kontak = await prisma.kontak.findFirst()
+  } catch (error) {
+    console.log("error get kontak pada footer", error.message)
+  }
+
   return (
     <>
     <footer className="footer bg-primary text-slate-50 p-10">
-  <aside>
-    <Image src={LogoBvd} className='h-14 w-14' alt='logo' />
-    <p>
-      PEMERINTAH KABUPATEN BOVEN DIGOEL
-    </p>
-  </aside>
+    <aside className='flex lg:flex-col flex-row gap-2 justify-center items-center'>
+      <Image src={LogoBvd} className='lg:h-14 lg:w-14 h-9 w-9' alt='logo' />
+      <p>
+        PEMERINTAH KABUPATEN BOVEN DIGOEL
+      </p>
+    </aside>
   <nav>
     <h6 className="footer-title">Kontak</h6>
     <span className="flex items-center gap-3">
-    <MdEmail size={25} />
-    info@bovendigoelkab.go.id</span>
-    <a href='https://www.instagram.com/kominfobovendigoel/' target='_blank' className="link link-hover flex items-center gap-3">
-        <FaInstagramSquare size={25} />
-        Pemda_BVD
-    </a>
+    <Mail size={18} className="text-white" />
+    {kontak.email}
+    </span>
+    <Link href={kontak.instagram} target='_blank' className="link link-hover flex items-center gap-3">
+      <Instagram size={18} className="text-white hover:text-purple-800" />
+      @bvdkab
+    </Link>
+    <Link href={kontak.facebook} target='_blank' className="link link-hover flex items-center gap-3">
+      <FacebookIcon size={18} className="text-white hover:text-blue-400" />
+      pemkab_boven
+    </Link>
+    <Link href={kontak.twitter} target='_blank' className="link link-hover flex items-center gap-3">
+      <Twitter size={18} className="text-white hover:text-blue-400" />
+      pemkab_boven
+    </Link>
+    <Link href={kontak.linkedIn} target='_blank' className="link link-hover flex items-center gap-3">
+      <Linkedin size={18} className="text-white hover:text-blue-400" />
+      pemkab_boven
+    </Link>
     
   </nav>
   <nav>
     <h6 className="footer-title">Alamat</h6>
     <span className="flex items-center gap-3">
-    <HiBuildingOffice2 size={25} />
-    Jalan. Trans Papua Tanah Merah Kampung Persatuan, 
-    <br/>
-    Distrik Mandobo, Tanah Merah - Kabupaten Boven Digoel
+    <MapPin size={28} className="text-white" />
+    {kontak.alamat}
     </span>
     
   </nav>
