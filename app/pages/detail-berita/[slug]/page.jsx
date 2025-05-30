@@ -1,4 +1,5 @@
 import { prisma } from "@/app/lib/db";
+import { notFound } from "next/navigation";
 import React from "react";
 import { FaCalendarDays } from "react-icons/fa6";
 
@@ -19,6 +20,10 @@ const DetailBerita = async ({ params }) => {
       },
     },
   });
+
+  if (!detailBerita) {
+    return notFound()
+  }
 
   return (
     <div className="flex flex-col gap-6 md:mb-8">

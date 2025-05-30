@@ -1,5 +1,6 @@
 // pages/404.js
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Custom404() {
   return (
@@ -20,12 +21,12 @@ export default function Custom404() {
       </div>
       <h1 className="text-4xl font-monsans font-extrabold text-yellow-600 mt-6">Halaman Tidak Ditemukan</h1>
       <p className="text-gray-600 font-monsans font-normal mt-2">Sepertinya kamu tersesat. Coba kembali ke halaman utama.</p>
-      <a
+      <Link
         href="/"
         className="mt-6 inline-block bg-black text-white px-6 py-2 rounded-md hover:bg-gray-900 transition"
       >
         Kembali ke Beranda
-      </a>
+      </Link>
     </div>
   );
 }

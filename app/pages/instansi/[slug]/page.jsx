@@ -2,6 +2,7 @@ import BelumAdaData from '@/app/component/clientComponent/belumAdaData'
 import PdfViewerComponent from '@/app/component/clientComponent/pdfViewer'
 import { prisma } from '@/app/lib/db'
 import { slugToText } from '@/app/lib/slugify'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
 const InstansiPage = async ({params}) => {
@@ -19,6 +20,11 @@ const InstansiPage = async ({params}) => {
     } catch (error) {
         console.log("Terjadi error saat melakukan query instansi", error.message)
     }
+
+    if (!instansi) {
+        return notFound()
+        
+      }
 
 
 

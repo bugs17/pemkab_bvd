@@ -1,10 +1,15 @@
 import MenuInstansiDaerah from '@/app/component/menuInstansiDaerah'
 import { slugToText } from '@/app/lib/slugify'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
 const InstansiLayout = async ({children, params}) => {
   
   const {slug} = await params
+
+  if (!slug) {
+    return notFound()
+  }
 
   return (
     <div className='w-full'>

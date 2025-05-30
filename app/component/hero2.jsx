@@ -11,6 +11,7 @@ const Hero2 = () => {
     const [videoHeight, setVideoHeight] = useState(0);
     const [heroFileName, setHeroFileName] = useState(null);
     const [curentOpen, setCurentOpen] = useAtom(isNavMenuOpen)
+    const [videoLoaded, setVideoLoaded] = useState(false)
 
     useEffect(() => {
         const updateHeight = () => {
@@ -68,8 +69,17 @@ const Hero2 = () => {
                 
           </div>
         </div>
+
+        {/* Placeholder thumbnail */}
+        {!videoLoaded && (
+          <img
+            src="/img/overlay.png" // Ganti dengan gambar thumbnail kamu
+            alt="hero placeholder"
+            className="absolute inset-0 -z-20 object-cover w-full h-full"
+          />
+        )}
         
-          <video ref={videoRef} playsInline autoPlay muted loop className="absolute inset-0 -z-20 object-cover w-full h-auto">
+          <video onCanPlay={() => setVideoLoaded(true)} ref={videoRef} playsInline autoPlay muted loop className="absolute inset-0 -z-20 object-cover w-full h-auto">
             <source src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploads/hero/${heroFileName}`} type="video/mp4" />
           </video>
 

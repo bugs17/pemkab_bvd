@@ -25,6 +25,13 @@ const EditPengumuman = async ({ params }) => {
     console.log("gagal mengambil instance pengumuman", error.message);
   }
 
+  if (!instance) {
+    return <div className='flex flex-col justify-center items-center'>
+        <span>Data tidak di temukan</span>
+    </div>
+    
+  }
+
   return (
     <div className="h-full pb-6">
       <FormEditPengumuman

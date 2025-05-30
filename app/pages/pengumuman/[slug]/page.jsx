@@ -1,5 +1,6 @@
 import PdfViewerComponent from "@/app/component/clientComponent/pdfViewer";
 import { prisma } from "@/app/lib/db";
+import { notFound } from "next/navigation";
 import React from "react";
 import { FaDownload } from "react-icons/fa6";
 
@@ -21,6 +22,10 @@ const DetailPengumuman = async ({ params }) => {
       `gagal mengambil pengumuman dengan slug: ${slug}`,
       error.message
     );
+  }
+
+  if(!pengumuman){
+    return notFound()
   }
 
   return (

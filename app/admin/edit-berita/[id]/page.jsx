@@ -6,6 +6,7 @@ import { currentUser } from '@clerk/nextjs/server'
 
 
 const EditBerita = async ({params}) => {
+
   
   const user = await currentUser()
   const role = user.publicMetadata?.role
@@ -20,12 +21,25 @@ const EditBerita = async ({params}) => {
     return <p>ID not found</p>;
   }
 
+  let berita;
 
-  const berita = await prisma.berita.findFirst({
-    where:{
-      id:parseInt(id)
-    }
-  })
+
+  try {
+    berita = await prisma.berita.findFirst({
+      where:{
+        id:parseInt(id)
+      }
+    })
+  } catch (error) {
+    console.log("Error mengambil berita by id saat edit berita!", error.message)
+  }
+
+  if (!berita) {
+    return <div className='flex flex-col justify-center items-center'>
+        <span>Data tidak di temukan</span>
+    </div>
+    
+  }
 
   const listKategoris = await prisma.kategoriBerita.findMany()
 

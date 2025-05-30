@@ -1,4 +1,5 @@
 import { prisma } from "@/app/lib/db";
+import { notFound } from "next/navigation";
 import React from "react";
 import { FaDownload } from "react-icons/fa6";
 
@@ -16,6 +17,10 @@ const page = async ({ params }) => {
     })
   } catch (error) {
     console.log("error get unduhan di fronend")
+  }
+
+  if (!unduhan) {
+    return notFound()
   }
 
   return (

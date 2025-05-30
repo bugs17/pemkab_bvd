@@ -25,6 +25,13 @@ const EditKegiatan = async ({ params }) => {
     console.log("gagal mengambil instance kegiatan", error.message);
   }
 
+  if (!instance) {
+    return <div className='flex flex-col justify-center items-center'>
+        <span>Data tidak di temukan</span>
+    </div>
+    
+  }
+
   
 
   return (
